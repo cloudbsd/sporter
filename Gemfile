@@ -53,3 +53,23 @@ gem 'devise-i18n'
 
 # Use rolify for user authorization
 gem 'rolify'
+
+# Use will_paginate for paginating
+gem 'will_paginate', '~> 3.0'
+gem 'will-paginate-i18n'
+
+
+gem 'bootstrap-sass', '~> 3.1.0'
+gem "font-awesome-rails", '~> 4.0.0'
+gem 'jquery-validation-rails'
+
+# Use dalli instead of memcache-client as default cache client
+# gem 'dalli'
+
+group :production do
+# gem 'mysql2'
+  gem 'pg'
+end
+
+# Use ffaker for generating fake data
+gem 'ffaker', group: [:development, :production]

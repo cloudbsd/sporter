@@ -30,6 +30,8 @@ GEM
     bcrypt (3.1.7)
     bcrypt-ruby (3.1.5)
       bcrypt (>= 3.1.3)
+    bootstrap-sass (3.1.1.0)
+      sass (~> 3.2)
     builder (3.1.4)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -47,6 +49,9 @@ GEM
     devise-i18n (0.10.2)
     erubis (2.7.0)
     execjs (2.0.2)
+    ffaker (1.23.0)
+    font-awesome-rails (4.0.3.1)
+      railties (>= 3.2, < 5.0)
     hike (1.2.3)
     i18n (0.6.9)
     jbuilder (1.5.3)
@@ -55,6 +60,9 @@ GEM
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-validation-rails (1.11.1.1)
+      railties (>= 3.2, < 5.0)
+      thor (~> 0.14)
     json (1.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -63,6 +71,7 @@ GEM
     minitest (4.7.5)
     multi_json (1.8.4)
     orm_adapter (0.5.0)
+    pg (0.17.1)
     polyglot (0.3.4)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -120,16 +129,23 @@ GEM
       json (>= 1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
+    will-paginate-i18n (0.1.14)
+    will_paginate (3.0.5)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass (~> 3.1.0)
   coffee-rails (~> 4.0.0)
   devise (~> 3.2.0)
   devise-i18n
+  ffaker
+  font-awesome-rails (~> 4.0.0)
   jbuilder (~> 1.2)
   jquery-rails
+  jquery-validation-rails
+  pg
   rails (= 4.0.3)
   rails-i18n
   rolify
@@ -138,3 +154,5 @@ DEPENDENCIES
   sqlite3
   turbolinks
   uglifier (>= 1.3.0)
+  will-paginate-i18n
+  will_paginate (~> 3.0)
