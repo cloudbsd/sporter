@@ -1,4 +1,6 @@
 Sporter::Application.routes.draw do
+  resources :activities
+
   resources :transactions
 
   root 'users#index'

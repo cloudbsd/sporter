@@ -4,6 +4,7 @@ zh-CN:
       user: "用户纪录"
       group: "群"
       transaction: "交易"
+      activity: "活动"
     attributes:
       user:
         email: "电子邮件"
@@ -26,12 +27,15 @@ zh-CN:
         location: "通讯地址"
         aboutme: "个人简介"
       group:
-        name: '名称'
-        aboutme: '群介绍'
+        name: "名称"
+        aboutme: "群介绍"
       transaction:
         user_id: "用户"
         action: "操作"
         amount: "金额"
+      activity:
+        started_at: "开始时间"
+        stopped_at: "结束时间"
   datetime:
     formats:
       default: ! '%Y-%m-%d'

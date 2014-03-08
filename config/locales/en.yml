@@ -4,6 +4,7 @@ en:
       user: "User"
       group: "Group"
       transaction: "Transaction"
+      activity: "Activity"
     attributes:
       user:
         email: "Email"
@@ -26,12 +27,15 @@ en:
         location: "Location"
         aboutme: "About Me"
       group:
-        name: 'Name'
-        aboutme: 'About Group'
+        name: "Name"
+        aboutme: "About Group"
       transaction:
         user_id: "User"
         action: "Action"
         amount: "Amount"
+      activity:
+        started_at: "Start Time"
+        stopped_at: "Stop Time"
   datetime:
     formats:
       default: ! '%Y-%m-%d'
