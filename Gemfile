@@ -43,3 +43,13 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+
+gem 'rails-i18n'
+
+# Use devise for user authentication
+gem 'devise', '~> 3.2.0'
+gem 'devise-i18n'
+
+# Use rolify for user authorization
+gem 'rolify'
