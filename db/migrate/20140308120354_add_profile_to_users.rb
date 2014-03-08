@@ -12,5 +12,6 @@ class AddProfileToUsers < ActiveRecord::Migration
     add_column :users, :district, :string
     add_column :users, :location, :string
     add_column :users, :aboutme, :text
+    add_column :users, :debit_id, :integer
   end
 end
