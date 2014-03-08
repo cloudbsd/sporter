@@ -19,6 +19,29 @@ class User < ActiveRecord::Base
   rolify
 
   # instance methods
+  def become_owner resource
+    self.add_role :owner, resource
+  end
+
+  def become_moderator resource
+    self.add_role :moderator, resource
+  end
+
+  def is_owner? resource
+    self.has_role? :owner, resource
+  end
+
+  def is_moderator? resource
+    self.has_role? :moderator, resource
+  end
+
+  def owned_groups
+    Group.find_roles(:owner, self)
+  end
+
+  def managed_groups
+    Group.find_roles(:moderator, self)
+  end
 
   # class methods
 
