@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   # attributes related macros
 
   # association macros
+  has_and_belongs_to_many :groups
 
   # validation macros
   validates :terms_of_service, :acceptance => true, on: :create
