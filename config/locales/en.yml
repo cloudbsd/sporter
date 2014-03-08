@@ -2,6 +2,7 @@ en:
   activerecord:
     models:
       user: "User"
+      group: "Group"
     attributes:
       user:
         email: "Email"
@@ -23,6 +24,9 @@ en:
         district: "District"
         location: "Location"
         aboutme: "About Me"
+      group:
+        name: 'Name'
+        aboutme: 'About Group'
   datetime:
     formats:
       default: ! '%Y-%m-%d'
@@ -32,6 +36,14 @@ en:
       short_so: ! "%b %d at %H:%M"
       this_year: ! "%b %d at %H:%M"
       one_year_ago: ! "%b %d '%y at %H:%M"
+  layouts:
+    brand: "Sports Zone"
+    back: "Back"
+    show: "Show"
+    edit: "Edit"
+    destroy: "Destroy"
+    cancel: "Cancel"
+    confirm: "Are you sure?"
   devise:
     settings: "Settings"
     signup: "Sign up"
@@ -46,3 +58,5 @@ en:
     help_block:
       password: "leave blank if you don't want to change it"
       current_password: "we need your current password to confirm your changes"
+  group:
+    new: "New Group"

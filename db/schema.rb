@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140308144805) do
     t.integer "user_id",  null: false
   end
 
+  add_index "groups_users", ["group_id", "user_id"], name: "index_groups_users_on_group_id_and_user_id", unique: true
   add_index "groups_users", ["group_id"], name: "index_groups_users_on_group_id"
   add_index "groups_users", ["user_id"], name: "index_groups_users_on_user_id"
 

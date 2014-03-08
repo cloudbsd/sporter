@@ -1,4 +1,16 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h3>我创建的群</h3>
+<% current_user.owned_groups.each do |group| %>
+  <%= link_to group.name, group %> <br>
+<% end %>
+
+<h3>我管理的群</h3>
+<% current_user.managed_groups.each do |group| %>
+  <%= link_to group.name, group %>
+<% end %>
+
+<h3>我加入的群</h3>
+<% current_user.groups.each do |group| %>
+  <%= link_to group.name, group %> <br>
+<% end %>
 
 <%= link_to t('group.new'), new_group_path %>

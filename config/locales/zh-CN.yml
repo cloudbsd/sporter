@@ -2,6 +2,7 @@ zh-CN:
   activerecord:
     models:
       user: "用户纪录"
+      group: "群"
     attributes:
       user:
         email: "电子邮件"
@@ -23,6 +24,9 @@ zh-CN:
         district: "区"
         location: "通讯地址"
         aboutme: "个人简介"
+      group:
+        name: '名称'
+        aboutme: '群介绍'
   datetime:
     formats:
       default: ! '%Y-%m-%d'
@@ -32,6 +36,14 @@ zh-CN:
       short_so: ! "%m月%d日 %H:%M"
       this_year: ! "%m月%d日 %H:%M"
       one_year_ago: ! '%Y-%m-%d %H:%M'
+  layouts:
+    brand: "运动空间"
+    back: "返回"
+    show: "显示"
+    edit: "编辑"
+    destroy: "删除"
+    cancel: "取消"
+    confirm: "你确定吗？"
   devise:
     settings: "设置"
     signup: "注册"
@@ -46,3 +58,5 @@ zh-CN:
     help_block:
       password: "留空，如果你不想去改变它"
       current_password: "我们需要您的当前密码以确认您的更改"
+  group:
+    new: "新建群"
