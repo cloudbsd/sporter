@@ -1,0 +1,15 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <% if user_signed_in? %>
+      <%= header_link_to 'users', 'show', current_user.name, current_user %>
+      <%= header_link_to 'registrations', 'edit', t('devise.settings'), edit_user_registration_path %>
+      <li> <%= link_to t('devise.logout'), destroy_user_session_path, method: :delete %> </li>
+      <li> <%= link_to t('devise.logoff'), registration_path(current_user), :method => :delete, data: { confirm: 'Are you sure?' } %> </li>
+    <% else %>
+      <%= header_link_to 'sessions', 'new', t('devise.login'), new_user_session_path %>
+      <%= header_link_to 'registrations', 'new', t('devise.signup'), new_user_registration_path %>
+    <% end %>
+  </ul>
+
+  <h3 class="text-muted"><strong>运动空间</strong></h3>
+</div>

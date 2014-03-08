@@ -44,11 +44,11 @@ ActiveRecord::Schema.define(version: 20140308120916) do
     t.string   "mobile"
     t.string   "telephone"
     t.string   "gravatar"
-    t.text     "aboutme"
     t.string   "province"
     t.string   "city"
     t.string   "district"
     t.string   "location"
+    t.text     "aboutme"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

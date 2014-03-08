@@ -1,23 +1,48 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      user: "User"
+    attributes:
+      user:
+        email: "Email"
+        password: "Password"
+        password_digest: "Confirmation"
+        password_confirmation: "Password Confirmation"
+        current_password: "Current Password"
+        remember_me: "Remember me"
+        terms_of_service: "I agree to the Stacker Term of Service and Privacy Policy"
+        username: "Login Name"
+        name: "Display Name"
+        birthday: "Birthday"
+        gender: "Gender"
+        mobile: "mobile"
+        telephone: "Telephone"
+        gravatar: "Gravatar"
+        province: "province"
+        city: "City"
+        district: "District"
+        location: "Location"
+        aboutme: "About Me"
+  datetime:
+    formats:
+      default: ! '%Y-%m-%d'
+      long: ! '%B %d, %Y'
+      short: ! '%b %d'
+      long_so: ! "%b %d '%y at %H:%M"
+      short_so: ! "%b %d at %H:%M"
+      this_year: ! "%b %d at %H:%M"
+      one_year_ago: ! "%b %d '%y at %H:%M"
+  devise:
+    settings: "Settings"
+    signup: "Sign up"
+    signin: "Sign in"
+    login: "Login"
+    logout: "Logout"
+    logoff: "Cancel my account"
+    remember_me: "Remember me"
+    forgot_password: "Forgot your password?"
+    reset_password_instructions: "Send me reset password instructions"
+    reset_password: "Change my password"
+    help_block:
+      password: "leave blank if you don't want to change it"
+      current_password: "we need your current password to confirm your changes"

@@ -7,10 +7,10 @@ class AddProfileToUsers < ActiveRecord::Migration
     add_column :users, :mobile, :string
     add_column :users, :telephone, :string
     add_column :users, :gravatar, :string
-    add_column :users, :aboutme, :text
     add_column :users, :province, :string
     add_column :users, :city, :string
     add_column :users, :district, :string
     add_column :users, :location, :string
+    add_column :users, :aboutme, :text
   end
 end

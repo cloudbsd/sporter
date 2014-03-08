@@ -47,6 +47,9 @@ end
 
 gem 'rails-i18n'
 
+# Use jquery-ui as the JavaScript UI library
+gem 'jquery-ui-rails'
+
 # Use devise for user authentication
 gem 'devise', '~> 3.2.0'
 gem 'devise-i18n'
