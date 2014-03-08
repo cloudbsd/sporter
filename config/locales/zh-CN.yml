@@ -3,6 +3,7 @@ zh-CN:
     models:
       user: "用户纪录"
       group: "群"
+      transaction: "交易"
     attributes:
       user:
         email: "电子邮件"
@@ -27,6 +28,10 @@ zh-CN:
       group:
         name: '名称'
         aboutme: '群介绍'
+      transaction:
+        user_id: "用户"
+        action: "操作"
+        amount: "金额"
   datetime:
     formats:
       default: ! '%Y-%m-%d'
@@ -58,5 +63,9 @@ zh-CN:
     help_block:
       password: "留空，如果你不想去改变它"
       current_password: "我们需要您的当前密码以确认您的更改"
-  group:
+  groups:
     new: "新建群"
+  transactions:
+    action:
+      deposit: '存款'
+      withdraw: '取款'

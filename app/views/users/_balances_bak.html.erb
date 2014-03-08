@@ -1,0 +1,25 @@
+<h4>球友账单</h4>
+<table class="table table-bordered">
+  <thead>
+    <tr class="active">
+      <th>姓名</th>
+      <th>账户余额</th>
+      <th>活动次数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <% unless user.email == "liyan@stacker.com" || user.email == "xiaolong@stacker.com" %>
+      <tr>
+        <td><%= link_to user.name, user %></td>
+        <% if user.email == 'public@stacker.com' %>
+          <td><%= remainder_sum %></td>
+        <% else %>
+          <td><%= user.transactions.sum('amount') - user.participates.sum('net_pay') %></td>
+        <% end %>
+        <td><%= user.participates.size %></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

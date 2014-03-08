@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<%= link_to t('transactions.action.deposit'), new_transaction_path, class: 'btn btn-warning' %>
 
 <p>
   <strong>Name:</strong>
@@ -12,3 +12,4 @@
 
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>
+

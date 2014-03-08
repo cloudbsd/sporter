@@ -1,16 +1,24 @@
-<h3>我创建的群</h3>
-<% current_user.owned_groups.each do |group| %>
-  <%= link_to group.name, group %> <br>
-<% end %>
 
-<h3>我管理的群</h3>
-<% current_user.managed_groups.each do |group| %>
-  <%= link_to group.name, group %>
-<% end %>
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+    <%# render 'balances' %>
+  </div>
+  <div class="col-xs-6 col-md-4">
+    <%= link_to t('groups.new'), new_group_path %>
 
-<h3>我加入的群</h3>
-<% current_user.groups.each do |group| %>
-  <%= link_to group.name, group %> <br>
-<% end %>
+    <h4>我创建的群</h4>
+    <% current_user.owned_groups.each do |group| %>
+      <%= link_to group.name, group %> <br>
+    <% end %>
 
-<%= link_to t('group.new'), new_group_path %>
+    <h4>我管理的群</h4>
+    <% current_user.managed_groups.each do |group| %>
+      <%= link_to group.name, group %>
+    <% end %>
+
+    <h4>我加入的群</h4>
+    <% current_user.groups.each do |group| %>
+      <%= link_to group.name, group %> <br>
+    <% end %>
+  </div>
+</div>

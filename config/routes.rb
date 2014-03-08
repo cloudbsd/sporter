@@ -1,4 +1,6 @@
 Sporter::Application.routes.draw do
+  resources :transactions
+
   root 'users#index'
 
   devise_for :users
