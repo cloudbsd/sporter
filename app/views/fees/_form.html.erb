@@ -1,0 +1,9 @@
+<%= form_for [@group, fee] do |f| %>
+  <div class="from-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

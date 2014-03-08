@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :groups
   belongs_to :debit
   has_many :transactions
+  has_many :fees
 
   # validation macros
   validates :terms_of_service, :acceptance => true, on: :create

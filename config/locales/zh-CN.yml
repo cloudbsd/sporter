@@ -5,6 +5,7 @@ zh-CN:
       group: "群"
       transaction: "交易"
       activity: "活动"
+      fee: "费用名称"
     attributes:
       user:
         email: "电子邮件"
@@ -36,6 +37,8 @@ zh-CN:
       activity:
         started_at: "开始时间"
         stopped_at: "结束时间"
+      fee:
+        name: "费用名称"
   datetime:
     formats:
       default: ! '%Y-%m-%d'
@@ -73,3 +76,7 @@ zh-CN:
     action:
       deposit: '存款'
       withdraw: '取款'
+  activities:
+    new: "新建活动"
+  fees:
+    new: "新建费用名称"

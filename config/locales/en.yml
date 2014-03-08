@@ -5,6 +5,7 @@ en:
       group: "Group"
       transaction: "Transaction"
       activity: "Activity"
+      fee: "Fee Name"
     attributes:
       user:
         email: "Email"
@@ -36,6 +37,8 @@ en:
       activity:
         started_at: "Start Time"
         stopped_at: "Stop Time"
+      fee:
+        name: "Fee Name"
   datetime:
     formats:
       default: ! '%Y-%m-%d'
@@ -73,3 +76,7 @@ en:
     action:
       deposit: 'Deposit'
       withdraw: 'Withdraw'
+  activities:
+    new: "New Activity"
+  fees:
+    new: "New Fee Name"

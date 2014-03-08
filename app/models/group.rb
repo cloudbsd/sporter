@@ -1,6 +1,7 @@
 class Group < ActiveRecord::Base
   # association macros
   has_and_belongs_to_many :users
+  has_many :fees
 
   # macros from gems
   resourcify

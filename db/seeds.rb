@@ -29,8 +29,22 @@ end
 # Create User
 # ----------------------------------------------------------------------------
 
+def create_group(user)
+  group = user.groups.create!(name: "Group #{user.name}")
+# user.become_owner group
+  user.add_role :owner, group
+
+  print_content "created group: #{group.name}"
+end
+
+
+# ----------------------------------------------------------------------------
+# Create User
+# ----------------------------------------------------------------------------
+
 def create_user(email, username, name)
   user = User.create!(email: email, password: 'password', username: username, name: name, aboutme: 'Nothing to say!')
+  create_group(user)
 
   print_content "created user: #{user.name}"
 end

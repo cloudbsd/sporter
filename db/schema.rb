@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140308183933) do
+ActiveRecord::Schema.define(version: 20140308191803) do
 
   create_table "activities", force: true do |t|
     t.datetime "started_at"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 20140308183933) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "fees", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "fees", ["group_id"], name: "index_fees_on_group_id"
+  add_index "fees", ["user_id"], name: "index_fees_on_user_id"
 
   create_table "groups", force: true do |t|
     t.string   "name"

@@ -1,21 +1,41 @@
-<p>
-<%= link_to t('transactions.action.deposit'), new_transaction_path, class: 'btn btn-warning' %>
-</p>
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+    <%= render file: 'fees/new' %>
+  </div>
 
-<p>
-<%= link_to '创建活动', new_activity_path, class: 'btn btn-warning' %>
-</p>
+  <div class="col-xs-6 col-md-4">
 
-<p>
-  <strong>Name:</strong>
-  <%= @group.name %>
-</p>
+    <p>
+    <strong>Name:</strong>
+    <%= @group.name %>
+    </p>
 
-<p>
-  <strong>Aboutme:</strong>
-  <%= @group.aboutme %>
-</p>
+    <p>
+    <strong>Aboutme:</strong>
+    <%= @group.aboutme %>
+    </p>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+    <p>
+    <%= link_to 'Edit', edit_group_path(@group) %> |
+    <%= link_to 'Back', groups_path %>
+    </p>
 
+    <p>
+    <%= link_to t('transactions.action.deposit'), new_transaction_path, class: 'btn btn-warning' %>
+    </p>
+
+    <p>
+    <%= link_to t('activities.new'), new_activity_path, class: 'btn btn-warning' %>
+    </p>
+
+    <p>
+    <%# link_to t('fee_types.new'), new_fee_type_path, class: 'btn btn-warning' %>
+    </p>
+
+    <h4>费用名称</h4>
+    <% @group.fees.each do |fee| %>
+      <%= fee.name %><br>
+    <% end %>
+
+  </div>
+</div>
