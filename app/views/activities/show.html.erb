@@ -1,14 +1,11 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Started at:</strong>
-  <%= @activity.started_at %>
-</p>
-
-<p>
-  <strong>Stopped at:</strong>
-  <%= @activity.stopped_at %>
-</p>
-
 <%= link_to 'Edit', edit_group_activity_path(@group, @activity) %> |
-<%# link_to 'Back', activities_path %>
+<%= link_to 'Back', @group %>
+
+<br>
+<br>
+
+<div>
+  <h4>活动时间</h4>
+  <%= localize_date @activity.started_at %>, <%= localize_time @activity.started_at %> - <%= localize_time @activity.stopped_at %>
+</div>
+
