@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140308191803) do
+ActiveRecord::Schema.define(version: 20140309155606) do
 
   create_table "activities", force: true do |t|
     t.integer  "group_id"
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 20140308191803) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "fee_items", force: true do |t|
+    t.integer  "activity_id"
+    t.integer  "fee_id"
+    t.decimal  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "fee_items", ["activity_id"], name: "index_fee_items_on_activity_id"
+  add_index "fee_items", ["fee_id"], name: "index_fee_items_on_fee_id"
 
   create_table "fees", force: true do |t|
     t.string   "name"

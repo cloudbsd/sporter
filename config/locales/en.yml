@@ -5,7 +5,8 @@ en:
       group: "Group"
       transaction: "Transaction"
       activity: "Activity"
-      fee: "Fee Name"
+      fee: "Fee Type"
+      fee_item: "Fee Item"
     attributes:
       user:
         email: "Email"
@@ -38,7 +39,10 @@ en:
         started_at: "Start Time"
         stopped_at: "Stop Time"
       fee:
-        name: "Fee Name"
+        name: "Fee Type"
+      fee_item:
+        fee_id: "Fee Type"
+        price: "Price"
   datetime:
     formats:
       default: ! '%Y-%m-%d'

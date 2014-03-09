@@ -1,0 +1,13 @@
+<%= form_for [@group, @activity, @fee_item] do |f| %>
+  <div class="form-group">
+    <%= f.label :fee_id, class: 'control-label' %>
+    <%= f.select :fee_id, @group.fees.map { |fee| [fee.name, fee.id] }, { include_blank: false }, { class: 'form-control' } %>
+  </div>
+  <div class="form-group">
+    <%= f.label :price, class: 'control-label' %>
+    <%= f.text_field :price, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

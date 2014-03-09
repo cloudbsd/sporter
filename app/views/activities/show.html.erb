@@ -1,11 +1,27 @@
-<%= link_to 'Edit', edit_group_activity_path(@group, @activity) %> |
-<%= link_to 'Back', @group %>
+<div class="row">
+  <div class="col-xs-12 col-md-8">
 
-<br>
-<br>
+    <%= link_to 'Edit', edit_group_activity_path(@group, @activity) %> |
+    <%= link_to 'Back', @group %>
 
-<div>
-  <h4>活动时间</h4>
-  <%= localize_date @activity.started_at %>, <%= localize_time @activity.started_at %> - <%= localize_time @activity.stopped_at %>
+    <br>
+    <br>
+
+    <div>
+      <h4>活动时间</h4>
+      <%= localize_date @activity.started_at %>, <%= localize_time @activity.started_at %> - <%= localize_time @activity.stopped_at %>
+    </div>
+
+    <div>
+      <h4>费用项目</h4>
+      <% @activity.fee_items.each do |fee_item| %>
+        <%= fee_item.fee.name %> : <%= fee_item.price %> <br>
+      <% end %>
+    </div>
+
+  </div>
+
+  <div class="col-xs-6 col-md-4">
+    <%= link_to 'New FeeItem', new_group_activity_fee_item_path(@group, @activity) %>
+  </div>
 </div>
-
