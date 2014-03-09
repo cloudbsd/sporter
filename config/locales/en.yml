@@ -48,6 +48,8 @@ en:
       short_so: ! "%b %d at %H:%M"
       this_year: ! "%b %d at %H:%M"
       one_year_ago: ! "%b %d '%y at %H:%M"
+      date: ! '%Y-%m-%d'
+      time: ! '%H:%M'
   layouts:
     brand: "Sports Zone"
     back: "Back"

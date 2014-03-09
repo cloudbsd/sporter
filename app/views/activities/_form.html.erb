@@ -1,16 +1,5 @@
-<%= form_for(@activity) do |f| %>
-  <% if @activity.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
-
-      <ul>
-      <% @activity.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%# form_for(@activity) do |f| %>
+<%= form_for [@group, activity] do |f| %>
   <div class="form-group">
     <%= f.label :started_at %><br>
     <%= f.datetime_select :started_at, default: { hour: 19, minute: 30 } %>

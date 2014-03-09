@@ -1,6 +1,10 @@
 <div class="row">
   <div class="col-xs-12 col-md-8">
     <%= render file: 'fees/new' %>
+    <%= render file: 'activities/new' %>
+    <%# render partial: 'activities/activity', collection: @group.activities, as: :activity %>
+    <%# render partial: 'activity', collection: @group.activities, as: :activity %>
+    <%= render partial: 'activity', collection: @group.activities %>
   </div>
 
   <div class="col-xs-6 col-md-4">
@@ -25,7 +29,7 @@
     </p>
 
     <p>
-    <%= link_to t('activities.new'), new_activity_path, class: 'btn btn-warning' %>
+    <%# link_to t('activities.new'), new_activity_path, class: 'btn btn-warning' %>
     </p>
 
     <p>
@@ -34,6 +38,7 @@
 
     <h4>费用名称</h4>
     <% @group.fees.each do |fee| %>
+      <%= debug fee %>
       <%= fee.name %><br>
     <% end %>
 

@@ -14,11 +14,14 @@
 ActiveRecord::Schema.define(version: 20140308191803) do
 
   create_table "activities", force: true do |t|
+    t.integer  "group_id"
     t.datetime "started_at"
     t.datetime "stopped_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "activities", ["group_id"], name: "index_activities_on_group_id"
 
   create_table "debits", force: true do |t|
     t.decimal  "balance"

@@ -1,6 +1,4 @@
 Sporter::Application.routes.draw do
-  get "fees/new"
-  get "fees/create"
   root 'users#index'
 
   devise_for :users
@@ -13,12 +11,11 @@ Sporter::Application.routes.draw do
 # resources :debits
 
   resources :groups do
+    resources :activities, except: [:index]
     resources :fees, only: [:new, :create, :destroy]
   end
 
   resources :transactions
-
-  resources :activities
 
 
   # The priority is based upon order of creation: first created -> highest priority.
