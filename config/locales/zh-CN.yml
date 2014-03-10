@@ -7,6 +7,7 @@ zh-CN:
       activity: "活动"
       fee: "费用类型"
       fee_item: "费用项"
+      participant: "参与者"
     attributes:
       user:
         email: "电子邮件"
@@ -43,6 +44,11 @@ zh-CN:
       fee_item:
         fee_id: "费用类型"
         price: "费用价格"
+      participant:
+        user_id: "参与者"
+        friend_number: "所带朋友数目"
+        derated_pay: "可减免的费用"
+        net_pay: "实际需付的费用"
   datetime:
     formats:
       default: ! '%Y-%m-%d'
@@ -86,3 +92,7 @@ zh-CN:
     new: "新建活动"
   fees:
     new: "新建费用名称"
+  fee_items:
+    new: "添加费用项"
+  participants:
+    new: "添加参与者"

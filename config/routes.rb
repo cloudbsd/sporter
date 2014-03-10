@@ -1,6 +1,4 @@
 Sporter::Application.routes.draw do
-  get "fee_items/new"
-  get "fee_items/edit"
   root 'users#index'
 
   devise_for :users
@@ -15,13 +13,14 @@ Sporter::Application.routes.draw do
   resources :groups do
     resources :activities, except: [:index] do
       resources :fee_items, only: [:new, :create, :destroy]
+      resources :participants, only: [:new, :create, :destroy]
     end
     resources :fees, only: [:new, :create, :destroy]
   end
 
-  resources :activities, only: [] do
-    resources :fee_items, only: [:new, :create, :destroy]
-  end
+# resources :activities, only: [] do
+#   resources :fee_items, only: [:new, :create, :destroy]
+# end
 
   resources :transactions
 

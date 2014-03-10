@@ -19,9 +19,17 @@
       <% end %>
     </div>
 
+    <div>
+      <h4>费用项目</h4>
+      <% @activity.participants.each do |participate| %>
+        <%= participate.user.name %> : <%= participate.derated_pay %> <br>
+      <% end %>
+    </div>
+
   </div>
 
   <div class="col-xs-6 col-md-4">
-    <%= link_to 'New FeeItem', new_group_activity_fee_item_path(@group, @activity) %>
+    <%= link_to t('fee_items.new'), new_group_activity_fee_item_path(@group, @activity) %> <br>
+    <%= link_to t('participants.new'), new_group_activity_participant_path(@group, @activity) %>
   </div>
 </div>

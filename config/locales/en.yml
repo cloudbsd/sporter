@@ -7,6 +7,7 @@ en:
       activity: "Activity"
       fee: "Fee Type"
       fee_item: "Fee Item"
+      participant: "Participant"
     attributes:
       user:
         email: "Email"
@@ -43,6 +44,11 @@ en:
       fee_item:
         fee_id: "Fee Type"
         price: "Price"
+      participant:
+        user_id: "Participant"
+        friend_number: "Friend Number"
+        derated_pay: "Derated Pay"
+        net_pay: "Net Pay"
   datetime:
     formats:
       default: ! '%Y-%m-%d'
@@ -86,3 +92,7 @@ en:
     new: "New Activity"
   fees:
     new: "New Fee Name"
+  fee_items:
+    new: "Add FeeItem"
+  participants:
+    new: "Add Participant"

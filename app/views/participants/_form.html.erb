@@ -1,0 +1,26 @@
+<%= form_for [@group, @activity, @participant] do |f| %>
+  <div class="form-group">
+    <%# f.label :fee_id, class: 'control-label' %>
+    <%# f.select :fee_id, @group.fees.map { |fee| [fee.name, fee.id] }, { include_blank: false }, { class: 'form-control' } %>
+  </div>
+  <div class="form-group">
+    <%= f.label :user_id, class: 'control-label' %>
+    <%= f.select :user_id, @group.users.map { |u| [u.name, u.id] } %>
+    <%# f.text_field :user %>
+  </div>
+  <div class="form-group">
+    <%= f.label :friend_number, class: 'control-label' %>
+    <%= f.number_field :friend_number, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :derated_pay, class: 'control-label' %>
+    <%= f.number_field :derated_pay, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :net_pay, class: 'control-label' %>
+    <%= f.number_field :net_pay, class: 'form-control', readonly: true %>
+  </div>
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>
