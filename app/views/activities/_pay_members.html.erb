@@ -1,0 +1,24 @@
+<h4>本次活动个人支出</h4>
+<%= link_to t('participants.new'), new_group_activity_participant_path(@group, @activity) %>
+
+<table class="table table-bordered">
+  <thead>
+    <tr class="active">
+      <th>姓名</th>
+      <th>羽球抵消费用（元）</th>
+      <th>实际需付费用（元）</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @activity.participants.each do |participant| %>
+      <tr>
+        <td><%= participant.user.name %></td>
+        <td><%= participant.derated_pay %></td>
+        <td><%= participant.net_pay %></td>
+        <td><%= link_to '编辑', edit_group_activity_participant_path(@group, @activity, participant) %> / 
+        <%= link_to '删除', [@group, @activity, participant], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

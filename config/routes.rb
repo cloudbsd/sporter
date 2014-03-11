@@ -12,10 +12,10 @@ Sporter::Application.routes.draw do
 
   resources :groups do
     resources :activities, except: [:index] do
-      resources :fee_items, only: [:new, :create, :destroy]
-      resources :participants, only: [:new, :create, :destroy]
+      resources :fee_items, only: [:new, :edit, :create, :update, :destroy]
+      resources :participants, only: [:new, :edit, :create, :update, :destroy]
     end
-    resources :fees, only: [:new, :create, :destroy]
+    resources :fees, only: [:new, :edit, :create, :update, :destroy]
     member do
       get :activities
       get :members

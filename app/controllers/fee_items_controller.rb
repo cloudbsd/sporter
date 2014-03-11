@@ -8,6 +8,9 @@ class FeeItemsController < ApplicationController
     @fee_item = FeeItem.new
   end
 
+  def edit
+  end
+
   # POST /fee_items
   # POST /fee_items.json
   def create
@@ -23,7 +26,28 @@ class FeeItemsController < ApplicationController
     end
   end
 
-  def edit
+  # PATCH/PUT /fee_items
+  # PATCH/PUT /fee_items.json
+  def update
+    respond_to do |format|
+      if @fee_item.update(fee_item_params)
+        format.html { redirect_to [@group, @activity], notice: t('fees.notice.create_success') }
+        format.js
+      else
+        format.html { redirect_to [@group, @activity], alert: t('fees.notice.create_failed') }
+        format.js { render 'create_failed.js.erb' }
+      end
+    end
+  end
+
+  # DELETE /fee_items/1
+  # DELETE /fee_items/1.json
+  def destroy
+    @fee_item.destroy
+    respond_to do |format|
+      format.html { redirect_to [@group, @activity] }
+      format.json { head :no_content }
+    end
   end
 
   private
@@ -41,7 +65,7 @@ class FeeItemsController < ApplicationController
     def set_fee_item
       # set_group callback will be called FIRSTLY.
     # @activity = Activity.find(params[:id])
-      @activity = @activity.fee_items.find(params[:id])
+      @fee_item = @activity.fee_items.find(params[:id])
     end
 
     def current_resource

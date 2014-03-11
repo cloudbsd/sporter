@@ -40,9 +40,9 @@ zh-CN:
         started_at: "开始时间"
         stopped_at: "结束时间"
       fee:
-        name: "费用类型名称"
+        name: "费用项名称"
       fee_item:
-        fee_id: "费用类型"
+        fee_id: "费用项"
         price: "费用价格"
       participant:
         user_id: "参与者"
