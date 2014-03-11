@@ -8,38 +8,6 @@
   </div>
 
   <div class="col-xs-6 col-md-4">
-
-    <p>
-    <strong>Name:</strong>
-    <%= @group.name %>
-    </p>
-
-    <p>
-    <strong>Aboutme:</strong>
-    <%= @group.aboutme %>
-    </p>
-
-    <p>
-    <%= link_to 'Edit', edit_group_path(@group) %> |
-    <%= link_to 'Back', groups_path %>
-    </p>
-
-    <p>
-    <%= link_to t('transactions.action.deposit'), new_transaction_path, class: 'btn btn-warning' %>
-    </p>
-
-    <p>
-    <%# link_to t('activities.new'), new_activity_path, class: 'btn btn-warning' %>
-    </p>
-
-    <p>
-    <%# link_to t('fee_types.new'), new_fee_type_path, class: 'btn btn-warning' %>
-    </p>
-
-    <h4>费用名称</h4>
-    <% @group.fees.each do |fee| %>
-      <%= fee.name %><br>
-    <% end %>
-
+    <%= render 'sidebar' %>
   </div>
 </div>

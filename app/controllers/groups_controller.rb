@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :activities, :members]
 
   # GET /groups
   # GET /groups.json
@@ -60,6 +60,16 @@ class GroupsController < ApplicationController
       format.html { redirect_to groups_url }
       format.json { head :no_content }
     end
+  end
+
+  # GET /groups/1
+  # GET /groups/1.json
+  def activities
+  end
+
+  # GET /groups/1
+  # GET /groups/1.json
+  def members
   end
 
   private

@@ -16,6 +16,10 @@ Sporter::Application.routes.draw do
       resources :participants, only: [:new, :create, :destroy]
     end
     resources :fees, only: [:new, :create, :destroy]
+    member do
+      get :activities
+      get :members
+    end
   end
 
 # resources :activities, only: [] do

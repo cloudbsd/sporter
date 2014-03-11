@@ -1,0 +1,55 @@
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"> <a href="#"> <span class="badge pull-right">42</span> Home </a> </li>
+  <li> <a href="#"> <span class="badge pull-right">42</span> Home </a> </li>
+  <li> <a href="#"> <span class="badge pull-right">42</span> Home </a> </li>
+
+  <% if controller_name == 'groups' and action_name == 'activities' %>
+    <li class='active'>
+  <% else %>
+    <li>
+  <% end %>
+  <%= link_to '群内活动', activities_group_path(@group) %>
+  </li>
+
+  <% if controller_name == 'groups' and action_name == 'members' %>
+    <li class='active'>
+  <% else %>
+    <li>
+  <% end %>
+  <%= link_to members_group_path(@group) do %>
+    <span class="badge pull-right"><%= @group.users.count %></span> 群内成员
+  <% end %>
+  </li>
+</ul>
+
+<p>
+<strong>Name:</strong>
+<%= @group.name %>
+</p>
+
+<p>
+<strong>Aboutme:</strong>
+<%= @group.aboutme %>
+</p>
+
+<p>
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %>
+</p>
+
+<p>
+<%= link_to t('transactions.action.deposit'), new_transaction_path, class: 'btn btn-warning' %>
+</p>
+
+<p>
+<%# link_to t('activities.new'), new_activity_path, class: 'btn btn-warning' %>
+</p>
+
+<p>
+<%# link_to t('fee_types.new'), new_fee_type_path, class: 'btn btn-warning' %>
+</p>
+
+<h4>费用名称</h4>
+<% @group.fees.each do |fee| %>
+  <%= fee.name %><br>
+<% end %>
