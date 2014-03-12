@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-12 col-md-8">
     <%# render 'balances' %>
-    <h4>已加入的群一周内活动</h4>
+    <h4>一周内活动 (已加入的群)</h4>
 
 <table class="table table-bordered">
   <thead>
@@ -29,8 +29,35 @@
 </table>
 
     <h4>我的会员卡</h4>
-    <h4>我的账单</h4>
-    <%= link_to '更过存款记录 >>', transactions_user_path(current_user) %>
+
+<h4><%= link_to '我的存款记录', transactions_user_path(current_user) %></h4>
+
+<table class="table table-bordered">
+  <thead>
+    <tr class="active">
+      <th>姓名</th>
+      <th>操作</th>
+      <th>金额（元）</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% current_user.transactions.each do |transaction| %>
+      <tr>
+        <td><%= link_to transaction.user.name, transaction.user %></td>
+        <td><%= t('transactions.action.'+transaction.action) %></td>
+        <td><%= transaction.amount %></td>
+        <td>
+          <%= link_to 'Show', transaction %> / 
+          <%= link_to 'Edit', edit_transaction_path(transaction) %> / 
+          <%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
   </div>
   <div class="col-xs-6 col-md-4">
     <%= render 'sidebar' %>

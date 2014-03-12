@@ -7,6 +7,9 @@ Sporter::Application.routes.draw do
     member do
       get :transactions
     end
+    collection do
+      get :managements
+    end
   end
 
 # resources :debits

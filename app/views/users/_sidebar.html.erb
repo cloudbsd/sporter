@@ -12,3 +12,7 @@
 <%= link_to t('groups.new'), new_group_path %> <br>
 
 <%= link_to '我的存款记录', transactions_user_path(current_user) %>
+
+<p>
+<%= link_to '帮球友存款', new_transaction_path, class: 'btn btn-warning' %>
+</p>

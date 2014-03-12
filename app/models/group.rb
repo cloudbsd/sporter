@@ -3,6 +3,7 @@ class Group < ActiveRecord::Base
   has_and_belongs_to_many :users
   has_many :activities, dependent: :destroy
   has_many :fees, dependent: :destroy
+  has_many :transactions, through: :users
 
   # macros from gems
   resourcify

@@ -30,7 +30,7 @@
   <% else %>
     <li>
   <% end %>
-  <%= link_to '球友账单', debits_group_path(@group) %>
+  <%= link_to '球友存款记录', debits_group_path(@group) %>
   </li>
 
   <% if controller_name == 'groups' and action_name == 'edit' %>
@@ -41,14 +41,6 @@
   <%= link_to '设置', edit_group_path(@group) %>
   </li>
 </ul>
-
-<p>
-<%= link_to t('transactions.action.deposit'), new_transaction_path, class: 'btn btn-warning' %>
-</p>
-
-<p>
-<%= link_to '球友存款', new_transaction_path, class: 'btn btn-warning' %>
-</p>
 
 <h4>费用名称</h4>
 <% @group.fees.each do |fee| %>
