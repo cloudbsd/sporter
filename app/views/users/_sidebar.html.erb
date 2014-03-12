@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">我加入的群</h3>
+  </div>
+  <div class="panel-body">
+    <% current_user.groups.each do |group| %>
+      <%= link_to group.name, group %> <br>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to t('groups.new'), new_group_path %> <br>
+
+<%= link_to '我的存款记录', transactions_user_path(current_user) %>

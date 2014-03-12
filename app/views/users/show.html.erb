@@ -1,9 +1,38 @@
-
 <div class="row">
   <div class="col-xs-12 col-md-8">
     <%# render 'balances' %>
+    <h4>已加入的群一周内活动</h4>
+
+<table class="table table-bordered">
+  <thead>
+    <tr class="active">
+      <th>群名称</th>
+      <th>活动时间</th>
+      <th>报名人数</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% current_user.activities.inoneweek.each do |activity| %>
+      <tr>
+        <td><%= link_to activity.group.name, activity.group %></td>
+        <td><%= activity_link_to activity %></td>
+        <td><%= activity.participants.size %></td>
+        <td>
+          <%= link_to 'Edit', edit_group_activity_path(activity.group, activity) %> /
+          <%= link_to 'Destroy', [activity.group, activity], method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+    <h4>我的会员卡</h4>
+    <h4>我的账单</h4>
+    <%= link_to '更过存款记录 >>', transactions_user_path(current_user) %>
   </div>
   <div class="col-xs-6 col-md-4">
-    <%= render 'shared/sidebar' %>
+    <%= render 'sidebar' %>
   </div>
 </div>

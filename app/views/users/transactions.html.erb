@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+
+<h4>交易记录</h4>
+
+<table class="table table-bordered">
+  <thead>
+    <tr class="active">
+      <th>姓名</th>
+      <th>操作</th>
+      <th>金额（元）</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% current_user.transactions.each do |transaction| %>
+      <tr>
+        <td><%= link_to transaction.user.name, transaction.user %></td>
+        <td><%= t('transactions.action.'+transaction.action) %></td>
+        <td><%= transaction.amount %></td>
+        <td>
+          <%= link_to 'Show', transaction %> / 
+          <%= link_to 'Edit', edit_transaction_path(transaction) %> / 
+          <%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  </div>
+  <div class="col-xs-6 col-md-4">
+    <%= render 'sidebar' %>
+  </div>
+</div>

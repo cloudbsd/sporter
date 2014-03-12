@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :transactions
   has_many :fees
   has_many :participants
+  has_many :activities, through: :groups
 
   # validation macros
   validates :terms_of_service, :acceptance => true, on: :create

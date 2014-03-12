@@ -1,4 +1,13 @@
 module ActivitiesHelper
+  def activity_title activity
+    "#{localize_date activity.started_at}, #{localize_time activity.started_at} - #{localize_time activity.stopped_at}"
+  end
+
+  def activity_link_to activity
+    title = activity_title(activity)
+    link_to title, [activity.group, activity]
+  end
+
   class PayCalc
     def initialize activity
       @activity = activity

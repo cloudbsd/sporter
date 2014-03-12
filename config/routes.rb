@@ -4,8 +4,9 @@ Sporter::Application.routes.draw do
   devise_for :users
 
   resources :users, only: [:index, :show] do
-  # member do
-  # end
+    member do
+      get :transactions
+    end
   end
 
 # resources :debits
