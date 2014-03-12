@@ -12,7 +12,32 @@
       <%= localize_date @activity.started_at %>, <%= localize_time @activity.started_at %> - <%= localize_time @activity.stopped_at %>
     </div>
 
-    <br>
+<h4>活动费用汇总</h4>
+<% pay = ActivitiesHelper::PayCalc.new(@activity) %>
+<table class="table table-bordered">
+  <thead>
+    <tr class="active">
+      <th>公共支出费用</th>
+      <th>总抵扣费用（元）</th>
+      <th>费用总和（元）</th>
+      <th>活动人数</th>
+      <th>平均费用（元）</th>
+      <th>实收费用</th>
+      <th>充公费用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= pay.court_pay %></td>
+      <td><%= pay.derated_pay %></td>
+      <td><%= pay.total_pay %></td>
+      <td><%= pay.pay_count %></td>
+      <td><%= pay.average_pay %></td>
+      <td><%= pay.actual_pay %></td>
+      <td><%# @activity.remainder %></td>
+    </tr>
+  </tbody>
+</table>
 
     <%= render 'pay_fees' %>
     <%= render 'pay_members' %>

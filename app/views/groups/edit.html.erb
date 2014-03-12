@@ -1,6 +1,15 @@
-<h1>Editing group</h1>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+    <h1>Editing group</h1>
 
-<%= link_to 'Show', @group %> |
-<%= link_to 'Back', groups_path %>
+    <%= render 'form' %>
+
+    <%= link_to 'Show', @group %> |
+    <%= link_to 'Back', groups_path %>
+  </div>
+
+  <div class="col-xs-6 col-md-4">
+    <%= render 'sidebar' %>
+  </div>
+</div>
