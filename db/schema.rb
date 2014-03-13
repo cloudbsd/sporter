@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20140310161114) do
   add_index "fees", ["user_id"], name: "index_fees_on_user_id"
 
   create_table "groups", force: true do |t|
+    t.string   "uniqname"
     t.string   "name"
     t.text     "aboutme"
     t.datetime "created_at"

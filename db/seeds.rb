@@ -60,7 +60,7 @@ end
 
 def import_users
   print_title('importing users')
-  File.open 'db/users.txt', 'r' do |file|
+  File.open 'db/data/users.txt', 'r' do |file|
     while row = file.gets
       row.strip!
       names = row.split(',')
@@ -96,10 +96,57 @@ def create_groups
 end
 
 
+def import_groups
+  print_title('importing transactions')
+
+  File.open 'db/data/groups.txt', 'r' do |file|
+    row = file.gets
+    row.strip!
+    names = row.split(',')
+    uniqname, name = names[0].strip, names[1].strip
+
+    user = User.find_by(username: 'liqi')
+
+    group = user.groups.create!(uniqname: uniqname, name: name)
+  # user.become_owner group
+    user.add_role :owner, group
+    group.users << (User.all - [user])
+
+    print_content "created group: #{group.name}(#{group.users.count}) owned by #{group.owner.name}"
+  end
+
+end
+
+
+# ----------------------------------------------------------------------------
+# import transactions
+# ----------------------------------------------------------------------------
+
+def import_transactions
+  print_title('importing transactions')
+  File.open 'db/data/transactions.txt', 'r' do |file|
+    while row = file.gets
+      row.strip!
+      names = row.split(',')
+      name, amount = names[0].strip, names[1].strip.to_f
+      user = User.find_by(name: name)
+      action = (amount > 0.0) ? 'deposit' : 'withdraw'
+      amount = -amount if action == "withdraw"
+      txn = Transaction.create!(user_id: user.id, action: action, amount: amount)
+      print_content "imported transaction: #{txn.user.name} #{txn.action} #{txn.amount}"
+    end
+  end
+  print_summary "total imported transaction count: #{Transaction.count}"
+end
+
+
+Transaction.destroy_all
 Activity.destroy_all
 Group.destroy_all
 User.destroy_all
 Role.destroy_all
-create_users
 import_users
-create_groups
+#create_users
+#create_groups
+import_groups
+import_transactions
