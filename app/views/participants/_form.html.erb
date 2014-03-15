@@ -3,7 +3,7 @@
 
   <div class="form-group">
     <%= f.label :user_id, class: 'control-label' %>
-    <%= f.select :user_id, @activity.other_users.map { |u| [u.name, u.id] } %>
+    <%= f.select :user_id, @activity.other_users(@participant.user).map { |u| [u.name, u.id] } %>
     <%# f.select :user_id, @group.users.map { |u| [u.name, u.id] } %>
     <%# f.text_field :user %>
   </div>

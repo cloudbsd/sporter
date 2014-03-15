@@ -130,14 +130,60 @@ def import_transactions
       names = row.split(',')
       name, action, amount, operated_at = names[0].strip, names[1].strip, names[2].strip.to_f, names[3].strip
       user = User.find_by(name: name)
-    # action = (amount > 0.0) ? 'deposit' : 'withdraw'
-    # amount = -amount if action == "withdraw"
-    # txn = Transaction.create!(user_id: user.id, action: action, amount: amount, operated_at: DateTime.now)
       txn = Transaction.create!(user_id: user.id, action: action, amount: amount, operated_at: operated_at)
       print_content "imported transaction: #{txn.user.name} #{txn.action} #{txn.amount}"
     end
   end
   print_summary "total imported transaction count: #{Transaction.count}"
+end
+
+
+# ----------------------------------------------------------------------------
+# import activities
+# ----------------------------------------------------------------------------
+
+def import_activities
+  print_title('importing activities')
+
+  owner = User.find_by(username: 'liqi')
+  group = owner.owned_groups.first
+
+  File.open 'db/data/activities.txt', 'r' do |file|
+    while row = file.gets
+      # import fees and fee_items
+      row.strip!
+      dates = row.split(',')
+      started_at, stopped_at = dates[0].strip, dates[1].strip
+      activity = Activity.create!(group_id: group.id, started_at: started_at, stopped_at: stopped_at)
+      print_content "imported activity: from #{activity.started_at} to #{activity.stopped_at}"
+
+      # import fees and fee_items
+      row = file.gets
+      fee_pairs = row.split(',')
+      fee_pairs.each do |fee_pair|
+        items = fee_pair.split('-')
+        fee_name, price = items[0].strip, items[1].strip
+        fee = Fee.find_or_create_by!(name: fee_name, user_id: owner.id, group_id: group.id)
+        fee_item = FeeItem.create!(activity_id: activity.id, fee_id: fee.id, price: price)
+        print_content "imported fee items: from #{fee_item.fee.name} to #{fee_item.price}", 2
+      end
+
+      # import participants
+      row = file.gets
+      pant_pairs = row.split(',')
+      pant_pairs.each do |pant_pair|
+        items = pant_pair.split('-')
+        name, derated_pay = items[0].strip, items[1].strip
+        user = User.find_by(name: name)
+        participant = Participant.create!(user_id: user.id, activity_id: activity.id, friend_number: 0, derated_pay: 0)
+        print_content "imported participant: #{participant.user.name} with derated_pay #{participant.derated_pay}", 2
+      end
+
+      # generate bill
+      activity.generate_bill
+    end
+  end
+  print_summary "total imported activities count: #{Activity.count}"
 end
 
 
@@ -151,3 +197,4 @@ import_users
 #create_groups
 import_groups
 import_transactions
+import_activities

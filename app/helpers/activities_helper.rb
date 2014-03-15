@@ -12,12 +12,12 @@ module ActivitiesHelper
     def initialize activity
       @activity = activity
       @pay_count = @activity.participants.count
+      @item_pay = @activity.fee_items.sum('price')
       @derated_pay = @activity.participants.sum('derated_pay')
     end
 
-    def court_pay
-      @activity.fee_items.sum('price')
-    # @activity.court_pay
+    def items_pay
+      @item_pay
     end
 
     def derated_pay
@@ -25,7 +25,7 @@ module ActivitiesHelper
     end
 
     def total_pay
-      self.court_pay + self.derated_pay
+      items_pay() + derated_pay()
     end
 
     def pay_count
@@ -33,15 +33,19 @@ module ActivitiesHelper
     end
 
     def average_pay
-      if self.pay_count() == 0
+      if pay_count() == 0
         0
       else
-        (self.total_pay + self.pay_count - 1) / self.pay_count
+        (total_pay().to_i + pay_count() - 1) / pay_count()
       end
     end
 
     def actual_pay
-      self.average_pay * self.pay_count
+      average_pay() * pay_count()
+    end
+
+    def confiscation
+      actual_pay() - total_pay()
     end
   end
 end

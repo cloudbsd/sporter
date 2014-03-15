@@ -17,6 +17,7 @@ class ParticipantsController < ApplicationController
     @participant = @activity.participants.new(participant_params)
     respond_to do |format|
       if @participant.save
+        @participant.activity.generate_bill
         format.html { redirect_to [@group, @activity], notice: t('fees.notice.create_success') }
         format.js
       else
@@ -31,6 +32,7 @@ class ParticipantsController < ApplicationController
   def update
     respond_to do |format|
       if @participant.update(participant_params)
+        @participant.activity.generate_bill
         format.html { redirect_to [@group, @activity], notice: t('fees.notice.create_success') }
         format.js
       else
@@ -44,6 +46,7 @@ class ParticipantsController < ApplicationController
   # DELETE /participants/1.json
   def destroy
     @participant.destroy
+    @participant.activity.generate_bill
     respond_to do |format|
       format.html { redirect_to [@group, @activity] }
       format.json { head :no_content }

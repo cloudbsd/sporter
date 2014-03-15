@@ -17,6 +17,7 @@ class FeeItemsController < ApplicationController
     @fee_item = @activity.fee_items.new(fee_item_params)
     respond_to do |format|
       if @fee_item.save
+        @fee_item.activity.generate_bill
         format.html { redirect_to [@group, @activity], notice: t('fees.notice.create_success') }
         format.js
       else
@@ -31,6 +32,7 @@ class FeeItemsController < ApplicationController
   def update
     respond_to do |format|
       if @fee_item.update(fee_item_params)
+        @fee_item.activity.generate_bill
         format.html { redirect_to [@group, @activity], notice: t('fees.notice.create_success') }
         format.js
       else
@@ -44,6 +46,7 @@ class FeeItemsController < ApplicationController
   # DELETE /fee_items/1.json
   def destroy
     @fee_item.destroy
+    @fee_item.activity.generate_bill
     respond_to do |format|
       format.html { redirect_to [@group, @activity] }
       format.json { head :no_content }
