@@ -175,7 +175,7 @@ def import_activities
         items = pant_pair.split('-')
         name, derated_pay = items[0].strip, items[1].strip
         user = User.find_by(name: name)
-        participant = Participant.create!(user_id: user.id, activity_id: activity.id, friend_number: 0, derated_pay: 0)
+        participant = Participant.create!(user_id: user.id, activity_id: activity.id, friend_number: 0, derated_pay: derated_pay)
         print_content "imported participant: #{participant.user.name} with derated_pay #{participant.derated_pay}", 2
       end
 

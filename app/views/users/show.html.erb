@@ -30,7 +30,36 @@
 
     <h4>我的会员卡</h4>
     <h4><%= link_to '我的存款记录', transactions_user_path(current_user) %></h4>
-    <%= render 'shared/transactions', transactions: current_user.transactions %>
+    <%= render 'shared/transactions', transactions: @user.transactions %>
+
+
+<h4>活动记录</h4>
+<table class="table table-bordered">
+  <thead>
+    <tr class="active">
+      <th>活动日期</th>
+      <th>个人可抵消费用（元）</th>
+      <th>缴纳费用（元）</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.participants.each do |participant| %>
+      <% activity = participant.activity %>
+      <% group = activity.group %>
+      <tr>
+        <td><%= link_to (localize_date activity.started_at), [group, activity] %></td>
+        <td><%= participant.derated_pay %></td>
+        <td><%= participant.net_pay %></td>
+        <td>
+          <%= link_to '编辑', edit_group_activity_participant_path(group, activity, participant) %> / 
+          <%= link_to '删除', [group, activity, participant], method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 
   </div>
   <div class="col-xs-6 col-md-4">
