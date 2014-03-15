@@ -25,12 +25,12 @@
   <% end %>
   </li>
 
-  <% if controller_name == 'groups' and action_name == 'debits' %>
+  <% if controller_name == 'groups' and action_name == 'transactions' %>
     <li class='active'>
   <% else %>
     <li>
   <% end %>
-  <%= link_to '球友存款记录', debits_group_path(@group) %>
+  <%= link_to '球友存款记录', transactions_group_path(@group) %>
   </li>
 
   <% if controller_name == 'groups' and action_name == 'edit' %>

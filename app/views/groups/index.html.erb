@@ -1,29 +1,36 @@
-<h1>Listing groups</h1>
+<div class="row">
+  <div class="col-xs-12 col-md-8">
 
-<table>
+<h4>群列表</h4>
+<table class="table table-bordered">
   <thead>
-    <tr>
-      <th>Name</th>
-      <th>Aboutme</th>
-      <th></th>
-      <th></th>
-      <th></th>
+    <tr class="active">
+      <th>群标识符</th>
+      <th>群名称</th>
+      <th>群成员数</th>
+      <th>操作</th>
     </tr>
   </thead>
-
   <tbody>
     <% @groups.each do |group| %>
       <tr>
-        <td><%= group.name %></td>
-        <td><%= group.aboutme %></td>
-        <td><%= link_to 'Show', group %></td>
-        <td><%= link_to 'Edit', edit_group_path(group) %></td>
-        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= group.uniqname %></td>
+        <td><%= link_to group.name, group %></td>
+        <td><%= group.users.size %></td>
+        <td>
+          <%= link_to 'Edit', edit_group_path(group) %> /
+          <%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<%= link_to 'New Group', new_group_path, class: 'btn btn-default' %>
 
-<%= link_to 'New Group', new_group_path %>
+  </div>
+
+  <div class="col-xs-6 col-md-4">
+    <%# render 'sidebar' %>
+  </div>
+</div>

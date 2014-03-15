@@ -4,6 +4,7 @@ class CreateTransactions < ActiveRecord::Migration
       t.references :user, index: true
       t.string :action
       t.decimal :amount
+      t.datetime :operated_at
 
       t.timestamps
     end

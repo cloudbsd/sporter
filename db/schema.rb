@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 20140310161114) do
     t.integer  "user_id"
     t.string   "action"
     t.decimal  "amount"
+    t.datetime "operated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

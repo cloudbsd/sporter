@@ -30,6 +30,7 @@ en:
         location: "Location"
         aboutme: "About Me"
       group:
+        uniqname: "Unique Name"
         name: "Name"
         aboutme: "About Group"
       transaction:

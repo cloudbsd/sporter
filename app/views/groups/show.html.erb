@@ -25,9 +25,9 @@
   </tbody>
 </table>
 
-    <%= link_to '创建活动', new_group_activity_path(@group), class: 'btn btn-warning' %>
+    <%# link_to '创建活动', new_group_activity_path(@group), class: 'btn btn-warning' %>
 
-    <%= link_to '更多活动 >>', activities_group_path(@group), class: 'pull-right' %>
+    <%= link_to '更多活动 >>', activities_group_path(@group) %>
     <%# render file: 'activities/new' %>
     <%# render partial: 'activities/activity', collection: @group.activities, as: :activity %>
     <%# render partial: 'activity', collection: @group.activities, as: :activity %>

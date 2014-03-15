@@ -30,6 +30,7 @@ zh-CN:
         location: "通讯地址"
         aboutme: "个人简介"
       group:
+        uniqname: "群标识符名称"
         name: "名称"
         aboutme: "群介绍"
       transaction:

@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-# before_action :set_group, only: [:show, :edit, :update, :destroy, :activities, :members, :debits]
+# before_action :set_group, only: [:show, :edit, :update, :destroy, :activities, :members, :transactions]
   before_action :set_group, except: [:index, :new, :create]
 
   # GET /groups
@@ -75,7 +75,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/1
   # GET /groups/1.json
-  def debits
+  def transactions
   end
 
   private

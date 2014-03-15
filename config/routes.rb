@@ -23,7 +23,7 @@ Sporter::Application.routes.draw do
     member do
       get :activities
       get :members
-      get :debits
+      get :transactions
     end
   end
 
