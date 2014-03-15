@@ -1,40 +1,13 @@
 <div class="row">
   <div class="col-xs-12 col-md-8">
 
-<p>
-<%= link_to '球友存款', new_transaction_path, class: 'btn btn-warning' %>
-<%# link_to t('transactions.action.deposit'), new_transaction_path, class: 'btn btn-warning' %>
-</p>
+    <p>
+    <%= link_to '球友存款', new_transaction_path, class: 'btn btn-warning' %>
+    <%# link_to t('transactions.action.deposit'), new_transaction_path, class: 'btn btn-warning' %>
+    </p>
 
-<h4>交易记录</h4>
-
-<table class="table table-bordered">
-  <thead>
-    <tr class="active">
-      <th>姓名</th>
-      <th>操作</th>
-      <th>金额（元）</th>
-      <th>操作日期</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @group.transactions.order(created_at: :desc).each do |txn| %>
-      <tr>
-        <td><%= link_to txn.user.name, txn.user %></td>
-        <td><%= t('transactions.action.'+txn.action) %></td>
-        <td><%= show_price txn.amount %></td>
-        <td><%= localize_date txn.operated_at %></td>
-        <td>
-          <%= link_to 'Edit', edit_transaction_path(txn) %> / 
-          <%= link_to 'Destroy', txn, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+    <h4>交易记录</h4>
+    <%= render 'shared/transactions', transactions: @group.transactions.order(operated_at: :asc) %>
   </div>
 
   <div class="col-xs-6 col-md-4">

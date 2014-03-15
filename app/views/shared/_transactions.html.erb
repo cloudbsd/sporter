@@ -1,0 +1,26 @@
+<table class="table table-bordered">
+  <thead>
+    <tr class="active">
+      <th>姓名</th>
+      <th>操作</th>
+      <th>金额（元）</th>
+      <th>操作日期</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% transactions.each do |txn| %>
+      <tr>
+        <td><%= link_to txn.user.name, txn.user %></td>
+        <td><%= t('transactions.action.'+txn.action) %></td>
+        <td><%= show_price txn.amount %></td>
+        <td><%= localize_date txn.operated_at %></td>
+        <td>
+          <%= link_to 'Edit', edit_transaction_path(txn) %> / 
+          <%= link_to 'Destroy', txn, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
