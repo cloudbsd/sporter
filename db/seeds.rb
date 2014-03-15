@@ -128,10 +128,10 @@ def import_transactions
     while row = file.gets
       row.strip!
       names = row.split(',')
-      name, amount, operated_at = names[0].strip, names[1].strip.to_f, names[2].strip
+      name, action, amount, operated_at = names[0].strip, names[1].strip, names[2].strip.to_f, names[3].strip
       user = User.find_by(name: name)
-      action = (amount > 0.0) ? 'deposit' : 'withdraw'
-      amount = -amount if action == "withdraw"
+    # action = (amount > 0.0) ? 'deposit' : 'withdraw'
+    # amount = -amount if action == "withdraw"
     # txn = Transaction.create!(user_id: user.id, action: action, amount: amount, operated_at: DateTime.now)
       txn = Transaction.create!(user_id: user.id, action: action, amount: amount, operated_at: operated_at)
       print_content "imported transaction: #{txn.user.name} #{txn.action} #{txn.amount}"
