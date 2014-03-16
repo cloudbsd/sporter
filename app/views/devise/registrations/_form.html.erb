@@ -1,0 +1,37 @@
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { class: 'devise-form form-border' }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class='devise-form-logo'>
+    Sporter
+  </div>
+  <div class='devise-form-heading'>
+    <%= t('devise.signup') %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :email, class: 'control-label' %>
+    <%= f.email_field :email, class: 'required form-control', :autofocus => true, placeholder: t('activerecord.attributes.user.email') %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :password, class: 'control-label' %>
+    <%= f.password_field :password, class: 'required form-control', minlength: 6, placeholder: t('activerecord.attributes.user.password') %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :password_confirmation, class: 'control-label' %>
+    <%= f.password_field :password_confirmation, class: 'required form-control', minlength: 6, placeholder: t('activerecord.attributes.user.password_confirmation') %>
+  </div>
+
+  <div class='form-group'>
+  <div class='checkbox'>
+    <%= f.check_box :terms_of_service %> <%= f.label :terms_of_service, class: 'control-label' %>
+  </div>
+  </div>
+
+  <div class='form-group'>
+    <%= f.submit t('devise.signup'), class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

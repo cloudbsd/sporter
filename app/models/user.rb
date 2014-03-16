@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   # validation macros
   validates :terms_of_service, :acceptance => true, on: :create
-  validates :username, :presence => true, uniqueness: true, length: { in: 4..20 }
+# validates :username, :presence => true, uniqueness: true, length: { in: 4..20 }
 
   # macros from gems
 

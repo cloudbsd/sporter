@@ -1,0 +1,46 @@
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }, html: { class: 'devise-form' }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class='devise-form-logo'>
+    Sporter
+  </div>
+  <div class='devise-form-heading'>
+    <%= t('devise.settings') %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :email, class: 'control-label' %>
+    <%= f.email_field :email, class: 'form-control', :autofocus => true %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class='form-group'>
+    <%= f.label :password, class: 'control-label' %>
+    <%= f.password_field :password, class: 'form-control', placeholder: t('activerecord.attributes.user.password'), :autocomplete => "off" %>
+    <span class='help-block'><%= t('devise.help_block.password') %></span>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :password_confirmation, class: 'control-label' %>
+    <%= f.password_field :password_confirmation, class: 'form-control', placeholder: t('activerecord.attributes.user.password_confirmation') %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :current_password, class: 'control-label' %>
+    <%= f.password_field :current_password, class: 'form-control', placeholder: t('activerecord.attributes.user.current_password') %>
+    <span class='help-block'><%= t('devise.help_block.current_password') %></span>
+  </div>
+
+  <div class='form-group'>
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, class: 'btn btn-danger' %></p>
+
+<%= link_to "Back", :back %>
