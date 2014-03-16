@@ -15,7 +15,9 @@ class ActivitiesController < ApplicationController
 
   # GET /activities/new
   def new
-    @activity = Activity.new
+  # @activity = Activity.new(started_at: DateTime.now.zone.local)
+    Time.zone = "Beijing"
+    @activity = Activity.new(started_at: Time.zone.now)
   end
 
   # GET /activities/1/edit

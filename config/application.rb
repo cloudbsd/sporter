@@ -23,5 +23,7 @@ module Sporter
   # I18n.enforce_available_locales = false
     config.i18n.available_locales = [:"zh-CN"]
     config.i18n.default_locale = :"zh-CN"
+
+  # config.time_zone = 'Beijing'
   end
 end

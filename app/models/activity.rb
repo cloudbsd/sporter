@@ -1,6 +1,6 @@
 class Activity < ActiveRecord::Base
   # the default scope first (if any)
-  scope :inoneweek, lambda { where("activities.started_at <= ?", 1.week.since.to_date) }
+  scope :inoneweek, lambda { where("activities.started_at <= ? AND activities.stopped_at >= ?", 1.week.since.to_date, DateTime.now.to_date) }
 
   # association macros
   belongs_to :group

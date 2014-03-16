@@ -45,7 +45,7 @@ module ActivitiesHelper
     end
 
     def confiscation
-      actual_pay() - total_pay()
+      pay_count == 0 ? 0 : (actual_pay() - total_pay())
     end
   end
 end

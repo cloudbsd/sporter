@@ -1,0 +1,49 @@
+/*
+$(document).ready(function() {
+  var image_path = '<%# asset_path 'calendar.gif' %>'
+  $(".datepicker").prop("readOnly", true).datepicker({
+    showOn: "button",
+    buttonImage: image_path,
+    buttonImageOnly: true
+  });
+});
+*/
+
+function datePicker() {
+  var image_path = '<%= asset_path 'calendar.gif' %>'
+  $(".datepicker.started-date").prop("readOnly", true).datepicker({
+  //onClose: function(selectedDate) {
+  //  $('.datepicker.stopped-date').datepicker( "option", "minDate", selectedDate );
+  //  $(this).valid();
+  //},
+    numberOfMonths: 1,
+//  dateFormat: "yy-mm-dd",
+//  constrainInput: true,
+//  changeYear: true,
+//  changeMonth: true,
+//  showButtonPanel: true,
+//  gotoCurrent: true,
+    showOn: "button",
+    buttonImage: image_path,
+    buttonImageOnly: true
+  });
+  $(".datepicker.stopped-date").prop("readOnly", true).datepicker({
+  //onClose: function(selectedDate) {
+  //  $('.datepicker.started-date').datepicker( "option", "maxDate", selectedDate );
+  //  $(this).valid();
+  //},
+    numberOfMonths: 1,
+//  dateFormat: "yy-mm-dd",
+//  constrainInput: true,
+//  changeYear: true,
+//  changeMonth: true,
+//  showButtonPanel: true,
+//  gotoCurrent: true,
+    showOn: "button",
+    buttonImage: image_path,
+    buttonImageOnly: true
+  });
+}
+
+$(document).ready(datePicker);
+$(document).on("page:change", datePicker);
