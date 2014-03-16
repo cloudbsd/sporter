@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   # the default scope first (if any)
 
+  # constants
+  GENDER = [ ['secrecy', 's'], ['man', 'm'], ['woman', 'w'] ]
+
   # attributes related macros
 
   # association macros

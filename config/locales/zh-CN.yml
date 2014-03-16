@@ -83,6 +83,11 @@ zh-CN:
     help_block:
       password: "留空，如果你不想去改变它"
       current_password: "我们需要您的当前密码以确认您的更改"
+  users:
+    gender:
+      secrecy: "保密"
+      man: "男"
+      woman: "女"
   groups:
     new: "新建群"
   transactions:

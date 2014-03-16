@@ -3,12 +3,13 @@ Sporter::Application.routes.draw do
 
   devise_for :users
 
-  resources :users, only: [:index, :show] do
+  resources :users, except: [:destroy] do
     member do
       get :transactions
     end
     collection do
       get :managements
+      post :create_member
     end
   end
 

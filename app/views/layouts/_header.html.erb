@@ -1,15 +1,15 @@
 <div class="header">
   <ul class="nav nav-pills pull-right">
-    <%= header_link_to 'users', 'managements', '管理', managements_users_path %>
-
     <% if user_signed_in? %>
-      <%= header_link_to 'users', 'show', current_user.name, current_user %>
-      <%= header_link_to 'registrations', 'edit', t('devise.settings'), edit_user_registration_path %>
+      <li><%= header_link_to 'users', 'managements', '管理', managements_users_path %></li>
+      <li><%= header_link_to 'users', 'show', current_user.name, current_user %></li>
+      <li><%= header_link_to 'users', 'edit', t('devise.settings'), edit_user_path(current_user) %></li>
+      <li><%= header_link_to 'registrations', 'edit', t('devise.settings'), edit_user_registration_path %></li>
       <li> <%= link_to t('devise.logout'), destroy_user_session_path, method: :delete %> </li>
-      <li> <%= link_to t('devise.logoff'), registration_path(current_user), :method => :delete, data: { confirm: 'Are you sure?' } %> </li>
+      <li> <%= link_to t('devise.logoff'), registration_path(current_user), :method => :delete, data: { confirm: t('layouts.confirm') } %> </li>
     <% else %>
-      <%= header_link_to 'sessions', 'new', t('devise.login'), new_user_session_path %>
-      <%= header_link_to 'registrations', 'new', t('devise.signup'), new_user_registration_path %>
+      <li><%= header_link_to 'sessions', 'new', t('devise.login'), new_user_session_path %></li>
+      <li><%= header_link_to 'registrations', 'new', t('devise.signup'), new_user_registration_path %></li>
     <% end %>
   </ul>
 

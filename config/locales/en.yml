@@ -83,6 +83,11 @@ en:
     help_block:
       password: "leave blank if you don't want to change it"
       current_password: "we need your current password to confirm your changes"
+  users:
+    gender:
+      secrecy: "Secrecy"
+      man: "Man"
+      woman: "Woman"
   groups:
     new: "New Group"
   transactions:

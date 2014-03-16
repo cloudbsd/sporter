@@ -1,0 +1,68 @@
+<%# form_for(@user, :html => { :method => :patch, class: '' }) do |f| %>
+<%= form_for @user do |f| %>
+  <!--
+  <div class='form-group'>
+    <%# f.label :email, class: 'control-label' %>
+    <%# f.email_field :email, class: 'form-control', :autofocus => true %>
+  </div>
+
+  <div class='form-group'>
+    <%# f.label :password, class: 'control-label' %>
+    <%# f.password_field :password, class: 'form-control', placeholder: t('activerecord.attributes.user.password'), :autocomplete => "off" %>
+    <span class='help-block'><%# t('devise.help_block.password') %></span>
+  </div>
+
+  <div class='form-group'>
+    <%# f.label :password_confirmation, class: 'control-label' %>
+    <%# f.password_field :password_confirmation, class: 'form-control', placeholder: t('activerecord.attributes.user.password_confirmation') %>
+  </div>
+
+  <div class='form-group'>
+    <%# f.label :current_password, class: 'control-label' %>
+    <%# f.password_field :current_password, class: 'form-control', placeholder: t('activerecord.attributes.user.current_password') %>
+    <span class='help-block'><%# t('devise.help_block.current_password') %></span>
+  </div>
+  -->
+
+  <div class="form-group">
+    <%= f.label :name, class: 'control-label' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :birthday, class: 'control-label' %>
+    <div>
+      <%= f.date_select :birthday, start_year: Time.now.year-80, end_year: Time.now.year, default: Time.now.to_date - 30.years %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :gender, class: 'control-label' %>
+    <%# f.select :gender, Contact::GENDER.map { |item| [t("users.gender.#{item[0]}"), item[1]] }, { include_blank: false }, { class: 'form-control' } %>
+    <%= f.select :gender, User::GENDER.map { |item| [t("users.gender.#{item[0]}"), item[1]] }, { include_blank: false } %>
+  </div>
+  <div class="form-group">
+    <%= f.label :mobile, class: 'control-label' %>
+    <%= f.text_field :mobile, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :telephone, class: 'control-label' %>
+    <%= f.text_field :telephone, class: 'form-control' %>
+  </div>
+  <!--
+  <div class="form-group">
+    <%# f.label :gravatar %>
+    <%# f.file_field :gravatar %>
+  </div>
+  -->
+  <div class="form-group">
+    <%= f.label :location, class: 'control-label' %>
+    <%= f.text_field :location, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :aboutme, class: 'control-label' %>
+    <%= f.text_area :aboutme, class: 'form-control' %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>
