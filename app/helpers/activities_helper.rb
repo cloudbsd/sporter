@@ -11,7 +11,7 @@ module ActivitiesHelper
   class PayCalc
     def initialize activity
       @activity = activity
-      @pay_count = @activity.participants.count
+      @pay_count = @activity.participants.count + @activity.participants.sum('friend_number')
       @item_pay = @activity.fee_items.sum('price')
       @derated_pay = @activity.participants.sum('derated_pay')
     end

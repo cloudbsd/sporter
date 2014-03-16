@@ -13,7 +13,7 @@ class Activity < ActiveRecord::Base
   end
 
   def generate_bill
-    pay_count = participants.count
+    pay_count = participants.count + participants.sum('friend_number')
     if pay_count > 0
       item_pay = fee_items.sum('price')
       derated_pay = participants.sum('derated_pay')
@@ -21,7 +21,7 @@ class Activity < ActiveRecord::Base
       average_pay = (total_pay.to_i + pay_count - 1) / pay_count
       actual_pay = average_pay * pay_count
       participants.each do |participate|
-        participate.net_pay = average_pay - participate.derated_pay
+        participate.net_pay = average_pay*(participate.friend_number + 1) - participate.derated_pay
         participate.save
       end
     end

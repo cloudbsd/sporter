@@ -5,6 +5,7 @@
   <thead>
     <tr class="active">
       <th>姓名</th>
+      <th>所带朋友数目</th>
       <th>羽球抵扣费用（元）</th>
       <th>实际需付费用（元）</th>
       <th></th>
@@ -14,6 +15,7 @@
     <% @activity.participants.each do |participant| %>
       <tr>
         <td><%= participant.user.name %></td>
+        <td><%= participant.friend_number %></td>
         <td><%= participant.derated_pay %></td>
         <td><%= participant.net_pay %></td>
         <td><%= link_to '编辑', edit_group_activity_participant_path(@group, @activity, participant) %> / 
