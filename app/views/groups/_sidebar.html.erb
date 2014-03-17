@@ -33,6 +33,14 @@
   <%= link_to '球友存款记录', transactions_group_path(@group) %>
   </li>
 
+  <% if controller_name == 'groups' and action_name == 'fees' %>
+    <li class='active'>
+  <% else %>
+    <li>
+  <% end %>
+  <%= link_to '费用项名称', group_fees_path(@group) %>
+  </li>
+
   <% if controller_name == 'groups' and action_name == 'edit' %>
     <li class='active'>
   <% else %>
@@ -41,8 +49,3 @@
   <%= link_to '设置', edit_group_path(@group) %>
   </li>
 </ul>
-
-<h4>费用名称</h4>
-<% @group.fees.each do |fee| %>
-  <%= fee.name %><br>
-<% end %>

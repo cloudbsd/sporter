@@ -4,6 +4,13 @@
   <%= form_error_messages!(f.object) %>
 
   <div class='form-group'>
+    <%# hidden_field_tag :group_id, class: 'form-control' %>
+    <%# text_field_tag :group_id, params[:group_id], disabled: true %>
+    <%# select_tag :group_id, options_from_collection_for_select(Group.all, "id", "name") %>
+    <%= select_tag :group_id, options_for_select(Group.all.map { |u| [u.name, u.id] }, params[:group_id]) %>
+  </div>
+
+  <div class='form-group'>
     <%= f.label :email, class: 'control-label' %>
     <%= f.email_field :email, class: 'form-control', :autofocus => true %>
   </div>
@@ -63,15 +70,6 @@
   <div class="form-group">
     <%= f.label :aboutme, class: 'control-label' %>
     <%= f.text_area :aboutme, class: 'form-control' %>
-  </div>
-
-  <div class='form-group'>
-    <%# hidden_field_tag :group_id, class: 'form-control' %>
-    <%= text_field_tag :group_id, params[:group_id], disabled: true %>
-    <%= select_tag :group_id, Group.all.map { |u| [u.name, u.id] } %>
-    <%= select_tag "group_id", options_from_collection_for_select(Group.all, "id", "name") %>
-    <%# select :user, :group_id, options_from_collection_for_select(Group.all, :id, :name) %>
-    <%# collection_select(:user, "group_id", Group.all, :id, :name) %>
   </div>
 
   <div class='form-group'>

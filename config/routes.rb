@@ -25,6 +25,7 @@ Sporter::Application.routes.draw do
       get :activities
       get :members
       get :transactions
+      get :fees
     end
   end
 

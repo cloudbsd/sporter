@@ -19,7 +19,8 @@ class FeesController < ApplicationController
   # @fee.group = @group
     respond_to do |format|
       if @fee.save
-        format.html { redirect_to @group, notice: t('fees.notice.create_success') }
+      # format.html { redirect_to @group, notice: t('fees.notice.create_success') }
+        format.html { redirect_to group_fees_path(@group), notice: t('fees.notice.create_success') }
         format.js
       else
         format.html { redirect_to @group, alert: t('fees.notice.create_failed') }

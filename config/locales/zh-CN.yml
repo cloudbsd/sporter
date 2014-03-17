@@ -97,7 +97,7 @@ zh-CN:
   activities:
     new: "新建活动"
   fees:
-    new: "新建费用名称"
+    new: "新建费用项名称"
   fee_items:
     new: "添加费用项"
   participants:

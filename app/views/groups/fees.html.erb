@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-xs-6 col-md-4">
+    <h4>费用项名称</h4>
+    <% @group.fees.each do |fee| %>
+      <%= fee.name %><br>
+    <% end %>
+  </div>
+
+  <div class="col-xs-6 col-md-4">
+    <%= render file: 'fees/new' %>
+    <%= link_to t('fees.new'), new_group_fee_path(@group) %>
+  </div>
+
+  <div class="col-xs-6 col-md-4">
+    <%= render 'sidebar' %>
+  </div>
+</div>
