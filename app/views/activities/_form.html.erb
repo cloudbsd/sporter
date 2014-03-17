@@ -1,15 +1,19 @@
 <%# form_for(@activity) do |f| %>
 <%= form_for [@group, activity] do |f| %>
   <div class="form-group">
+    <%= f.label :title, class: 'control-label' %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+  <div class="form-group">
     <%= f.label :started_at %><br>
     <%# f.datetime_select :started_at, default: { hour: 19, minute: 30 } %>
-    <%= f.text_field :started_at, class: 'datepicker started-date' %>
+    <%= f.text_field :started_at, class: 'datepicker started-date', value: default_date(activity.started_at) %>
     <%= f.time_select :started_at, default: { hour: 19, minute: 30 } %>
   </div>
   <div class="form-group">
     <%= f.label :stopped_at %><br>
     <%# f.datetime_select :stopped_at, default: { hour: 21, minute: 30 } %>
-    <%= f.text_field :stopped_at, class: 'datepicker stopped-date' %>
+    <%= f.text_field :stopped_at, class: 'datepicker stopped-date', value: default_date(activity.stopped_at) %>
     <%= f.time_select :stopped_at, default: { hour: 21, minute: 30 } %>
   </div>
   <div class="form-group">

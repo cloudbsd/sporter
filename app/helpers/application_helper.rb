@@ -44,6 +44,10 @@ module ApplicationHelper
     dt.strftime(I18n.t(:"datetime.formats.time"))
   end
 
+  def default_date(dt)
+    dt.strftime('%Y-%m-%d') if dt.present?
+  end
+
   def show_price(price)
     number_with_precision(price, precision: 2)
   end

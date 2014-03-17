@@ -19,7 +19,7 @@
   <tbody>
     <% @group.activities.each do |activity| %>
       <tr>
-        <td><%= localize_date activity.started_at %>, <%= localize_time activity.started_at %> - <%= localize_time activity.stopped_at %></td>
+        <td><%= activity.full_title %></td>
         <td><%= activity.participants.size %></td>
         <td><%= link_to 'Show', [@group, activity] %> /
           <%= link_to 'Edit', edit_group_activity_path(@group, activity) %> /

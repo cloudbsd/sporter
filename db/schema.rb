@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20140310161114) do
 
   create_table "activities", force: true do |t|
     t.integer  "group_id"
+    t.string   "title"
     t.datetime "started_at"
     t.datetime "stopped_at"
     t.datetime "created_at"

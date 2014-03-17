@@ -8,6 +8,14 @@ class Activity < ActiveRecord::Base
   has_many :participants, dependent: :destroy
 
   # instance methods
+  def full_title
+    if title.nil?
+      "#{self.started_at.strftime(I18n.t(:"datetime.formats.date"))}, #{self.started_at.strftime(I18n.t(:"datetime.formats.time"))} - #{self.stopped_at.strftime(I18n.t(:"datetime.formats.time"))}"
+    else
+      title
+    end
+  end
+
   def other_users cur
     self.group.users - (self.participants.map(&:user) - [cur])
   end
