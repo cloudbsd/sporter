@@ -1,6 +1,4 @@
 Sporter::Application.routes.draw do
-  get "cards/new"
-  get "cards/edit"
   root 'users#index'
 
   devise_for :users

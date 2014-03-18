@@ -5,6 +5,7 @@ class FeesController < ApplicationController
 
   # GET /fees/new
   def new
+    @fee = Fee.new
   end
 
   # GET /fees/1/edit

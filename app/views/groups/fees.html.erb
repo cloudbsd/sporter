@@ -1,9 +1,25 @@
 <div class="row">
   <div class="col-xs-6 col-md-4">
-    <h4>费用项名称</h4>
-    <% @group.fees.each do |fee| %>
-      <%= fee.name %><br>
-    <% end %>
+    <h4>费用项类型管理</h4>
+    <table class="table table-bordered">
+      <thead>
+        <tr class="active">
+          <th>名称</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @group.fees.each do |fee| %>
+          <tr>
+            <td><%= fee.name %></td>
+            <td>
+              <%= link_to 'Edit', edit_group_fee_path(@group, fee) %> /
+              <%= link_to 'Destroy', [@group, fee], method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 
   <div class="col-xs-6 col-md-4">
