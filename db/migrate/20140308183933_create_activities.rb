@@ -5,7 +5,11 @@ class CreateActivities < ActiveRecord::Migration
       t.string :title
       t.datetime :started_at
       t.datetime :stopped_at
+      t.datetime :applied_at
+      t.integer :number_limit
       t.string :pay_type
+      t.string :approval
+      t.string :condition
 
       t.timestamps
     end

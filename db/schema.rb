@@ -11,19 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140310161114) do
+ActiveRecord::Schema.define(version: 20140318160109) do
 
   create_table "activities", force: true do |t|
     t.integer  "group_id"
     t.string   "title"
     t.datetime "started_at"
     t.datetime "stopped_at"
+    t.datetime "applied_at"
+    t.integer  "number_limit"
     t.string   "pay_type"
+    t.string   "approval"
+    t.string   "condition"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "activities", ["group_id"], name: "index_activities_on_group_id"
+
+  create_table "cards", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.decimal  "price"
+    t.string   "duration"
+    t.date     "started_at"
+    t.date     "stopped_at"
+    t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cards", ["group_id"], name: "index_cards_on_group_id"
+  add_index "cards", ["user_id"], name: "index_cards_on_user_id"
 
   create_table "debits", force: true do |t|
     t.decimal  "balance"

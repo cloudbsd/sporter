@@ -42,7 +42,11 @@ en:
         title: "Title"
         started_at: "Start Time"
         stopped_at: "Stop Time"
+        applied_at: "Deadline Time"
+        number_limit: "Number Limit"
         pay_type: "Pay Type"
+        approval: "Need Approval"
+        condition: "Application Conditions"
       fee:
         name: "Fee Type"
       fee_item:
