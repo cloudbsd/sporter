@@ -34,7 +34,7 @@ class CardTypesController < ApplicationController
   def update
     respond_to do |format|
       if @card_type.update(card_type_params)
-        format.html { redirect_to @group, notice: 'Fee was successfully updated.' }
+        format.html { redirect_to group_card_types_path(@group), notice: t('card_types.notice.create_success') }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
