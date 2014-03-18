@@ -10,8 +10,12 @@
     <%= f.text_field :name, class: 'form-control' %>
   </div>
   <div class="form-group">
+    <%= f.label :pay_type, class: 'control-label' %>
+    <%= f.select :pay_type, Group::PAYMENT_TYPES.map { |item| [t("groups.pay_type.#{item[0]}"), item[1]] }, { include_blank: false }, { class: 'form-control' } %>
+  </div>
+  <div class="form-group">
     <%= f.label :aboutme, class: 'control-label' %>
-    <%= f.text_area :aboutme, class: 'form-control' %>
+    <%= f.text_area :aboutme, class: 'form-control', rows: 5 %>
   </div>
   <div class="form-group">
     <%= f.submit class: 'btn btn-primary' %>

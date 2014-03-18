@@ -32,6 +32,7 @@ en:
       group:
         uniqname: "Unique Name"
         name: "Name"
+        pay_type: "Pay Type"
         aboutme: "About Group"
       transaction:
         user_id: "User"
@@ -96,6 +97,11 @@ en:
       withdraw: 'Withdraw'
   activities:
     new: "New Activity"
+    pay_type:
+      avg_yuan: "AA (Yuan)"
+      avg_jiao: "AA (Jiao)"
+      avg_fen: "AA (Fen)"
+      with_card: "Card or Cash"
   fees:
     new: "New Fee Name"
   fee_items:

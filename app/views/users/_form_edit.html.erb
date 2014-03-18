@@ -1,5 +1,7 @@
 <%# form_for(@user, :html => { :method => :patch, class: '' }) do |f| %>
 <%= form_for @user do |f| %>
+  <%= form_error_messages!(f.object) %>
+
   <!--
   <div class='form-group'>
     <%# f.label :email, class: 'control-label' %>

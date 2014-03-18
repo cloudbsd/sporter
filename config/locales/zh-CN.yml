@@ -32,6 +32,7 @@ zh-CN:
       group:
         uniqname: "群标识符名称"
         name: "名称"
+        pay_type: "支付方式"
         aboutme: "群介绍"
       transaction:
         user_id: "用户"
@@ -90,6 +91,11 @@ zh-CN:
       woman: "女"
   groups:
     new: "新建群"
+    pay_type:
+      avg_yuan: "均摊（精确到元）"
+      avg_jiao: "均摊（精确到角）"
+      avg_fen: "均摊（精确到分）"
+      with_card: "会员卡充值或现金"
   transactions:
     action:
       deposit: '存款'

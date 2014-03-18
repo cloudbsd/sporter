@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20140310161114) do
   create_table "groups", force: true do |t|
     t.string   "uniqname"
     t.string   "name"
+    t.string   "pay_type"
     t.text     "aboutme"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -3,8 +3,6 @@
     <% if user_signed_in? %>
       <li><%= header_link_to 'users', 'managements', '管理', managements_users_path %></li>
       <li><%= header_link_to 'users', 'show', current_user.name, current_user %></li>
-      <li><%= header_link_to 'users', 'edit', t('devise.settings'), edit_user_path(current_user) %></li>
-      <li><%= header_link_to 'registrations', 'edit', t('devise.settings'), edit_user_registration_path %></li>
       <li> <%= link_to t('devise.logout'), destroy_user_session_path, method: :delete %> </li>
       <li> <%= link_to t('devise.logoff'), registration_path(current_user), :method => :delete, data: { confirm: t('layouts.confirm') } %> </li>
     <% else %>
