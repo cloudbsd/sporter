@@ -1,4 +1,6 @@
 Sporter::Application.routes.draw do
+  get "cards/new"
+  get "cards/edit"
   root 'users#index'
 
   devise_for :users
@@ -21,11 +23,13 @@ Sporter::Application.routes.draw do
       resources :participants, only: [:new, :edit, :create, :update, :destroy]
     end
     resources :fees, only: [:new, :edit, :create, :update, :destroy]
+    resources :card_types, except: [:index, :show]
     member do
       get :activities
       get :members
       get :transactions
       get :fees
+      get :card_types
     end
   end
 

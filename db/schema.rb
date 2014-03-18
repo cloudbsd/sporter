@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140318160109) do
+ActiveRecord::Schema.define(version: 20140318172119) do
 
   create_table "activities", force: true do |t|
     t.integer  "group_id"
@@ -29,12 +29,21 @@ ActiveRecord::Schema.define(version: 20140318160109) do
 
   add_index "activities", ["group_id"], name: "index_activities_on_group_id"
 
-  create_table "cards", force: true do |t|
+  create_table "card_types", force: true do |t|
     t.string   "name"
-    t.integer  "user_id"
     t.integer  "group_id"
     t.decimal  "price"
     t.string   "duration"
+    t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "card_types", ["group_id"], name: "index_card_types_on_group_id"
+
+  create_table "cards", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "card_type_id"
     t.date     "started_at"
     t.date     "stopped_at"
     t.integer  "number"
@@ -42,7 +51,7 @@ ActiveRecord::Schema.define(version: 20140318160109) do
     t.datetime "updated_at"
   end
 
-  add_index "cards", ["group_id"], name: "index_cards_on_group_id"
+  add_index "cards", ["card_type_id"], name: "index_cards_on_card_type_id"
   add_index "cards", ["user_id"], name: "index_cards_on_user_id"
 
   create_table "debits", force: true do |t|

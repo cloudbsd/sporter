@@ -8,7 +8,7 @@ class Group < ActiveRecord::Base
   has_many :activities, dependent: :destroy
   has_many :fees, dependent: :destroy
   has_many :transactions, through: :users
-  has_many :cards
+  has_many :card_types, dependent: :destroy
 
   # macros from gems
   resourcify

@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-xs-6 col-md-4">
+    <h4>会员卡类型</h4>
+    <% @group.card_types.each do |card_type| %>
+      <%= card_type.name %><br>
+    <% end %>
+  </div>
+
+  <div class="col-xs-6 col-md-4">
+    <%# render file: 'cards/new' %>
+    <%= link_to t('card_types.new'), new_group_card_type_path(@group) %>
+  </div>
+
+  <div class="col-xs-6 col-md-4">
+    <%= render 'sidebar' %>
+  </div>
+</div>

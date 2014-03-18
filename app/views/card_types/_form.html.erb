@@ -1,0 +1,21 @@
+<%= form_for [@group, @card_type] do |f| %>
+  <div class="form-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="form-group">
+    <%= f.label :price %><br>
+    <%= f.number_field :price %>
+  </div>
+  <div class="form-group">
+    <%= f.label :duration %><br>
+    <%= f.number_field :duration %>
+  </div>
+  <div class="form-group">
+    <%= f.label :number %><br>
+    <%= f.number_field :number %>
+  </div>
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

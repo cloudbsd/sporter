@@ -38,7 +38,15 @@
   <% else %>
     <li>
   <% end %>
-  <%= link_to '费用项名称', group_fees_path(@group) %>
+  <%= link_to '费用项管理', group_fees_path(@group) %>
+  </li>
+
+  <% if controller_name == 'groups' and action_name == 'card_types' %>
+    <li class='active'>
+  <% else %>
+    <li>
+  <% end %>
+  <%= link_to '会员卡管理', group_card_types_path(@group) %>
   </li>
 
   <% if controller_name == 'groups' and action_name == 'edit' %>
@@ -46,6 +54,6 @@
   <% else %>
     <li>
   <% end %>
-  <%= link_to '设置', edit_group_path(@group) %>
+  <%= link_to '群设置', edit_group_path(@group) %>
   </li>
 </ul>

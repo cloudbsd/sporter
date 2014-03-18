@@ -8,7 +8,8 @@ zh-CN:
       fee: "费用类型"
       fee_item: "费用项"
       participant: "参与者"
-      card: "卡类型"
+      card_type: "会员卡类型"
+      card: "会员卡"
     attributes:
       user:
         email: "电子邮件"
@@ -58,6 +59,16 @@ zh-CN:
         friend_number: "所带朋友数目"
         derated_pay: "可减免的费用"
         net_pay: "实际需付的费用"
+      card_type:
+        name: "卡名"
+        price: "价格"
+        duration: "有效期（月）"
+        number: "有效次数"
+      card:
+        user_id: "用户名"
+        started_at: "开通日期"
+        stopped_at: "失效日期"
+        number: "剩余次数"
   datetime:
     formats:
       default: ! '%Y-%m-%d'
@@ -115,3 +126,5 @@ zh-CN:
     new: "添加费用项"
   participants:
     new: "添加参与者"
+  card_types:
+    new: "新增会员卡类型"
