@@ -1,5 +1,7 @@
 <div class="row">
-  <div class="col-xs-6 col-md-4">
+  <div class="col-md-4">
+    <%= link_to t('fees.new'), new_group_fee_path(@group), class: 'btn btn-warning' %>
+
     <h4>费用项类型管理</h4>
     <table class="table table-bordered">
       <thead>
@@ -22,12 +24,11 @@
     </table>
   </div>
 
-  <div class="col-xs-6 col-md-4">
+  <div class="col-md-4">
     <%= render file: 'fees/new' %>
-    <%= link_to t('fees.new'), new_group_fee_path(@group) %>
   </div>
 
-  <div class="col-xs-6 col-md-4">
+  <div class="col-md-4">
     <%= render 'sidebar' %>
   </div>
 </div>
