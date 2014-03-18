@@ -9,10 +9,10 @@ class Activity < ActiveRecord::Base
 
   # instance methods
   def full_title
-    if title.nil?
-      "#{self.started_at.strftime(I18n.t(:"datetime.formats.date"))}, #{self.started_at.strftime(I18n.t(:"datetime.formats.time"))} - #{self.stopped_at.strftime(I18n.t(:"datetime.formats.time"))}"
-    else
+    if title.present?
       title
+    else
+      "#{self.started_at.strftime(I18n.t(:"datetime.formats.date"))}, #{self.started_at.strftime(I18n.t(:"datetime.formats.time"))} - #{self.stopped_at.strftime(I18n.t(:"datetime.formats.time"))}"
     end
   end
 

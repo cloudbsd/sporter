@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20140310161114) do
     t.string   "title"
     t.datetime "started_at"
     t.datetime "stopped_at"
+    t.string   "pay_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

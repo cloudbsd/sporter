@@ -39,8 +39,10 @@ zh-CN:
         action: "操作"
         amount: "金额"
       activity:
+        title: "标题"
         started_at: "开始时间"
         stopped_at: "结束时间"
+        pay_type: "支付类型"
       fee:
         name: "费用项名称"
       fee_item:

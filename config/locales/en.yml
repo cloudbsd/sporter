@@ -39,8 +39,10 @@ en:
         action: "Action"
         amount: "Amount"
       activity:
+        title: "Title"
         started_at: "Start Time"
         stopped_at: "Stop Time"
+        pay_type: "Pay Type"
       fee:
         name: "Fee Type"
       fee_item:

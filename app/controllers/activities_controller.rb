@@ -16,8 +16,9 @@ class ActivitiesController < ApplicationController
   # GET /activities/new
   def new
   # @activity = Activity.new(started_at: DateTime.now.zone.local)
-    Time.zone = "Beijing"
-    @activity = Activity.new(started_at: Time.zone.now)
+  # Time.zone = "Beijing"
+  # @activity = Activity.new(started_at: Time.zone.now)
+    @activity = Activity.new(pay_type: @group.pay_type)
   end
 
   # GET /activities/1/edit
@@ -84,6 +85,6 @@ class ActivitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def activity_params
-      params.require(:activity).permit(:started_at, :stopped_at)
+      params.require(:activity).permit(:title, :started_at, :stopped_at, :pay_type)
     end
 end

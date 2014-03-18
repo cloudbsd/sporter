@@ -1,4 +1,3 @@
-<%# form_for(@activity) do |f| %>
 <%= form_for [@group, activity] do |f| %>
   <div class="form-group">
     <%= f.label :title, class: 'control-label' %>
@@ -15,6 +14,10 @@
     <%# f.datetime_select :stopped_at, default: { hour: 21, minute: 30 } %>
     <%= f.text_field :stopped_at, class: 'datepicker stopped-date', value: default_date(activity.stopped_at) %>
     <%= f.time_select :stopped_at, default: { hour: 21, minute: 30 } %>
+  </div>
+  <div class="form-group">
+    <%= f.label :pay_type, class: 'control-label' %>
+    <%= f.select :pay_type, Group::PAYMENT_TYPES.map { |item| [t("groups.pay_type.#{item[0]}"), item[1]] }, { include_blank: false }, { class: 'form-control' } %>
   </div>
   <div class="form-group">
     <%= f.submit class: 'btn btn-primary' %>
