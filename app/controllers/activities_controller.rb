@@ -18,7 +18,10 @@ class ActivitiesController < ApplicationController
   # @activity = Activity.new(started_at: DateTime.now.zone.local)
   # Time.zone = "Beijing"
   # @activity = Activity.new(started_at: Time.zone.now)
-    @activity = Activity.new(pay_type: @group.pay_type)
+    @activity = Activity.new(pay_type: @group.pay_type, province: @group.province, city: @group.city, district: @group.district, location: @group.location)
+    @province = Province.find_by(code: @group.province)
+    @city = City.find_by(code: @group.city)
+    @district = District.find_by(code: @group.district)
   end
 
   # GET /activities/1/edit
@@ -85,6 +88,6 @@ class ActivitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def activity_params
-      params.require(:activity).permit(:title, :started_at, :stopped_at, :applied_at, :number_limit, :pay_type, :approval, :condition)
+      params.require(:activity).permit(:title, :started_at, :stopped_at, :applied_at, :number_limit, :pay_type, :province, :city, :district, :location, :approval, :condition)
     end
 end

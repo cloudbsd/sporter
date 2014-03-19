@@ -1,4 +1,6 @@
 <%= form_for [@group, activity] do |f| %>
+  <%= form_error_messages!(f.object) %>
+
   <div class="form-group">
     <%= f.label :title, class: 'control-label' %>
     <%= f.text_field :title, class: 'form-control' %>
@@ -19,6 +21,19 @@
     <%= f.label :pay_type, class: 'control-label' %>
     <%= f.select :pay_type, Group::PAYMENT_TYPES.map { |item| [t("groups.pay_type.#{item[0]}"), item[1]] }, { include_blank: false }, { class: 'form-control' } %>
   </div>
+
+  <div class='form-group'>
+    <%= f.label :location, '所在省市', class: 'control-label' %> <br>
+    <%= render partial: 'shared/chinacity_ajax', locals: { f: f, prefix_id: 'activity_', owner: activity } %>
+    <%# render partial: 'shared/chinacity_ajax', locals: { f: f, city_id: 'activity_city', district_id: 'activity_district', owner: activity } %>
+    <%# render partial: 'shared/chinacity_db', locals: { f: f, is_disabled: false } %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :location, class: 'control-label' %>
+    <%= f.text_field :location, class: 'form-control' %>
+  </div>
+
   <div class="form-group">
     <%= f.submit class: 'btn btn-primary' %>
   </div>

@@ -16,9 +16,9 @@
 
   <div class='form-group'>
     <%= f.label :location, '所在省市', class: 'control-label' %> <br>
-    <%= render partial: 'shared/chinacity_ajax', locals: { f: f, is_disabled: false } %>
+    <%= render partial: 'shared/chinacity_ajax', locals: { f: f, prefix_id: 'group_', owner: @group } %>
+    <%# render partial: 'shared/chinacity_ajax', locals: { f: f, city_id: 'group_city', district_id: 'group_district', owner: @group } %>
     <%# render partial: 'shared/chinacity_db', locals: { f: f, is_disabled: false } %>
-    <%# render partial: 'shared/chinacity_gem', locals: { business_owner: insurance_item.insurance_business, id_prefix: "#{owner_name}_insurance_business_attributes", name_prefix: "#{owner_name}[insurance_business_attributes]", is_disabled: false } %>
   </div>
 
   <div class='form-group'>

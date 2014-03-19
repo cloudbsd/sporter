@@ -8,6 +8,10 @@ class CreateActivities < ActiveRecord::Migration
       t.datetime :applied_at
       t.integer :number_limit
       t.string :pay_type
+      t.string :province
+      t.string :city
+      t.string :district
+      t.string :location
       t.string :approval
       t.string :condition
 

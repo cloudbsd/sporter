@@ -48,6 +48,7 @@ en:
         applied_at: "Deadline Time"
         number_limit: "Number Limit"
         pay_type: "Pay Type"
+        location: "Location"
         approval: "Need Approval"
         condition: "Application Conditions"
       fee:

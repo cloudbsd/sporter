@@ -48,6 +48,7 @@ zh-CN:
         applied_at: "报名截止时间"
         number_limit: "人数限制"
         pay_type: "支付类型"
+        location: "具体地址"
         approval: "是否要批准"
         condition: "报名条件"
       fee:
