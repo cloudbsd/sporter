@@ -1,0 +1,34 @@
+<%# select_tag "province", options_for_select(["----请选择----"] + Province.all.collect{|e| [e.name,e.code]}), :onchange => "get_options(this.value)" %>
+<%# select_tag "city", "<option value=\"0\">--请选择上级--</option>"%>
+<%# f.select :province, options_for_select(["----请选择----"] + Province.all.collect{|e| [e.name,e.code]}), { prompt: '--省份--' }, { :onchange => "get_options(this.value)" } %>
+<%= f.select :province, options_for_select(Province.all.collect{|e| [e.name,e.code]}), { prompt: '--省份--' }, { :onchange => "province_options(this.value)" } %>
+<%= f.select :city, "<option value=\"0\">--请选择上级--</option>", { prompt: '--城市--' }, { :onchange => "city_options(this.value)" } %>
+<%= f.select :district, "<option value=\"0\">--请选择上级--</option>", { prompt: '--区县--' } %>
+
+<script type="text/javascript">
+  function province_options(value){
+    $.ajax({
+      type: "POST",
+      url:'/groups/cities?province_code='+value,
+      data:'text',
+      success: function(data){
+        $("#group_city").html(data);
+      }
+    }
+  )
+  }
+</script>
+
+<script type="text/javascript">
+  function city_options(value){
+    $.ajax({
+      type: "POST",
+      url:'/groups/districts?city_code='+value,
+      data:'text',
+      success: function(data){
+        $("#group_district").html(data);
+      }
+    }
+  )
+  }
+</script>

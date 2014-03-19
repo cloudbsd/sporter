@@ -1,0 +1,6 @@
+<%# f.collection_select :province, Province.all, :code, :name, prompt: true %>
+<%= f.select :province, Province.all.map { |province| [province.name, province.code] }, { include_blank: false, prompt: '--省份--' }, { disabled: is_disabled } %>
+<%# f.collection_select :city, City.all, :code, :name, include_blank: true %>
+<%= f.grouped_collection_select :city, Province.all, :cities, :name, :code, :name, { include_blank: false, prompt: '--城市--' }, { disabled: is_disabled } %>
+<%# f.collection_select :district, District.all, :code, :name, include_blank: true %>
+<%= f.grouped_collection_select :district, City.all, :districts, :name, :code, :name, { include_blank: false, prompt: '--地区--' }, { disabled: is_disabled } %>

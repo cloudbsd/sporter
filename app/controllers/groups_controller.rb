@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
 # before_action :set_group, only: [:show, :edit, :update, :destroy, :activities, :members, :transactions]
-  before_action :set_group, except: [:index, :new, :create]
+  before_action :set_group, except: [:index, :new, :create, :cities, :districts]
 
   # GET /groups
   # GET /groups.json
@@ -86,6 +86,28 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def card_types
+  end
+
+  # POST /groups/1
+  # POST /groups/1.json
+  def cities
+    options = ""
+    city = Province.find_by(code: params[:province_code]).cities
+    city.each do |s|
+      options << "<option value=#{s.code}>#{s.name}</option>"
+    end
+    render :text => options
+  end
+
+  # POST /groups/1
+  # POST /groups/1.json
+  def districts
+    options = ""
+    districts = City.find_by(code: params[:city_code]).districts
+    districts.each do |s|
+      options << "<option value=#{s.code}>#{s.name}</option>"
+    end
+    render :text => options
   end
 
   private

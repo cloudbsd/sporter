@@ -29,6 +29,10 @@ Sporter::Application.routes.draw do
       get :fees
       get :card_types
     end
+    collection do
+      post :cities
+      post :districts
+    end
   end
 
 # resources :activities, only: [] do

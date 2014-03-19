@@ -35,6 +35,7 @@ zh-CN:
         uniqname: "群标识符名称"
         name: "名称"
         pay_type: "支付方式"
+        location: "具体地址"
         aboutme: "群介绍"
       transaction:
         user_id: "用户"

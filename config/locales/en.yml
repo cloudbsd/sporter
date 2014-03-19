@@ -35,6 +35,7 @@ en:
         uniqname: "Unique Name"
         name: "Name"
         pay_type: "Pay Type"
+        location: "Location"
         aboutme: "About Group"
       transaction:
         user_id: "User"
