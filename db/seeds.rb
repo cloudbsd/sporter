@@ -31,6 +31,8 @@ end
 
 def create_user(email, username, name)
   user = User.create!(email: email, password: 'password', username: username, name: name, aboutme: 'Nothing to say!')
+  gravatar = format "user%03d.jpg", user.id%29+1
+  user.update(gravatar: gravatar)
 
   print_content "created user: #{user.name}"
 end
