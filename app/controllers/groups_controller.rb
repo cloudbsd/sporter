@@ -88,6 +88,11 @@ class GroupsController < ApplicationController
   def card_types
   end
 
+  # GET /groups/1
+  # GET /groups/1.json
+  def cards
+  end
+
   # POST /groups/1
   # POST /groups/1.json
   def cities

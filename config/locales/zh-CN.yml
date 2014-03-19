@@ -68,6 +68,7 @@ zh-CN:
         number: "有效次数"
       card:
         user_id: "用户名"
+        card_type_id: "会员卡类型"
         started_at: "开通日期"
         stopped_at: "失效日期"
         number: "剩余次数"
@@ -130,3 +131,5 @@ zh-CN:
     new: "添加参与者"
   card_types:
     new: "新增会员卡类型"
+  cards:
+    new: "球友办卡"

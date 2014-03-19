@@ -68,6 +68,7 @@ en:
         number: "Number of Times"
       card:
         user_id: "User Name"
+        card_type_id: "Card Type"
         started_at: "Started At"
         stopped_at: "Stopped At"
         number: "Remaining Number"
@@ -130,3 +131,5 @@ en:
     new: "Add Participant"
   card_types:
     new: "New Card Type"
+  cards:
+    new: "New Card"

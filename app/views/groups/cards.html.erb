@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-8">
+
+    <%= link_to t('cards.new'), new_group_card_path(@group), class: 'btn btn-warning' %>
+    <h4>会员卡管理</h4>
+
+<table class="table table-bordered">
+  <thead>
+    <tr class="active">
+      <th>会员名称</th>
+      <th>卡名称</th>
+      <th>开卡日期</th>
+      <th>截止日期</th>
+      <th>剩余次数</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%# @group.users.map(&:cards).each do |card| %>
+    <% @group.cards.each do |card| %>
+      <tr>
+        <td><%= card.user.name %></td>
+        <td><%= card.card_type.name %></td>
+        <td><%= card.started_at %></td>
+        <td><%= card.stopped_at %></td>
+        <td><%= card.number %></td>
+        <td>
+          <%= link_to 'Edit', edit_group_card_path(@group, card) %> /
+          <%= link_to 'Destroy', [@group, card], method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  </div>
+
+  <div class="col-md-4">
+    <%= render 'sidebar' %>
+  </div>
+</div>
+<div class="row">
