@@ -158,24 +158,52 @@ end
 
 
 def import_groups
-  print_title('importing transactions')
+  print_title('importing groups')
 
   File.open 'db/data/groups.txt', 'r' do |file|
-    row = file.gets
-    row.strip!
-    names = row.split(',')
-    uniqname, name = names[0].strip, names[1].strip
+    while row = file.gets
+      # import group info
+    # row = file.gets
+      row.strip!
+      names = row.split(',')
+      username, uniqname, name, pay_type = names[0].strip, names[1].strip, names[2].strip, names[3].strip
+      user = User.find_by(username: username)
+      group = user.groups.create!(uniqname: uniqname, name: name, pay_type: pay_type)
+    # user.add_role :owner, group
+      user.become_owner group
 
-    user = User.find_by(username: 'liqi')
+      # members
+      row = file.gets
+      row.strip!
+      names = row.split(',')
+      names.each do |name|
+        user = User.find_by(name: name.strip)
+        group.users << user unless group.users.include?(user)
+      end
 
-    group = user.groups.create!(uniqname: uniqname, name: name)
-  # user.become_owner group
-    user.add_role :owner, group
-    group.users << (User.all - [user])
-
-    print_content "created group: #{group.name}(#{group.users.count}) owned by #{group.owner.name}"
+      print_content "created group: #{group.name}(#{group.users.count}) owned by #{group.owner.name}"
+    end
   end
 
+end
+
+
+def import_card_types
+  CardType.destroy_all
+
+  print_title('importing card types')
+
+  File.open 'db/data/card_types.txt', 'r' do |file|
+    while row = file.gets
+      row.strip!
+      names = row.split(',')
+      name, group_id, price, duration, number = names[0].strip, names[1].strip, names[2].strip, names[3].strip, names[4].strip
+      card_type = CardType.create!(name: name, group_id: group_id, price: price, duration: duration, number: number)
+      print_content "created card type: #{card_type.name}"
+    end
+  end
+
+  print_summary "total imported card types count: #{CardType.count}"
 end
 
 
@@ -248,6 +276,7 @@ def import_activities
 end
 
 
+=begin
 Transaction.destroy_all
 Activity.destroy_all
 Group.destroy_all
@@ -260,5 +289,8 @@ import_users
 #create_users
 #create_groups
 import_groups
+import_card_types
 import_transactions
 import_activities
+=end
+import_card_types

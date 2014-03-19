@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-5">
+  <div class="col-md-6">
 
     <%= link_to t('card_types.new'), new_group_card_type_path(@group), class: 'btn btn-warning' %>
     <h4>会员卡类型</h4>
@@ -9,6 +9,8 @@
     <tr class="active">
       <th>名称</th>
       <th>价格</th>
+      <th>有效期（月）</th>
+      <th>活动次数</th>
       <th>操作</th>
     </tr>
   </thead>
@@ -18,6 +20,8 @@
       <tr>
         <td><%= card_type.name %></td>
         <td><%= card_type.price %></td>
+        <td><%= card_type.duration %></td>
+        <td><%= card_type.number %></td>
         <td>
           <%= link_to 'Edit', edit_group_card_type_path(@group, card_type) %> /
           <%= link_to 'Destroy', [@group, card_type], method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -28,7 +32,7 @@
 </table>
   </div>
 
-  <div class="col-md-3">
+  <div class="col-md-2">
     <%# render file: 'card_types/new' %>
     <%# link_to t('card_types.new'), new_group_card_type_path(@group) %>
   </div>

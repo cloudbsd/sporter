@@ -29,7 +29,8 @@ class User < ActiveRecord::Base
 
   # instance methods
   def become_owner group
-    self.groups << group
+  # self.groups << group if self.groups.include? group
+    group.users << self unless group.users.include?(self)
     self.add_role :owner, group
   end
 
