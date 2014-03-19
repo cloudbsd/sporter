@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140318172119) do
+ActiveRecord::Schema.define(version: 20140319101821) do
 
   create_table "activities", force: true do |t|
     t.integer  "group_id"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20140318172119) do
     t.string   "name"
     t.integer  "group_id"
     t.decimal  "price"
-    t.string   "duration"
+    t.integer  "duration"
     t.integer  "number"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -54,8 +54,24 @@ ActiveRecord::Schema.define(version: 20140318172119) do
   add_index "cards", ["card_type_id"], name: "index_cards_on_card_type_id"
   add_index "cards", ["user_id"], name: "index_cards_on_user_id"
 
+  create_table "cities", force: true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.string   "province_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "debits", force: true do |t|
     t.decimal  "balance"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "districts", force: true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.string   "city_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -112,6 +128,13 @@ ActiveRecord::Schema.define(version: 20140318172119) do
 
   add_index "participants", ["activity_id"], name: "index_participants_on_activity_id"
   add_index "participants", ["user_id"], name: "index_participants_on_user_id"
+
+  create_table "provinces", force: true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", force: true do |t|
     t.string   "name"
