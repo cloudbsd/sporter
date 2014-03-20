@@ -3,7 +3,7 @@ class CreateCities < ActiveRecord::Migration
     create_table :cities do |t|
       t.string :name
       t.string :code
-      t.string :province_code
+      t.string :province_code, index: true
 
       t.timestamps
     end

@@ -276,7 +276,6 @@ def import_activities
 end
 
 
-=begin
 Transaction.destroy_all
 Activity.destroy_all
 Group.destroy_all
@@ -292,5 +291,3 @@ import_groups
 import_card_types
 import_transactions
 import_activities
-=end
-import_card_types

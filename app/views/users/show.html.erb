@@ -29,6 +29,37 @@
 </table>
 
     <h4>我的会员卡</h4>
+<table class="table table-bordered">
+  <thead>
+    <tr class="active">
+      <th>会员名称</th>
+      <th>卡名称</th>
+      <th>开卡日期</th>
+      <th>截止日期</th>
+      <th>剩余次数</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%# @group.users.map(&:cards).each do |card| %>
+    <% @user.cards.each do |card| %>
+      <tr>
+        <td><%= card.user.name %></td>
+        <td><%= card.card_type.name %></td>
+        <td><%= card.started_at %></td>
+        <td><%= card.stopped_at %></td>
+        <td><%= card.number %></td>
+        <td>
+          <%= link_to 'Edit', edit_group_card_path(card.card_type.group, card) %> /
+          <%= link_to 'Destroy', [card.card_type.group, card], method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
     <h4><%= link_to '我的存款记录', transactions_user_path(@user) %></h4>
     <%= render 'shared/transactions', transactions: @user.transactions %>
 

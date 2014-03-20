@@ -6,6 +6,7 @@ class CreateParticipants < ActiveRecord::Migration
       t.integer :friend_number
       t.decimal :derated_pay
       t.decimal :net_pay
+      t.integer :card_id, index: true
 
       t.timestamps
     end

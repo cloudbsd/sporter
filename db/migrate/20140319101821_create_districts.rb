@@ -3,7 +3,7 @@ class CreateDistricts < ActiveRecord::Migration
     create_table :districts do |t|
       t.string :name
       t.string :code
-      t.string :city_code
+      t.string :city_code, index: true
 
       t.timestamps
     end

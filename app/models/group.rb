@@ -2,6 +2,7 @@ class Group < ActiveRecord::Base
   # constants
 # PAYMENT_TYPES = [ "avg_yuan", "avg_jiao", "avg_fen", "with_card" ]
   PAYMENT_TYPES = [ ["avg_yuan", 1], ["avg_jiao", 2], ["avg_fen", 3], ["with_card", 4] ]
+  PAY_WITH_CARD = '4'
 
   # association macros
   has_and_belongs_to_many :users

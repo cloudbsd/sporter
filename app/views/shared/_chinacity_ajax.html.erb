@@ -1,23 +1,16 @@
-<%# select_tag "province", options_for_select(["----请选择----"] + Province.all.collect{|e| [e.name,e.code]}), :onchange => "get_options(this.value)" %>
-<%# select_tag "city", "<option value=\"0\">--请选择上级--</option>"%>
-<%# f.select :province, options_for_select(["----请选择----"] + Province.all.collect{|e| [e.name,e.code]}), { prompt: '--省份--' }, { :onchange => "get_options(this.value)" } %>
-<%# f.select :province, options_for_select(Province.all.collect{|e| [e.name,e.code]}), { prompt: '--省份--' }, { :onchange => "province_options(this.value)" } %>
-<%# f.select :city, "<option value=\"0\">--请选择上级--</option>", { prompt: '--城市--' }, { :onchange => "city_options(this.value)" } %>
-<%# f.select :district, "<option value=\"0\">--请选择上级--</option>", { prompt: '--区县--' } %>
-
 <%= f.select :province, options_for_select(Province.all.collect{|e| [e.name,e.code]}, owner.province), { prompt: '--省份--' }, { :onchange => "province_options(this.value)" } %>
 
-<% if owner.province.nil? %>
+<% province = Province.find_by(code: owner.province) unless owner.province.nil? %>
+<% if province.nil? %>
   <%= f.select :city, "<option value=\"0\">--请选择上级--</option>", { prompt: '--城市--' }, { :onchange => "city_options(this.value)" } %>
 <% else %>
-  <% province = Province.find_by(code: owner.province) %>
   <%= f.select :city, options_for_select(province.cities.collect{|e| [e.name,e.code]}, owner.city), { prompt: '--城市--' }, { :onchange => "city_options(this.value)" } %>
 <% end %>
 
-<% if owner.city.nil? %>
+<% city = City.find_by(code: owner.city) unless owner.city.nil? %>
+<% if city.nil? %>
   <%= f.select :district, "<option value=\"0\">--请选择上级--</option>", { prompt: '--区县--' } %>
 <% else %>
-  <% city = City.find_by(code: owner.city) %>
   <%= f.select :district, options_for_select(city.districts.collect{|e| [e.name,e.code]}, owner.district), { prompt: '--区县--' } %>
 <% end %>
 

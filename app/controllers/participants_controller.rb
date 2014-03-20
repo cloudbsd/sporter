@@ -17,7 +17,16 @@ class ParticipantsController < ApplicationController
     @participant = @activity.participants.new(participant_params)
     respond_to do |format|
       if @participant.save
-        @participant.activity.generate_bill
+        if @activity.pay_type != Group::PAY_WITH_CARD
+          @participant.activity.generate_bill
+        else
+          card = @participant.user.cards.valid_cards.first
+          @participant.card = card
+          @participant.save!
+          @participant.pay_with_card(card)
+        # card.number -= 1 + @participant.friend_number
+        # card.save!
+        end
         format.html { redirect_to [@group, @activity], notice: t('fees.notice.create_success') }
         format.js
       else

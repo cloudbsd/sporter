@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 20140319101821) do
     t.integer  "friend_number"
     t.decimal  "derated_pay"
     t.decimal  "net_pay"
+    t.integer  "card_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

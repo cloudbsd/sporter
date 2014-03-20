@@ -1,0 +1,28 @@
+<h4>活动个人支出</h4>
+<%= link_to t('participants.new'), new_group_activity_participant_path(@group, @activity) %>
+
+<table class="table table-bordered">
+  <thead>
+    <tr class="active">
+      <th>姓名</th>
+      <th>所带朋友数目</th>
+      <th>使用的会员卡</th>
+      <th>活动之前剩余次数</th>
+      <th>剩余次数</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @activity.participants.each do |participant| %>
+      <tr>
+        <td><%= participant.user.name %></td>
+        <td><%= participant.friend_number %></td>
+        <td><%= participant.card.card_type.name %></td>
+        <td><%= participant.card.number + participant.friend_number + 1 %></td>
+        <td><%= participant.card.number %></td>
+        <td><%= link_to '编辑', edit_group_activity_participant_path(@group, @activity, participant) %> / 
+        <%= link_to '删除', [@group, @activity, participant], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
