@@ -6,7 +6,15 @@ class Card < ActiveRecord::Base
   belongs_to :card_type
   has_many :participants
 
-  def else_number
-    number - participants.size - participants.sum('friend_number')
+  def remaining_number
+    if number == 0
+      0
+    else
+      number - participants.size - participants.sum('friend_number')
+    end
+  end
+
+  def is_valid?
+    (self.stopped_at > DateTime.now.to_date) && (self.number == 0 || self.remaining_number > 0)
   end
 end

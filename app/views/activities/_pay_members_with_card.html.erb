@@ -16,8 +16,8 @@
       <tr>
         <td><%= participant.user.name %></td>
         <td><%= participant.friend_number %></td>
-        <td><%= participant.card.card_type.name %></td>
-        <td><%= participant.card.else_number %></td>
+        <td><%= participant.card.nil? ? '现金支付' : participant.card.card_type.name %></td>
+        <td><%= participant.card.nil? ? '-' : participant.card.remaining_number %></td>
         <td><%= link_to '编辑', edit_group_activity_participant_path(@group, @activity, participant) %> / 
         <%= link_to '删除', [@group, @activity, participant], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
