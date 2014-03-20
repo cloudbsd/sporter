@@ -10,6 +10,7 @@ Sporter::Application.routes.draw do
     collection do
       get :managements
       post :create_member
+      post :cards
     end
   end
 

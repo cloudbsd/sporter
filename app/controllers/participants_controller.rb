@@ -19,13 +19,8 @@ class ParticipantsController < ApplicationController
       if @participant.save
         if @activity.pay_type != Group::PAY_WITH_CARD
           @participant.activity.generate_bill
-        else
-          card = @participant.user.cards.valid_cards.first
-          @participant.card = card
-          @participant.save!
-          @participant.pay_with_card(card)
-        # card.number -= 1 + @participant.friend_number
-        # card.save!
+      # else
+      #   @participant.pay_with_card(@participant.card)
         end
         format.html { redirect_to [@group, @activity], notice: t('fees.notice.create_success') }
         format.js
@@ -41,7 +36,9 @@ class ParticipantsController < ApplicationController
   def update
     respond_to do |format|
       if @participant.update(participant_params)
-        @participant.activity.generate_bill
+        if @activity.pay_type != Group::PAY_WITH_CARD
+          @participant.activity.generate_bill
+        end
         format.html { redirect_to [@group, @activity], notice: t('fees.notice.create_success') }
         format.js
       else
@@ -85,6 +82,6 @@ class ParticipantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def participant_params
-      params.require(:participant).permit(:user_id, :friend_number, :derated_pay, :net_pay)
+      params.require(:participant).permit(:user_id, :card_id, :friend_number, :derated_pay, :net_pay)
     end
 end

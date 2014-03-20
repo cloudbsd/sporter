@@ -24,7 +24,7 @@
         <td><%= card.card_type.name %></td>
         <td><%= card.started_at %></td>
         <td><%= card.stopped_at %></td>
-        <td><%= card.number %></td>
+	<td><%= card.else_number %></td>
         <td>
           <%= link_to 'Edit', edit_group_card_path(@group, card) %> /
           <%= link_to 'Destroy', [@group, card], method: :delete, data: { confirm: 'Are you sure?' } %>

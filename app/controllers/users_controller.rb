@@ -58,6 +58,18 @@ class UsersController < ApplicationController
     end
   end
 
+  # POST /users/1
+  # POST /users/1.json
+  def cards
+    options = ""
+    cards = User.find_by(id: params[:id]).cards
+    cards.each do |c|
+      options << "<option value=#{c.id}>#{c.card_type.name} - #{c.number}</option>"
+    end
+    options << "<option value>Pay with Cash</option>"
+    render :text => options
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

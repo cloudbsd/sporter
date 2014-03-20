@@ -5,4 +5,8 @@ class Card < ActiveRecord::Base
   belongs_to :user
   belongs_to :card_type
   has_many :participants
+
+  def else_number
+    number - participants.size - participants.sum('friend_number')
+  end
 end
