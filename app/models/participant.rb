@@ -21,4 +21,8 @@ class Participant < ActiveRecord::Base
 #   card.number -= 1 + self.friend_number
 #   card.save!
 # end
+
+  def remaining_number
+    card.nil? ? 0 : card.remaining_number
+  end
 end

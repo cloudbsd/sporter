@@ -35,6 +35,7 @@ zh-CN:
         uniqname: "群标识符名称"
         name: "名称"
         pay_type: "支付方式"
+        price: "现金支付费用／次（元）"
         location: "具体地址"
         aboutme: "群介绍"
       transaction:
@@ -58,6 +59,7 @@ zh-CN:
         price: "费用价格"
       participant:
         user_id: "参与者"
+        card_id: "使用本卡支付"
         friend_number: "所带朋友数目"
         derated_pay: "可减免的费用"
         net_pay: "实际需付的费用"

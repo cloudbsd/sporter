@@ -11,7 +11,12 @@
   </div>
   <div class="form-group">
     <%= f.label :pay_type, class: 'control-label' %>
-    <%= f.select :pay_type, Group::PAYMENT_TYPES.map { |item| [t("groups.pay_type.#{item[0]}"), item[1]] }, { include_blank: false }, { class: 'form-control' } %>
+    <%= f.select :pay_type, Group::PAYMENT_TYPES.map { |item| [t("groups.pay_type.#{item[0]}"), item[1]] }, { include_blank: false }, { class: 'form-control', :onchange => "pay_type_options(this.value)" } %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :price, class: 'control-label' %>
+    <%= f.number_field :price, class: 'form-control' %>
   </div>
 
   <div class='form-group'>
@@ -34,3 +39,18 @@
     <%= f.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+
+  function pay_type_options(value) {
+    if (value == 'C')
+      $("#group_price").parent().show();
+    else
+      $("#group_price").parent().hide();
+  }
+
+  $(document).ready(function() {
+    var value = $("#group_pay_type").val();
+    pay_type_options(value);
+    });
+</script>

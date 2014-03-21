@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20140319101821) do
     t.string   "uniqname"
     t.string   "name"
     t.string   "pay_type"
+    t.decimal  "price"
     t.string   "province"
     t.string   "city"
     t.string   "district"

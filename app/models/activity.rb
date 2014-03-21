@@ -16,6 +16,10 @@ class Activity < ActiveRecord::Base
     end
   end
 
+  def pay_with_card?
+    self.pay_type == Group::PAY_WITH_CARD
+  end
+
   def other_users cur
     self.group.users - (self.participants.map(&:user) - [cur])
   end

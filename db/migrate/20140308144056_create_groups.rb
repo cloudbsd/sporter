@@ -4,6 +4,7 @@ class CreateGroups < ActiveRecord::Migration
       t.string :uniqname
       t.string :name
       t.string :pay_type
+      t.decimal :price
       t.string :province
       t.string :city
       t.string :district

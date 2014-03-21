@@ -1,8 +1,8 @@
 class Group < ActiveRecord::Base
   # constants
 # PAYMENT_TYPES = [ "avg_yuan", "avg_jiao", "avg_fen", "with_card" ]
-  PAYMENT_TYPES = [ ["avg_yuan", 1], ["avg_jiao", 2], ["avg_fen", 3], ["with_card", 4] ]
-  PAY_WITH_CARD = '4'
+  PAYMENT_TYPES = [ ["avg_yuan", 'Y'], ["avg_jiao", 'J'], ["avg_fen", 'F'], ["with_card", 'C'] ]
+  PAY_WITH_CARD = 'C'
 
   # association macros
   has_and_belongs_to_many :users
@@ -22,5 +22,9 @@ class Group < ActiveRecord::Base
 
   def moderators
     User.with_role(:moderator, self)
+  end
+
+  def pay_with_card?
+    self.pay_type == PAY_WITH_CARD
   end
 end

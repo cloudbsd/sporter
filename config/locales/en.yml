@@ -35,6 +35,7 @@ en:
         uniqname: "Unique Name"
         name: "Name"
         pay_type: "Pay Type"
+        price: "Price/Time (CNY)"
         location: "Location"
         aboutme: "About Group"
       transaction:
@@ -58,6 +59,7 @@ en:
         price: "Price"
       participant:
         user_id: "Participant"
+        card_id: "Member Card"
         friend_number: "Friend Number"
         derated_pay: "Derated Pay"
         net_pay: "Net Pay"

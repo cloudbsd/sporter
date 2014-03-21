@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-xs-12 col-md-8">
+  <div class="col-md-8">
     <%= link_to t('layouts.edit'), edit_group_activity_path(@group, @activity) %> |
     <%= link_to t('layouts.destroy'), [@group, @activity], method: :delete, data: { confirm: 'Are you sure?' } %> |
     <%= link_to t('layouts.back'), @group %>
@@ -9,7 +9,7 @@
       <%= localize_date @activity.started_at %>, <%= localize_time @activity.started_at %> - <%= localize_time @activity.stopped_at %>
     </div>
 
-    <% if @activity.pay_type != Group::PAY_WITH_CARD %>
+    <% unless @activity.pay_with_card? %>
       <%= render 'pay_summary' %>
       <%= render 'pay_fees' %>
       <%= render 'pay_members' %>
@@ -30,9 +30,7 @@
 
   </div>
 
-  <div class="col-xs-6 col-md-4">
-    <%# link_to t('fee_items.new'), new_group_activity_fee_item_path(@group, @activity) %> <br>
-    <%# link_to t('participants.new'), new_group_activity_participant_path(@group, @activity) %>
+  <div class="col-md-4">
     <%= render file: 'fees/new' %>
   </div>
 </div>

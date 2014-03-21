@@ -12,9 +12,9 @@
     <%= f.label :card_id, class: 'control-label' %> <br>
     <% if @participant.user.nil? %>
       <%# f.select :card_id, "<option value=\"0\">--请选择上级--</option>", { prompt: '--会员卡--' } %>
-      <%= f.select :card_id, "", { prompt: '--会员卡--' } %>
+      <%= f.select :card_id, "", { prompt: '--会员卡--' }, { :onchange => "card_options(this.value)" } %>
     <% else %>
-      <%= f.select :card_id, options_for_select(@participant.user.cards.collect{|c| [c.card_type.name,c.id]}), { prompt: '--会员卡--' } %>
+      <%= f.select :card_id, options_for_select(@participant.user.cards.collect{|c| [c.card_type.name,c.id]}), { prompt: '--会员卡--' }, { :onchange => "card_options(this.value)" } %>
     <% end %>
   </div>
 
@@ -45,8 +45,19 @@
       data:'text',
       success: function(data){
         $(card_id).html(data);
+        $(card_id).change();
       }
     }
   )
+  }
+</script>
+
+<script type="text/javascript">
+  function card_options(value) {
+    if (value == "") {
+      $('#participant_net_pay').val('<%= @group.price %>');
+    } else {
+      $('#participant_net_pay').val('');
+    }
   }
 </script>
