@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-md-8">
+
+  <h4>会员卡信息</h4>
+
+<table class="table table-bordered">
+  <thead>
+    <tr class="active">
+      <th>会员名称</th>
+      <th>会员卡</th>
+      <th>价格</th>
+      <th>有效期（月）</th>
+      <th>活动次数</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= @card.user.name %></td>
+      <td><%= @card.card_type.name %></td>
+      <td><%= @card.card_type.price %></td>
+      <td><%= @card.card_type.duration %></td>
+      <td><%= @card.card_type.number %></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h4>用卡记录</h4>
+<table class="table table-bordered">
+  <thead>
+    <tr class="active">
+      <th>活动日期</th>
+      <th>姓名</th>
+      <th>所带朋友数目</th>
+      <th>原有次数</th>
+      <th>剩余次数</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% number = @card.card_type.number %>
+    <% @card.participants.each do |participant| %>
+      <% activity = participant.activity %>
+      <% group = activity.group %>
+      <tr>
+        <td><%= link_to (localize_date activity.started_at), [group, activity] %></td>
+        <td><%= participant.user.name %></td>
+        <td><%= participant.friend_number %></td>
+        <%# participant.card.nil? ? '-' : participant.card.remaining_number %>
+        <td><%= participant.card.nil? ? '-' : number %></td>
+        <% number -= 1 + participant.friend_number %>
+        <td><%= participant.card.nil? ? '-' : number %></td>
+        <td><%= link_to '编辑', edit_group_activity_participant_path(group, activity, participant) %> / 
+        <%= link_to '删除', [group, activity, participant], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  </div>
+
+  <div class="col-md-4">
+    <%= render 'groups/sidebar' %>
+  </div>
+</div>

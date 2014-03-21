@@ -7,6 +7,9 @@ class CardsController < ApplicationController
     @card = Card.new
   end
 
+  def show
+  end
+
   def edit
   end
 

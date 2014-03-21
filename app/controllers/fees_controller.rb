@@ -47,16 +47,11 @@ class FeesController < ApplicationController
   # DELETE /fees/1
   # DELETE /fees/1.json
   def destroy
-    if @fee.can_be_delete?
-      if @fee.destroy
-        @msg = t('fees.notice.delete_success')
-        js_file = 'destroy.js.erb'
-      else
-        @msg = 'Failed to delete fee.'
-        js_file = 'destroy_failed.js.erb'
-      end
+    if @fee.destroy
+      @msg = t('fees.notice.delete_success')
+      js_file = 'destroy.js.erb'
     else
-      @msg = 'You can NOT delete fees that have been accepted.'
+      @msg = 'Failed to delete fee.'
       js_file = 'destroy_failed.js.erb'
     end
     respond_to do |format|
