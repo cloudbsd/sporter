@@ -213,13 +213,23 @@ end
 
 def import_transactions
   print_title('importing transactions')
+
+  card_type = CardType.where(group_id: 1).first
+
   File.open 'db/data/transactions.txt', 'r' do |file|
     while row = file.gets
       row.strip!
       names = row.split(',')
       name, action, amount, operated_at = names[0].strip, names[1].strip, names[2].strip.to_f, names[3].strip
       user = User.find_by(name: name)
-      txn = Transaction.create!(user_id: user.id, action: action, amount: amount, operated_at: operated_at)
+    # card = user.cards.joins(:card_type).where(:card_types => { kind: 'debit' })
+      debit_cards = user.cards.joins(:card_type).where(:card_types => { kind: 'debit', group_id: 1 })
+      if debit_cards.empty?
+        card = user.cards.create!(card_type_id: card_type.id, started_at: operated_at)
+      else
+        card = debit_cards.first
+      end
+      txn = Transaction.create!(user_id: user.id, card_id: card.id, action: action, amount: amount, operated_at: operated_at)
       print_content "imported transaction: #{txn.user.name} #{txn.action} #{txn.amount}"
     end
   end

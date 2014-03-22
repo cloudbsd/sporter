@@ -9,6 +9,7 @@ class Transaction < ActiveRecord::Base
 
   # association macros
   belongs_to :user
+  belongs_to :card
 
   # validation
   validates :amount, :presence => true, numericality: true

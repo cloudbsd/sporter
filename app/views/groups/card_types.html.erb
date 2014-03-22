@@ -9,8 +9,9 @@
     <tr class="active">
       <th>名称</th>
       <th>价格</th>
+      <th>类型</th>
       <th>有效期（月）</th>
-      <th>活动次数</th>
+      <th>有效次数</th>
       <th>操作</th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
       <tr>
         <td><%= card_type.name %></td>
         <td><%= card_type.price %></td>
+        <td><%= t("card_types.type.#{card_type.kind}") %></td>
         <td><%= card_type.duration %></td>
         <td><%= card_type.number %></td>
         <td>

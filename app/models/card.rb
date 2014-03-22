@@ -1,5 +1,6 @@
 class Card < ActiveRecord::Base
   # the default scope first (if any)
+  scope :debits, lambda { joins(:card_type).where(:card_types => { kind: 'debit' }) }
   scope :valid_cards, lambda { where("cards.number > ?", 0) }
   scope :up_to_date, lambda { where("cards.stopped_at > ?", DateTime.now.to_date) }
 #   (self.stopped_at > DateTime.now.to_date) && (self.number == 0 || self.remaining_number > 0)
@@ -7,6 +8,7 @@ class Card < ActiveRecord::Base
   belongs_to :user
   belongs_to :card_type
   has_many :participants
+  has_many :transactions
 
   def remaining_number
     number

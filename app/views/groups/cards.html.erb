@@ -21,10 +21,10 @@
     <% @group.cards.each do |card| %>
       <tr>
         <td><%= card.user.name %></td>
-	<td><%= link_to card.card_type.name, group_card_path(@group, card) %></td>
+        <td><%= link_to card.card_type.name, group_card_path(@group, card) %></td>
         <td><%= card.started_at %></td>
         <td><%= card.stopped_at %></td>
-	<td><%= card.remaining_number %></td>
+        <td><%= card.remaining_number %></td>
         <td>
           <%= link_to 'Show', group_card_path(@group, card) %> /
           <%= link_to 'Edit', edit_group_card_path(@group, card) %> /

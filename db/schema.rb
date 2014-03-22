@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 20140319101821) do
 
   create_table "card_types", force: true do |t|
     t.integer  "group_id"
-    t.string   "name"
     t.string   "kind"
+    t.string   "name"
     t.decimal  "price"
     t.integer  "duration"
     t.integer  "number"
@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(version: 20140319101821) do
 
   create_table "cities", force: true do |t|
     t.string   "name"
-    t.string   "code"
-    t.string   "province_code"
+    t.integer  "code"
+    t.integer  "province_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -76,8 +76,8 @@ ActiveRecord::Schema.define(version: 20140319101821) do
 
   create_table "districts", force: true do |t|
     t.string   "name"
-    t.string   "code"
-    t.string   "city_code"
+    t.integer  "code"
+    t.integer  "city_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 20140319101821) do
 
   create_table "provinces", force: true do |t|
     t.string   "name"
-    t.string   "code"
+    t.integer  "code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(version: 20140319101821) do
 
   create_table "transactions", force: true do |t|
     t.integer  "user_id"
+    t.integer  "card_id"
     t.string   "action"
     t.decimal  "amount"
     t.datetime "operated_at"
@@ -168,6 +169,7 @@ ActiveRecord::Schema.define(version: 20140319101821) do
     t.datetime "updated_at"
   end
 
+  add_index "transactions", ["card_id"], name: "index_transactions_on_card_id"
   add_index "transactions", ["user_id"], name: "index_transactions_on_user_id"
 
   create_table "users", force: true do |t|

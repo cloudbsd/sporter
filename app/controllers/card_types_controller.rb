@@ -81,7 +81,7 @@ class CardTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_type_params
-      params.require(:card_type).permit(:name, :group_id, :price, :duration, :number)
+      params.require(:card_type).permit(:group_id, :kind, :name, :price, :duration, :number)
     end
 
   # def authorize_user!

@@ -11,6 +11,7 @@
       <th>价格</th>
       <th>有效期（月）</th>
       <th>活动次数</th>
+      <th>账户余额</th>
     </tr>
   </thead>
 
@@ -21,6 +22,7 @@
       <td><%= @card.card_type.price %></td>
       <td><%= @card.card_type.duration %></td>
       <td><%= @card.card_type.number %></td>
+      <td><%= @card.balance %></td>
     </tr>
   </tbody>
 </table>
@@ -57,6 +59,9 @@
     <% end %>
   </tbody>
 </table>
+
+    <h4>交易记录</h4>
+    <%= render 'shared/transactions', transactions: @card.transactions %>
 
   </div>
 
