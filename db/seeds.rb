@@ -197,8 +197,8 @@ def import_card_types
     while row = file.gets
       row.strip!
       names = row.split(',')
-      name, group_id, price, duration, number = names[0].strip, names[1].strip, names[2].strip, names[3].strip, names[4].strip
-      card_type = CardType.create!(name: name, group_id: group_id, price: price, duration: duration, number: number)
+      name, group_id, price, duration, number, type = names[0].strip, names[1].strip, names[2].strip, names[3].strip, names[4].strip, names[5].strip
+      card_type = CardType.create!(group_id: group_id, name: name, kind: type, price: price, duration: duration, number: number)
       print_content "created card type: #{card_type.name}"
     end
   end

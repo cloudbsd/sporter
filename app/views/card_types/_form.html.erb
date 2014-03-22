@@ -1,19 +1,23 @@
 <%= form_for [@group, @card_type] do |f| %>
   <div class="form-group">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.label :kind, class: 'control-label' %>
+    <%= f.select :kind, CardType::CARD_TYPES.map { |item| [t("card_types.type.#{item}"), item] }, { include_blank: false }, { class: 'form-control' } %>
   </div>
   <div class="form-group">
-    <%= f.label :price %><br>
-    <%= f.number_field :price %>
+    <%= f.label :name, class: 'control-label' %>
+    <%= f.text_field :name, class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :duration %><br>
-    <%= f.number_field :duration %>
+    <%= f.label :price, class: 'control-label' %>
+    <%= f.number_field :price, class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :number %><br>
-    <%= f.number_field :number %>
+    <%= f.label :duration, class: 'control-label' %>
+    <%= f.number_field :duration, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :number, class: 'control-label' %>
+    <%= f.number_field :number, class: 'form-control' %>
   </div>
   <div class="form-group">
     <%= f.submit class: 'btn btn-primary' %>

@@ -34,8 +34,9 @@ ActiveRecord::Schema.define(version: 20140319101821) do
   add_index "activities", ["group_id"], name: "index_activities_on_group_id"
 
   create_table "card_types", force: true do |t|
-    t.string   "name"
     t.integer  "group_id"
+    t.string   "name"
+    t.string   "kind"
     t.decimal  "price"
     t.integer  "duration"
     t.integer  "number"

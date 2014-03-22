@@ -64,6 +64,7 @@ zh-CN:
         derated_pay: "可减免的费用"
         net_pay: "实际需付的费用"
       card_type:
+        kind: "类型"
         name: "卡名"
         price: "价格"
         duration: "有效期（月）"
@@ -133,5 +134,11 @@ zh-CN:
     new: "添加参与者"
   card_types:
     new: "新增会员卡类型"
+    type:
+      cash: "现金支付"
+      debit: "借记卡"
+      credit: "信用卡"
+      number: "次卡"
+      period: "期间卡"
   cards:
     new: "球友办卡"

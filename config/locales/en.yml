@@ -64,6 +64,7 @@ en:
         derated_pay: "Derated Pay"
         net_pay: "Net Pay"
       card_type:
+        kind: "Type"
         name: "Name"
         price: "Price"
         duration: "Interval"
@@ -133,5 +134,11 @@ en:
     new: "Add Participant"
   card_types:
     new: "New Card Type"
+    type:
+      cash: "Cash"
+      debit: "Debit"
+      credit: "Credit"
+      number: "Number"
+      period: "Period"
   cards:
     new: "New Card"
