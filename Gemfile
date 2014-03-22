@@ -49,6 +49,8 @@ gem 'rails-i18n'
 
 # Use jquery-ui as the JavaScript UI library
 gem 'jquery-ui-rails'
+gem 'jquery-validation-rails'
+#gem 'jquery-timepicker-addon-rails'
 
 # Use devise for user authentication
 gem 'devise', '~> 3.2.0'
@@ -64,7 +66,6 @@ gem 'will-paginate-i18n'
 
 gem 'bootstrap-sass', '~> 3.1.0'
 gem "font-awesome-rails", '~> 4.0.0'
-gem 'jquery-validation-rails'
 
 # Use dalli instead of memcache-client as default cache client
 # gem 'dalli'

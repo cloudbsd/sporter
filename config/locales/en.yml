@@ -75,6 +75,7 @@ en:
         started_at: "Started At"
         stopped_at: "Stopped At"
         number: "Remaining Number"
+        balance: "Balance"
   datetime:
     formats:
       default: ! '%Y-%m-%d'

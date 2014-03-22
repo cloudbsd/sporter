@@ -16,7 +16,7 @@ class ActivitiesController < ApplicationController
   # GET /activities/new
   def new
   # @activity = Activity.new(started_at: DateTime.now.zone.local)
-  # Time.zone = "Beijing"
+    Time.zone = "Beijing"
   # @activity = Activity.new(started_at: Time.zone.now)
     @activity = Activity.new(pay_type: @group.pay_type, province: @group.province, city: @group.city, district: @group.district, location: @group.location)
     @province = Province.find_by(code: @group.province)

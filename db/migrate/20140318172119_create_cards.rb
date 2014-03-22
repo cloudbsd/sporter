@@ -6,6 +6,7 @@ class CreateCards < ActiveRecord::Migration
       t.date :started_at
       t.date :stopped_at
       t.integer :number
+      t.decimal :balance
 
       t.timestamps
     end

@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20140319101821) do
     t.date     "started_at"
     t.date     "stopped_at"
     t.integer  "number"
+    t.decimal  "balance"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
