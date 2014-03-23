@@ -6,4 +6,5 @@ class CardType < ActiveRecord::Base
   # association macros
   belongs_to :group
   has_many :cards
+  has_many :transactions, through: :cards
 end

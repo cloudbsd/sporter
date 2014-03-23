@@ -230,6 +230,7 @@ def import_transactions
         card = debit_cards.first
       end
       txn = Transaction.create!(user_id: user.id, card_id: card.id, action: action, amount: amount, operated_at: operated_at)
+      txn.card.calculate_balance
       print_content "imported transaction: #{txn.user.name} #{txn.action} #{txn.amount}"
     end
   end

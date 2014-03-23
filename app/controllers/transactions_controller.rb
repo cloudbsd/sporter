@@ -28,6 +28,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.save
+        @transaction.card.calculate_balance if @transaction.card.is_debit_card?
         format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
         format.json { render action: 'show', status: :created, location: @transaction }
       else
@@ -42,6 +43,7 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
+        @transaction.card.calculate_balance if @transaction.card.is_debit_card?
         format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }
         format.json { head :no_content }
       else
@@ -55,6 +57,7 @@ class TransactionsController < ApplicationController
   # DELETE /transactions/1.json
   def destroy
     @transaction.destroy
+    @transaction.card.calculate_balance if @transaction.card.is_debit_card?
     respond_to do |format|
       format.html { redirect_to transactions_url }
       format.json { head :no_content }
