@@ -1,9 +1,9 @@
 class Card < ActiveRecord::Base
   # the default scope first (if any)
-  scope :debits, lambda { joins(:card_type).where(:card_types => { kind: 'debit' }) }
+  scope :debits, lambda { |group_id| joins(:card_type).where(:card_types => { kind: 'debit', group_id: group_id }) }
+  scope :in_group, lambda { |group_id| joins(:card_type).where(:card_types => { group_id: group_id }) }
   scope :valid_cards, lambda { where("cards.number > ?", 0) }
   scope :up_to_date, lambda { where("cards.stopped_at > ?", DateTime.now.to_date) }
-#   (self.stopped_at > DateTime.now.to_date) && (self.number == 0 || self.remaining_number > 0)
 
   # association macros
   belongs_to :user
@@ -25,21 +25,7 @@ class Card < ActiveRecord::Base
   end
 
   def remaining_number
-    number
-  # if number == 0
-  #   0
-  # else
-  #   number - participants.size - participants.sum('friend_number')
-  # end
-  end
-
-  def calculate_number
-    self.number = self.card_type.number - self.participants.size - self.participants.sum('friend_number')
-    self.save
-  end
-
-  def calculate_balance
-    self.balance = self.transactions.sum('amount')
+    self.balance + self.transactions.sum('amount') - self.participants.sum('net_pay')
   end
 
   def is_valid?

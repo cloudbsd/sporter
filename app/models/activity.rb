@@ -25,18 +25,29 @@ class Activity < ActiveRecord::Base
   end
 
   def generate_bill
-    pay_count = participants.count + participants.sum('friend_number')
-    if pay_count > 0
-      item_pay = fee_items.sum('price')
-      derated_pay = participants.sum('derated_pay')
-      total_pay = item_pay + derated_pay
-      average_pay = (total_pay.to_i + pay_count - 1) / pay_count
-      actual_pay = average_pay * pay_count
-      participants.each do |participate|
-        participate.net_pay = average_pay*(participate.friend_number + 1) - participate.derated_pay
-        participate.save
-      end
-    end
+    if self.pay_type != Group::PAY_WITH_CARD
+      pay_count = participants.count + participants.sum('friend_number')
+      if pay_count > 0
+        item_pay = fee_items.sum('price')
+        derated_pay = participants.sum('derated_pay')
+        total_pay = item_pay + derated_pay
+        average_pay = (total_pay.to_i + pay_count - 1) / pay_count
+        actual_pay = average_pay * pay_count
+        participants.each do |participant|
+          participant.net_pay = average_pay*(participant.friend_number + 1) - participant.derated_pay
+          participant.save
+
+        # participant.create_or_update_transaction
+        end # each
+      end # if
+    else
+      participants.each do |participant|
+        participant.net_pay = participant.friend_number + 1
+        participant.save
+
+      # participant.create_or_update_transaction
+      end # each
+    end # if
   end
 
 # def confiscation

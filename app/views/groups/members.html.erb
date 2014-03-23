@@ -18,7 +18,11 @@
         <% @group.users.each do |user| %>
           <tr>
             <td><%= link_to user.name, user %></td>
-            <td><%= show_price(user.transactions.sum('amount') - user.participants.sum('net_pay')) %></td>
+            <td>
+              <% user.cards.each do |card| %>
+                <%= show_price card.remaining_number %> <br>
+              <% end %>
+            </td>
             <td><%= user.participants.size %></td>
           </tr>
         <% end %>

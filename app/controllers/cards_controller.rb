@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_group, only: [:show, :new, :edit, :create, :update, :destroy]
+  before_action :set_group
   before_action :set_card, only: [:show, :edit, :update, :destroy]
 
   # GET /cards/new
@@ -68,6 +68,6 @@ class CardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_params
-      params.require(:card).permit(:user_id, :card_type_id, :started_at, :stopped_at, :number, :balance)
+      params.require(:card).permit(:user_id, :card_type_id, :started_at, :stopped_at, :balance)
     end
 end

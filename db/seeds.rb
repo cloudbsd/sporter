@@ -222,15 +222,8 @@ def import_transactions
       names = row.split(',')
       name, action, amount, operated_at = names[0].strip, names[1].strip, names[2].strip.to_f, names[3].strip
       user = User.find_by(name: name)
-    # card = user.cards.joins(:card_type).where(:card_types => { kind: 'debit' })
-      debit_cards = user.cards.joins(:card_type).where(:card_types => { kind: 'debit', group_id: 1 })
-      if debit_cards.empty?
-        card = user.cards.create!(card_type_id: card_type.id, started_at: operated_at)
-      else
-        card = debit_cards.first
-      end
+      card = user.find_or_create_debit! 1
       txn = Transaction.create!(user_id: user.id, card_id: card.id, action: action, amount: amount, operated_at: operated_at)
-      txn.card.calculate_balance
       print_content "imported transaction: #{txn.user.name} #{txn.action} #{txn.amount}"
     end
   end
@@ -275,7 +268,8 @@ def import_activities
         items = pant_pair.split('-')
         name, derated_pay = items[0].strip, items[1].strip
         user = User.find_by(name: name)
-        participant = Participant.create!(user_id: user.id, activity_id: activity.id, friend_number: 0, derated_pay: derated_pay)
+        card = user.find_or_create_debit! 1
+        participant = Participant.create!(user_id: user.id, card_id: card.id, activity_id: activity.id, friend_number: 0, derated_pay: derated_pay)
         print_content "imported participant: #{participant.user.name} with derated_pay #{participant.derated_pay}", 2
       end
 

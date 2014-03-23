@@ -55,12 +55,12 @@ class User < ActiveRecord::Base
   end
 
   def find_or_create_debit! group_id
-    debits = self.cards.debits
-    if debits.empty?
+    debit_cards = self.cards.debits(group_id)
+    if debit_cards.empty?
       card_type = CardType.find_or_create_by!(group_id: group_id, kind: 'debit', name: I18n.translate('card_types.type.debit'))
-      debit = self.cards.create!(card_type_id: card_type.id, started_at: Date.today)
+      debit = self.cards.create!(card_type_id: card_type.id, started_at: Date.today, balance: 0)
     else
-      debit = debits.first
+      debit = debit_cards.first
     end
     debit
   end

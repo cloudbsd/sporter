@@ -10,11 +10,11 @@
 
   <div class="form-group">
     <%= f.label :card_id, class: 'control-label' %> <br>
-    <% if @participant.user.nil? %>
+    <% if @participant.card.nil? %>
       <%# f.select :card_id, "<option value=\"0\">--请选择上级--</option>", { prompt: '--会员卡--' } %>
       <%= f.select :card_id, "", { prompt: '--会员卡--' }, { :onchange => "card_options(this.value)" } %>
     <% else %>
-      <%= f.select :card_id, options_for_select(@participant.user.cards.collect{|c| [c.card_type.name,c.id]}), { prompt: '--会员卡--' }, { :onchange => "card_options(this.value)" } %>
+      <%= f.select :card_id, options_for_select(@participant.user.cards.in_group(@group.id).collect{|c| [c.card_type.name,c.id]}), { prompt: '--会员卡--' }, { :onchange => "card_options(this.value)" } %>
     <% end %>
   </div>
 
@@ -38,10 +38,11 @@
 
 <script type="text/javascript">
   var card_id = "#participant_card_id";
+  var group_id = '<%= @group.id %>';
   function user_options(value){
     $.ajax({
       type: "POST",
-      url:'/users/cards?id='+value,
+      url:'/users/cards?id='+value+'&group_id='+group_id,
       data:'text',
       success: function(data){
         $(card_id).html(data);

@@ -62,9 +62,13 @@ class UsersController < ApplicationController
   # POST /users/1.json
   def cards
     options = ""
-    cards = User.find_by(id: params[:id]).cards
+    cards = User.find_by(id: params[:id]).cards.in_group(params[:group_id])
     cards.each do |c|
-      options << "<option value=#{c.id}>#{c.card_type.name} - #{c.number}</option>"
+      if c.is_debit_card?
+        options << "<option value=#{c.id}>#{c.card_type.name} - #{c.remaining_number}</option>"
+      else
+        options << "<option value=#{c.id}>#{c.card_type.name} - #{c.remaining_number.to_i}</option>"
+      end
     end
     options << "<option value>Pay with Cash</option>"
     render :text => options

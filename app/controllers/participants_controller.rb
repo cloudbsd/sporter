@@ -17,12 +17,7 @@ class ParticipantsController < ApplicationController
     @participant = @activity.participants.new(participant_params)
     respond_to do |format|
       if @participant.save
-        if @activity.pay_type != Group::PAY_WITH_CARD
-          @participant.activity.generate_bill
-        else
-          @participant.card.calculate_number unless @participant.card.nil?
-      #   @participant.pay_with_card(@participant.card)
-        end
+        @participant.activity.generate_bill
         format.html { redirect_to [@group, @activity], notice: t('fees.notice.create_success') }
         format.js
       else
@@ -37,11 +32,7 @@ class ParticipantsController < ApplicationController
   def update
     respond_to do |format|
       if @participant.update(participant_params)
-        if @activity.pay_type != Group::PAY_WITH_CARD
-          @participant.activity.generate_bill
-        else
-          @participant.card.calculate_number unless @participant.card.nil?
-        end
+        @participant.activity.generate_bill
         format.html { redirect_to [@group, @activity], notice: t('fees.notice.create_success') }
         format.js
       else
@@ -56,11 +47,7 @@ class ParticipantsController < ApplicationController
   def destroy
     card = @participant.card
     @participant.destroy
-    if @activity.pay_type != Group::PAY_WITH_CARD
-      @activity.generate_bill
-    else
-      card.calculate_number unless card.nil?
-    end
+    @activity.generate_bill
     respond_to do |format|
       format.html { redirect_to [@group, @activity] }
       format.json { head :no_content }

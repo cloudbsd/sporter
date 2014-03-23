@@ -23,7 +23,7 @@ Sporter::Application.routes.draw do
     end
     resources :fees, only: [:new, :edit, :create, :update, :destroy]
     resources :card_types, except: [:index, :show]
-    resources :cards, except: [:index]
+    resources :cards
     resources :transactions
     member do
       get :activities

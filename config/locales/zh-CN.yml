@@ -76,7 +76,7 @@ zh-CN:
         started_at: "开通日期"
         stopped_at: "失效日期"
         number: "剩余次数"
-        balance: "账户余额"
+        balance: "账户余额/有效次数"
   datetime:
     formats:
       default: ! '%Y-%m-%d'
