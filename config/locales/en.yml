@@ -42,6 +42,7 @@ en:
         user_id: "User"
         action: "Action"
         amount: "Amount"
+        operated_at: "Transaction At"
       activity:
         title: "Title"
         started_at: "Start Time"

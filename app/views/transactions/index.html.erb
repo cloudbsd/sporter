@@ -1,31 +1,15 @@
-<%= link_to '新操作', new_transaction_path, class: 'btn btn-warning' %>
+<div class="row">
+  <div class="col-md-8">
 
-<br> <br>
+    <p>
+    <%= link_to '记录球友存款', new_group_transaction_path(@group), class: 'btn btn-warning' %>
+    </p>
 
-<h4>交易记录</h4>
+    <h4>充值记录</h4>
+    <%= render 'shared/transactions', transactions: @group.transactions.order(operated_at: :asc) %>
+  </div>
 
-<table class="table table-bordered">
-  <thead>
-    <tr class="active">
-      <th>姓名</th>
-      <th>操作</th>
-      <th>金额（元）</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @transactions.each do |transaction| %>
-      <tr>
-        <td><%= link_to transaction.user.name, transaction.user %></td>
-        <td><%= t('transactions.action.'+transaction.action) %></td>
-        <td><%= transaction.amount %></td>
-        <td>
-          <%= link_to 'Show', transaction %> / 
-          <%= link_to 'Edit', edit_transaction_path(transaction) %> / 
-          <%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="col-md-4">
+    <%= render 'groups/sidebar' %>
+  </div>
+</div>

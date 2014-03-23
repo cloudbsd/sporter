@@ -24,10 +24,11 @@ Sporter::Application.routes.draw do
     resources :fees, only: [:new, :edit, :create, :update, :destroy]
     resources :card_types, except: [:index, :show]
     resources :cards, except: [:index]
+    resources :transactions
     member do
       get :activities
       get :members
-      get :transactions
+    # get :transactions
       get :fees
       get :card_types
       get :cards
@@ -41,8 +42,6 @@ Sporter::Application.routes.draw do
 # resources :activities, only: [] do
 #   resources :fee_items, only: [:new, :create, :destroy]
 # end
-
-  resources :transactions
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -54,6 +54,17 @@ class User < ActiveRecord::Base
     Group.with_roles(:moderator, self)
   end
 
+  def find_or_create_debit! group_id
+    debits = self.cards.debits
+    if debits.empty?
+      card_type = CardType.find_or_create_by!(group_id: group_id, kind: 'debit', name: I18n.translate('card_types.type.debit'))
+      debit = self.cards.create!(card_type_id: card_type.id, started_at: Date.today)
+    else
+      debit = debits.first
+    end
+    debit
+  end
+
   # class methods
 
 end

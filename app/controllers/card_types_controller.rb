@@ -46,20 +46,15 @@ class CardTypesController < ApplicationController
   # DELETE /card_types/1
   # DELETE /card_types/1.json
   def destroy
-    if @card_type.can_be_delete?
-      if @card_type.destroy
-        @msg = t('card_types.notice.delete_success')
-        js_file = 'destroy.js.erb'
-      else
-        @msg = 'Failed to delete card_type.'
-        js_file = 'destroy_failed.js.erb'
-      end
+    if @card_type.destroy
+      @msg = t('card_types.notice.delete_success')
+      js_file = 'destroy.js.erb'
     else
-      @msg = 'You can NOT delete card_types that have been accepted.'
+      @msg = 'Failed to delete card_type.'
       js_file = 'destroy_failed.js.erb'
     end
     respond_to do |format|
-      format.html { redirect_to @group, alert: @msg }
+      format.html { redirect_to group_card_types_path(@group), alert: @msg }
       format.js { render js_file }
     end
   end

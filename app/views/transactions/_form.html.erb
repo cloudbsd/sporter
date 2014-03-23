@@ -1,9 +1,9 @@
-<%= form_for(@transaction) do |f| %>
+<%= form_for([@group, @transaction]) do |f| %>
   <%= form_error_messages!(f.object) %>
 
   <div class="form-group">
     <%= f.label :user_id %><br>
-    <%= f.select :user_id, User.all.map { |r| [r.name, r.id] } %>
+    <%= f.select :user_id, @group.users.map { |r| [r.name, r.id] } %>
     <%# f.text_field :user_id %>
   </div>
   <div class="form-group">
@@ -14,6 +14,11 @@
   <div class="form-group">
     <%= f.label :amount %><br>
     <%= f.number_field :amount %>
+  </div>
+  <div class="form-group">
+    <%= f.label :operated_at, class: 'control-label' %><br>
+    <%# f.datetime_select :operated_at %>
+    <%= f.text_field :operated_at, class: 'datepicker started-date' %>
   </div>
   <div class="actions">
     <%= f.submit class: 'btn btn-primary' %>

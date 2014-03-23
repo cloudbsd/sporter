@@ -42,6 +42,7 @@ zh-CN:
         user_id: "用户"
         action: "操作"
         amount: "金额"
+        operated_at: "交易时间"
       activity:
         title: "标题"
         started_at: "开始时间"
