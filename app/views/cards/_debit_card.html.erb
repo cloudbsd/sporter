@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <strong><%= @card.card_type.name %></strong>
+      </div>
+      <div class="panel-body">
+        <p>会员名称：<%= @card.user.name %></p>
+        <p>账户余额：<%= @card.remaining_number %></p>
+        <p>开卡日期：<%= localize_date @card.started_at %></p>
+      </div>
+    </div>
+  </div>
+</div>

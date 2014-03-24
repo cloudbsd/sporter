@@ -3,30 +3,11 @@
 
   <h4>会员卡信息</h4>
 
-<table class="table table-bordered">
-  <thead>
-    <tr class="active">
-      <th>会员名称</th>
-      <th>会员卡</th>
-      <th>价格</th>
-      <th>有效期（月）</th>
-      <th>活动次数</th>
-      <th>账户余额</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td><%= @card.user.name %></td>
-      <td><%= @card.card_type.name %></td>
-      <td><%= @card.card_type.price %></td>
-      <td><%= @card.card_type.duration %></td>
-      <td><%= @card.card_type.number %></td>
-      <td><%= @card.remaining_number %></td>
-    </tr>
-  </tbody>
-</table>
-
+  <% if @card.is_debit_card? %>
+    <%= render 'debit_card' %>
+  <% else %>
+    <%= render 'number_card' %>
+  <% end %>
 
 <h4>用卡记录</h4>
 <table class="table table-bordered">
