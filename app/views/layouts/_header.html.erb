@@ -1,8 +1,11 @@
 <div class="header">
-  <%= link_to image_tag(current_user.gravatar, class: "img-circle", size: '48x48'), current_user, class: 'pull-right' %>
+  <% if user_signed_in? %>
+    <%= link_to image_tag(current_user.gravatar, class: "img-circle", size: '40x40'), current_user, class: 'pull-right' %>
+  <% end %>
   <ul class="nav nav-pills pull-right">
     <% if user_signed_in? %>
-      <%# header_link_to 'users', 'managements', '管理', managements_users_path %>
+      <li><%= header_link_to 'groups', 'show', '活动', current_user.groups.first %></li>
+      <li><%= header_link_to 'groups', 'members', '球友', members_group_path(current_user.groups.first) %></li>
       <%# header_link_to 'users', 'show', current_user.name, current_user %>
       <li> <%= link_to t('devise.logout'), destroy_user_session_path, method: :delete %> </li>
       <%# link_to t('devise.logoff'), registration_path(current_user), :method => :delete, data: { confirm: t('layouts.confirm') } %>
