@@ -4,8 +4,7 @@
   <div class="form-group">
     <%= f.label :user_id, class: 'control-label' %> <br>
     <%# f.select :user_id, @activity.other_users(@participant.user).map { |u| [u.name, u.id] } %>
-    <%# f.select :user_id, @group.users.map { |u| [u.name, u.id] } %>
-    <%= f.select :user_id, options_for_select(@activity.other_users(@participant.user).collect{|c| [c.name,c.id]}), { prompt: '--球友--' }, { :onchange => "user_options(this.value)" } %>
+    <%= f.select :user_id, options_for_select(@activity.other_users(@participant.user).collect{|c| [c.name,c.id]}, @participant.user_id), { prompt: '--球友--' }, { :onchange => "user_options(this.value)" } %>
   </div>
 
   <div class="form-group">
@@ -14,7 +13,7 @@
       <%# f.select :card_id, "<option value=\"0\">--请选择上级--</option>", { prompt: '--会员卡--' } %>
       <%= f.select :card_id, "", { prompt: '--会员卡--' }, { :onchange => "card_options(this.value)" } %>
     <% else %>
-      <%= f.select :card_id, options_for_select(@participant.user.cards.in_group(@group.id).collect{|c| [c.card_type.name,c.id]}), { prompt: '--会员卡--' }, { :onchange => "card_options(this.value)" } %>
+      <%= f.select :card_id, options_for_select(@participant.user.cards.in_group(@group.id).collect{|c| [c.card_type.name,c.id]}, @participant.card_id), { prompt: '--会员卡--' }, { :onchange => "card_options(this.value)" } %>
     <% end %>
   </div>
 

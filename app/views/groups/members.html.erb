@@ -19,8 +19,8 @@
           <tr>
             <td><%= link_to user.name, user %></td>
             <td>
-              <% user.cards.each do |card| %>
-                <%= show_price card.remaining_number %> <br>
+              <% user.cards.in_group(@group.id).each do |card| %>
+                <%= card.remaining_number %> <br>
               <% end %>
             </td>
             <td><%= user.participants.size %></td>

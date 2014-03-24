@@ -25,7 +25,12 @@ class Card < ActiveRecord::Base
   end
 
   def remaining_number
-    self.balance + self.transactions.sum('amount') - self.participants.sum('net_pay')
+    result = self.balance + self.transactions.sum('amount') - self.participants.sum('net_pay')
+    if self.is_number_card?
+      result.to_i
+    else
+      result
+    end
   end
 
   def is_valid?

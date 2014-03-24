@@ -22,7 +22,7 @@
       <td><%= @card.card_type.price %></td>
       <td><%= @card.card_type.duration %></td>
       <td><%= @card.card_type.number %></td>
-      <td><%= @card.balance %></td>
+      <td><%= @card.remaining_number %></td>
     </tr>
   </tbody>
 </table>
@@ -35,8 +35,11 @@
       <th>活动日期</th>
       <th>姓名</th>
       <th>所带朋友数目</th>
-      <th>原有次数</th>
-      <th>剩余次数</th>
+      <% if @card.is_debit_card? %>
+        <th>消费金额</th>
+      <% else %>
+        <th>消费次数</th>
+      <% end %>
       <th>操作</th>
     </tr>
   </thead>
@@ -49,10 +52,7 @@
         <td><%= link_to (localize_date activity.started_at), [group, activity] %></td>
         <td><%= participant.user.name %></td>
         <td><%= participant.friend_number %></td>
-        <%# participant.card.nil? ? '-' : participant.card.remaining_number %>
-        <td><%= participant.card.nil? ? '-' : number %></td>
-        <% number -= 1 + participant.friend_number %>
-        <td><%= participant.card.nil? ? '-' : number %></td>
+        <td><%= participant.consume_number %></td>
         <td><%= link_to '编辑', edit_group_activity_participant_path(group, activity, participant) %> / 
         <%= link_to '删除', [group, activity, participant], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -60,7 +60,7 @@
   </tbody>
 </table>
 
-    <h4>交易记录</h4>
+    <h4>充值记录</h4>
     <%= render 'shared/transactions', transactions: @card.transactions %>
 
   </div>

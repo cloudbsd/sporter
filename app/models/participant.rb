@@ -27,6 +27,17 @@ class Participant < ActiveRecord::Base
     card.nil? ? 0 : card.remaining_number
   end
 
+  def consume_number
+    if card.is_debit_card?
+      amount = self.net_pay
+    elsif card.is_number_card?
+      amount = 1 + self.friend_number
+    elsif card.is_period_card?
+      amount = 0
+    end
+    amount
+  end
+
 # def create_or_update_transaction
 #   if card.is_debit_card?
 #     amount = self.net_pay
