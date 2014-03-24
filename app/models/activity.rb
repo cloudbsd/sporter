@@ -16,6 +16,10 @@ class Activity < ActiveRecord::Base
     end
   end
 
+  def full_time
+    "#{self.started_at.strftime(I18n.t(:"datetime.formats.date"))}, #{self.started_at.strftime(I18n.t(:"datetime.formats.time"))} - #{self.stopped_at.strftime(I18n.t(:"datetime.formats.time"))}"
+  end
+
   def pay_with_card?
     self.pay_type == Group::PAY_WITH_CARD
   end

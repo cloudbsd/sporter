@@ -1,0 +1,36 @@
+<div class="tm-container">
+  <header class="clearfix">
+    <span>Blueprint</span>
+    <h1>Vertical Timeline</h1>
+    <nav>
+      <%= link_to root_path do %>
+        <span class="glyphicon glyphicon-arrow-left"></span>
+      <% end %>
+      <a href="http://tympanus.net/Blueprints/ScrollingLayout/" class="icon-arrow-left" data-info="previous Blueprint">Previous Blueprint</a>
+      <a href="http://tympanus.net/codrops/?p=14941" class="icon-drop" data-info="back to the Codrops article">back to the Codrops article</a>
+      </nav>
+  </header>	
+</div>
+
+<div class="main">
+  <ul class="cbp_tmtimeline">
+    <% @group.activities.each do |activity| %>
+    <li>
+    <time class="cbp_tmtime" datetime="2013-04-10 18:30">
+    <span><%= activity.started_at.strftime(I18n.t(:"datetime.formats.date"))%></span>
+    <span>
+      星期三
+      <%# activity.started_at.strftime(I18n.t(:"date.date_names")) %>
+    </span>
+    </time>
+      <div class="cbp_tmicon cbp_tmicon-phone"></div>
+      <div class="cbp_tmlabel">
+        <h2><%= activity.full_title %></h2>
+        <p>活动时间: <%= activity.full_time %></p>
+        <p>活动地点: <%= @group.location %></p>
+        <p>报名人数: <%= activity.participants.size %></p>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>
