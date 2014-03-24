@@ -1,0 +1,25 @@
+<div class="user-entry">
+  <div class="row">
+    <% group.each do |user| %>
+      <div class='col-md-4'>
+        <div class='media'>
+          <div class='user-gravatar pull-left'>
+            <%= image_tag user.gravatar, class: "img-circle pull-left", size: '48x48' %>
+          </div>
+          <div class='media-body'>
+            <%= link_to user.name, user %>
+            <% user.cards.in_group(@group.id).each do |card| %>
+              <div>
+                <span class='user-location'>
+                  账户余额: 
+                </span>
+                <span class='reputation-score'><%= card.remaining_number %></span>
+              </div>
+            <% end %>
+            <div class='user-tags'>活动次数: <%= user.participants.size %> </div>
+          </div>
+        </div> <!-- media -->
+      </div>
+    <% end %>
+  </div>
+</div>

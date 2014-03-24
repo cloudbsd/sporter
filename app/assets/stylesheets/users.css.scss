@@ -27,3 +27,46 @@
 .top-splitter {
   margin-top: 30px;
 }
+
+body .users {
+//padding-top: 15px;
+//padding-bottom: 15px;
+  .user-entry {
+//  float: left;
+    margin-top: 20px;
+    border-bottom: 1px solid #eee;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    font-size: 90%;
+
+    .user-gravatar {
+      margin-left: 10px;
+//    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+//    border-collapse: separate;
+    }
+
+    a {
+      color: #1086a4;
+      &:visited {
+        color: #13b3bd;
+      }
+    }
+
+    .user-location {
+      color: #888;
+    }
+
+    .reputation-score {
+      font-weight: bold;
+      color: #444;
+    }
+
+    .user-tags {
+      color: #888;
+    }
+  }
+  .user-page {
+    margin-top: 20px;
+    clear: both;
+  }
+} // .users

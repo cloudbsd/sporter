@@ -1,3 +1,7 @@
+<%# image_tag current_user.gravatar, class: "img-circle", size: '128x128' %>
+<br>
+<br>
+
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">我加入的群</h3>
@@ -7,11 +11,24 @@
       <%= link_to group.name, group %> <br>
     <% end %>
   </div>
+
+  <div class="panel-heading">
+    <h3 class="panel-title">常用操作</h3>
+  </div>
+  <div class="panel-body">
+    <%= link_to t('groups.new'), new_group_path %>
+    <br>
+    <%= link_to '我的存款记录', transactions_user_path(current_user) %>
+  </div>
+
+  <div class="panel-heading">
+    <h3 class="panel-title">常用操作</h3>
+  </div>
+  <div class="panel-body">
+    <%= link_to '用户信息', edit_user_path(current_user) %>
+    <br>
+    <%= link_to '重设邮件或密码', edit_user_registration_path %>
+    <br>
+    <%= link_to t('devise.logout'), destroy_user_session_path, method: :delete %>
+  </div>
 </div>
-
-<%= link_to t('groups.new'), new_group_path %> <br>
-
-<%= link_to '我的存款记录', transactions_user_path(current_user) %> <br>
-
-<%= link_to t('devise.settings'), edit_user_path(current_user) %> <br>
-<%= link_to '重设邮件或密码', edit_user_registration_path %>

@@ -1,0 +1,2 @@
+<% groups = @group.users.in_groups_of(3, false) %>
+<%= render partial: 'user', collection: groups, as: :group %>
