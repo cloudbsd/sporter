@@ -67,12 +67,6 @@ ActiveRecord::Schema.define(version: 20140319101821) do
     t.datetime "updated_at"
   end
 
-  create_table "debits", force: true do |t|
-    t.decimal  "balance"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "districts", force: true do |t|
     t.string   "name"
     t.integer  "code"
@@ -198,7 +192,6 @@ ActiveRecord::Schema.define(version: 20140319101821) do
     t.string   "district"
     t.string   "location"
     t.text     "aboutme"
-    t.integer  "debit_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
