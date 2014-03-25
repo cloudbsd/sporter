@@ -5,17 +5,19 @@ class Participant < ActiveRecord::Base
   belongs_to :transaction, dependent: :destroy
 
   # callbacks
-# before_create do |participant|
-# # user.add_role :stacker if user.roles.empty?
-# end
+  after_save do |participant|
+  # activity.generate_bill
+  end
 
-# after_destroy do |participant|
-#   card = participant.card
-#   unless card.nil?
-#     card.number += 1 + participant.friend_number
-#     card.save!
-#   end
-# end
+  after_destroy do |participant|
+  # activity.generate_bill
+  end
+
+  # validation
+  validates :user_id, :presence => true, numericality: true
+  validates :activity_id, :presence => true, numericality: true
+  validates :friend_number, :presence => true, numericality: true
+  validates :derated_pay, :presence => true
 
 # # instance methods
 # def pay_with_card card

@@ -1,0 +1,30 @@
+<script type="text/javascript">
+  var card_id = "#participant_card_id";
+  var group_id = '<%= @group.id %>';
+  function user_options(value){
+    $.ajax({
+      type: "POST",
+      url:'/users/cards?id='+value+'&group_id='+group_id,
+      data:'text',
+      success: function(data){
+        $(card_id).html(data);
+        $(card_id).change();
+      }
+    })
+  }
+
+  $(document).ready(function() {
+    var value = $("#participant_user_id").val();
+    user_options(value);
+    });
+</script>
+
+<script type="text/javascript">
+  function card_options(value) {
+    if (value == "") {
+      $('#participant_net_pay').val('<%= @group.price %>');
+    } else {
+      $('#participant_net_pay').val('');
+    }
+  }
+</script>

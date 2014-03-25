@@ -1,11 +1,16 @@
 class ParticipantsController < ApplicationController
-  before_action :set_group, only: [:show, :new, :edit, :create, :update, :destroy]
-  before_action :set_activity, only: [:show, :new, :edit, :create, :update, :destroy]
+  before_action :set_group
+  before_action :set_activity
   before_action :set_participant, only: [:show, :edit, :update, :destroy]
+
+  # GET /participants/enroll
+  def enroll
+    @participant = Participant.new(friend_number: 0, derated_pay: 0, user_id: current_user.id)
+  end
 
   # GET /participants/new
   def new
-    @participant = Participant.new(friend_number: 0, derated_pay: 0)
+    @participant = Participant.new(friend_number: 0, derated_pay: 0, user_id: params[:user_id])
   end
 
   def edit
@@ -21,7 +26,8 @@ class ParticipantsController < ApplicationController
         format.html { redirect_to [@group, @activity], notice: t('fees.notice.create_success') }
         format.js
       else
-        format.html { redirect_to [@group, @activity], alert: t('fees.notice.create_failed') }
+      # format.html { redirect_to [@group, @activity], alert: t('fees.notice.create_failed') }
+        format.html { render 'new', alert: t('fees.notice.create_failed') }
         format.js { render 'create_failed.js.erb' }
       end
     end

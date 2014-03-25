@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
 
   # association macros
   has_and_belongs_to_many :groups
-  belongs_to :debit
   has_many :transactions
   has_many :fees
   has_many :participants
