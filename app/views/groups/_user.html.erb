@@ -7,11 +7,11 @@
             <%= image_tag user.gravatar, class: "img-circle pull-left", size: '48x48' %>
           </div>
           <div class='media-body'>
-            <%= link_to user.name, user %>
+            <strong><%= link_to user.name, user %></strong>
             <% user.cards.in_group(@group.id).each do |card| %>
               <div>
                 <span class='user-location'>
-                  账户余额: 
+                  <%= card.is_debit_card? ? '账户余额: ' : '剩余次数: ' %>
                 </span>
                 <span class='reputation-score'><%= card.remaining_number %></span>
               </div>

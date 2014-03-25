@@ -7,12 +7,12 @@
   <%= link_to "#{@group.name} 首页", @group %>
   </li>
 
-  <% if controller_name == 'groups' and action_name == 'activities' %>
+  <% if controller_name == 'activities' and action_name == 'index' %>
     <li class='active'>
   <% else %>
     <li>
   <% end %>
-  <%= link_to '群内活动', activities_group_path(@group) %>
+  <%= link_to '群内活动', group_activities_path(@group) %>
   </li>
 
   <% if controller_name == 'groups' and action_name == 'members' %>

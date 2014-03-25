@@ -123,7 +123,6 @@ ActiveRecord::Schema.define(version: 20140319101821) do
   create_table "participants", force: true do |t|
     t.integer  "user_id"
     t.integer  "activity_id"
-    t.integer  "transaction_id"
     t.integer  "card_id"
     t.integer  "friend_number"
     t.decimal  "derated_pay"
@@ -133,7 +132,6 @@ ActiveRecord::Schema.define(version: 20140319101821) do
   end
 
   add_index "participants", ["activity_id"], name: "index_participants_on_activity_id"
-  add_index "participants", ["transaction_id"], name: "index_participants_on_transaction_id"
   add_index "participants", ["user_id"], name: "index_participants_on_user_id"
 
   create_table "provinces", force: true do |t|

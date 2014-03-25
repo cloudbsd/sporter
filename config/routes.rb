@@ -14,10 +14,8 @@ Sporter::Application.routes.draw do
     end
   end
 
-# resources :debits
-
   resources :groups do
-    resources :activities, except: [:index] do
+    resources :activities do
       resources :fee_items, only: [:new, :edit, :create, :update, :destroy]
       resources :participants, only: [:new, :edit, :create, :update, :destroy] do
         get 'enroll', on: :collection
@@ -28,7 +26,7 @@ Sporter::Application.routes.draw do
     resources :cards
     resources :transactions
     member do
-      get :activities
+    # get :activities
       get :members
     # get :transactions
       get :fees

@@ -1,44 +1,21 @@
-<%= render 'sidebar_horz' %>
-<%= render 'timeline' %>
+<%# render 'sidebar_horz' %>
+<%# render 'timeline' %>
 
 <div class="row">
   <div class="col-md-8">
     <h4>一周内活动</h4>
-
-<table class="table table-bordered">
-  <thead>
-    <tr class="active">
-      <th>活动时间</th>
-      <th>报名人数</th>
-      <th>操作</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @group.activities.inoneweek.each do |activity| %>
-      <tr>
-        <td><%= localize_date activity.started_at %>, <%= localize_time activity.started_at %> - <%= localize_time activity.stopped_at %></td>
-        <td><%= activity.participants.size %></td>
-        <td><%= link_to 'Show', [@group, activity] %> /
-          <%= link_to 'Edit', edit_group_activity_path(@group, activity) %> /
-          <%= link_to 'Destroy', [@group, activity], method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <%# render file: 'activities/new' %>
+    <%# render partial: 'activities/activity', collection: @group.activities.inoneweek, as: :activity %>
+    <%# render partial: 'activity', collection: @group.activities.inoneweek, as: :activity %>
+    <%= render partial: 'activity', collection: @group.activities.inoneweek %>
 
     <h4>本周到期会员卡</h4>
 
     <h4>仅剩1次活动的会员卡</h4>
 
-    <%# render file: 'activities/new' %>
-    <%# render partial: 'activities/activity', collection: @group.activities, as: :activity %>
-    <%# render partial: 'activity', collection: @group.activities, as: :activity %>
-    <%# render partial: 'activity', collection: @group.activities %>
   </div>
 
   <div class="col-md-4">
-    <%# render 'sidebar' %>
+    <%= render 'sidebar' %>
   </div>
 </div>

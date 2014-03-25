@@ -1,5 +1,5 @@
 class ActivitiesController < ApplicationController
-  before_action :set_group, only: [:show, :new, :edit, :create, :update, :destroy]
+  before_action :set_group
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   # GET /activities

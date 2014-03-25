@@ -48,6 +48,11 @@ class Activity < ActiveRecord::Base
           participant.save
         end # each
       end # if
+    else
+      participants.each do |participant|
+        participant.net_pay = participant.friend_number + 1
+        participant.save
+      end # each
     end # if
   end
 
