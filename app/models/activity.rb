@@ -12,7 +12,7 @@ class Activity < ActiveRecord::Base
     if title.present?
       title
     else
-      "#{self.started_at.strftime(I18n.t(:"datetime.formats.date"))}, #{self.started_at.strftime(I18n.t(:"datetime.formats.time"))} - #{self.stopped_at.strftime(I18n.t(:"datetime.formats.time"))}"
+      full_time
     end
   end
 
@@ -46,17 +46,8 @@ class Activity < ActiveRecord::Base
         participants.each do |participant|
           participant.net_pay = average_pay*(participant.friend_number + 1) - participant.derated_pay
           participant.save
-
-        # participant.create_or_update_transaction
         end # each
       end # if
-    else
-      participants.each do |participant|
-        participant.net_pay = participant.friend_number + 1
-        participant.save
-
-      # participant.create_or_update_transaction
-      end # each
     end # if
   end
 

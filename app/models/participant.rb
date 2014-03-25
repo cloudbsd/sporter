@@ -5,6 +5,10 @@ class Participant < ActiveRecord::Base
   belongs_to :transaction, dependent: :destroy
 
   # callbacks
+  before_save do |participant|
+    participant.net_pay = participant.friend_number + 1
+  end
+
   after_save do |participant|
   # activity.generate_bill
   end
