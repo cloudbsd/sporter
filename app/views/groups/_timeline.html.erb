@@ -19,8 +19,7 @@
     <time class="cbp_tmtime" datetime="2013-04-10 18:30">
     <span><%= activity.started_at.strftime(I18n.t(:"datetime.formats.date"))%></span>
     <span>
-      星期三
-      <%# activity.started_at.strftime(I18n.t(:"date.date_names")) %>
+      <%= activity.started_weekday %>
     </span>
     </time>
       <div class="cbp_tmicon cbp_tmicon-phone"></div>

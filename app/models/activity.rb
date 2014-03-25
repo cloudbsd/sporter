@@ -20,6 +20,12 @@ class Activity < ActiveRecord::Base
     "#{self.started_at.strftime(I18n.t(:"datetime.formats.date"))}, #{self.started_at.strftime(I18n.t(:"datetime.formats.time"))} - #{self.stopped_at.strftime(I18n.t(:"datetime.formats.time"))}"
   end
 
+  def started_weekday
+    days = I18n.t('date.day_names')
+    i = started_at.strftime("%w").to_i
+    days[i]
+  end
+
   def pay_with_card?
     self.pay_type == Group::PAY_WITH_CARD
   end

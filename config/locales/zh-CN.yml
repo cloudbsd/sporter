@@ -88,6 +88,7 @@ zh-CN:
       one_year_ago: ! '%Y-%m-%d %H:%M'
       date: ! '%Y年%m月%d日'
       time: ! '%H:%M'
+      weekday: ! '%A'
   layouts:
     brand: "运动空间"
     back: "返回"

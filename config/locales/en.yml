@@ -88,6 +88,7 @@ en:
       one_year_ago: ! "%b %d '%y at %H:%M"
       date: ! '%Y-%m-%d'
       time: ! '%H:%M'
+      weekday: ! '%A'
   layouts:
     brand: "Sports Zone"
     back: "Back"
