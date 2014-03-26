@@ -248,7 +248,7 @@ def import_activities
       uniqname, started_at, stopped_at = dates[0].strip, dates[1].strip, dates[2].strip
       group = Group.find_by uniqname: uniqname
       owner = group.owner
-      activity = Activity.create!(group_id: group.id, started_at: started_at, stopped_at: stopped_at)
+      activity = Activity.create!(group_id: group.id, started_at: started_at, stopped_at: stopped_at, pay_type: group.pay_type, number_limit: 30)
       print_content "imported activity: from #{activity.started_at} to #{activity.stopped_at}"
 
       # import fees and fee_items
@@ -281,6 +281,42 @@ def import_activities
   print_summary "total imported activities count: #{Activity.count}"
 end
 
+def import_activities_card
+  print_title('importing activities pay with card')
+
+# owner = User.find_by(username: 'liqi')
+# group = owner.owned_groups.first
+
+  File.open 'db/data/activities_card.txt', 'r' do |file|
+    while row = file.gets
+      # import fees and fee_items
+      row.strip!
+      dates = row.split(',')
+      uniqname, started_at, stopped_at = dates[0].strip, dates[1].strip, dates[2].strip
+      group = Group.find_by uniqname: uniqname
+      owner = group.owner
+      activity = Activity.create!(group_id: group.id, started_at: started_at, stopped_at: stopped_at, pay_type: group.pay_type, number_limit: 30)
+      print_content "imported activity: from #{activity.started_at} to #{activity.stopped_at}"
+
+      # import participants
+      users = group.users.sample(5)
+      users.each do |user|
+        if user.cards.number_cards(group.id).empty?
+          card_type = group.card_types.where(kind: 'number').sample
+          card = user.cards.create!(card_type_id: card_type.id, started_at: Date.today, stopped_at: Date.today+90, balance: card_type.number)
+        else
+          card = user.cards.number_cards(group.id).first
+        end
+        participant = Participant.create!(user_id: user.id, card_id: card.id, activity_id: activity.id, friend_number: 0, derated_pay: 0)
+      end
+
+      # generate bill
+      activity.generate_bill
+    end
+  end
+  print_summary "total imported activities count: #{Activity.count}"
+end
+
 
 CardType.destroy_all
 Transaction.destroy_all
@@ -298,3 +334,4 @@ import_groups
 import_card_types
 import_transactions
 import_activities
+import_activities_card

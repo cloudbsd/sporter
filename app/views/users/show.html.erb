@@ -70,7 +70,7 @@
     <tr class="active">
       <th>活动日期</th>
       <th>个人可抵消费用（元）</th>
-      <th>缴纳费用（元）</th>
+      <th>使用次数/消费金额</th>
       <th></th>
     </tr>
   </thead>
@@ -81,7 +81,7 @@
       <tr>
         <td><%= link_to (localize_date activity.started_at), [group, activity] %></td>
         <td><%= participant.derated_pay %></td>
-        <td><%= participant.net_pay %></td>
+        <td><%= participant.consume_number %></td>
         <td>
           <%= link_to '编辑', edit_group_activity_participant_path(group, activity, participant) %> / 
           <%= link_to '删除', [group, activity, participant], method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -2,6 +2,7 @@ class Card < ActiveRecord::Base
   # the default scope first (if any)
   scope :debits, lambda { |group_id| joins(:card_type).where(:card_types => { kind: 'debit', group_id: group_id }) }
   scope :cashes, lambda { |group_id| joins(:card_type).where(:card_types => { kind: 'cash', group_id: group_id }) }
+  scope :number_cards, lambda { |group_id| joins(:card_type).where(:card_types => { kind: 'number', group_id: group_id }) }
   scope :in_group, lambda { |group_id| joins(:card_type).where(:card_types => { group_id: group_id }) }
   scope :valid_cards, lambda { where("cards.number > ?", 0) }
   scope :up_to_date, lambda { where("cards.stopped_at > ?", DateTime.now.to_date) }

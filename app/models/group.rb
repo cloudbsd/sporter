@@ -32,6 +32,6 @@ class Group < ActiveRecord::Base
 
   def add_member user
     users << user unless users.include? user
-    user.find_or_create_cash_card! self.id
+  # user.find_or_create_cash_card! self.id
   end
 end
