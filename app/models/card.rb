@@ -1,6 +1,7 @@
 class Card < ActiveRecord::Base
   # the default scope first (if any)
   scope :debits, lambda { |group_id| joins(:card_type).where(:card_types => { kind: 'debit', group_id: group_id }) }
+  scope :cashes, lambda { |group_id| joins(:card_type).where(:card_types => { kind: 'cash', group_id: group_id }) }
   scope :in_group, lambda { |group_id| joins(:card_type).where(:card_types => { group_id: group_id }) }
   scope :valid_cards, lambda { where("cards.number > ?", 0) }
   scope :up_to_date, lambda { where("cards.stopped_at > ?", DateTime.now.to_date) }
@@ -27,6 +28,10 @@ class Card < ActiveRecord::Base
 
   def is_period_card?
     self.card_type.is_period_card?
+  end
+
+  def is_cash_card?
+    self.card_type.is_cash_card?
   end
 
   def remaining_number

@@ -2,7 +2,7 @@ class Participant < ActiveRecord::Base
   belongs_to :user
   belongs_to :activity
   belongs_to :card
-  belongs_to :transaction, dependent: :destroy
+# belongs_to :transaction, dependent: :destroy
 
   # callbacks
 # before_save do |participant|

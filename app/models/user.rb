@@ -26,6 +26,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   rolify
 
+  # callbacks
+# after_create do |user|
+#   card_type = CardType.find_or_create_by!(group_id: group_id, kind: 'cash', name: I18n.translate('card_types.type.cash'))
+#   cards.create!(card_type_id: card_type.id, started_at: Date.today, balance: 0)
+# end
+
   # instance methods
   def become_owner group
   # self.groups << group if self.groups.include? group
@@ -53,15 +59,26 @@ class User < ActiveRecord::Base
     Group.with_roles(:moderator, self)
   end
 
-  def find_or_create_debit! group_id
+  def find_or_create_debit_card!(group_id)
     debit_cards = self.cards.debits(group_id)
     if debit_cards.empty?
-      card_type = CardType.find_or_create_by!(group_id: group_id, kind: 'debit', name: I18n.translate('card_types.type.debit'))
+      card_type = CardType.find_or_create_debit_type(group_id)
       debit = self.cards.create!(card_type_id: card_type.id, started_at: Date.today, balance: 0)
     else
       debit = debit_cards.first
     end
     debit
+  end
+
+  def find_or_create_cash_card!(group_id)
+    cash_cards = self.cards.cashes(group_id)
+    if cash_cards.empty?
+      card_type = CardType.find_or_create_cash_type(group_id)
+      cash_card = self.cards.create!(card_type_id: card_type.id, started_at: Date.today, balance: 0)
+    else
+      cash_card = cash_cards.first
+    end
+    cash_card
   end
 
   # class methods

@@ -70,7 +70,7 @@ class UsersController < ApplicationController
         options << "<option value=#{c.id}>#{c.card_type.name} - #{c.remaining_number.to_i}</option>"
       end
     end
-    options << "<option value>Pay with Cash</option>"
+  # options << "<option value>#{I18n.t('card_types.type.cash')}</option>"
     render :text => options
   end
 

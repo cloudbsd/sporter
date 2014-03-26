@@ -29,4 +29,9 @@ class Group < ActiveRecord::Base
   def pay_with_card?
     self.pay_type == PAY_WITH_CARD
   end
+
+  def add_member user
+    users << user unless users.include? user
+    user.find_or_create_cash_card! self.id
+  end
 end

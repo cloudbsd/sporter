@@ -27,7 +27,7 @@ class TransactionsController < ApplicationController
   def create
     if params[:transaction][:card_id].nil?
       user = User.find_by id: params[:transaction][:user_id]
-      debit = user.find_or_create_debit! @group.id
+      debit = user.find_or_create_debit_card! @group.id
       params[:transaction][:card_id] = debit.id
     end
     @transaction = Transaction.new(transaction_params)

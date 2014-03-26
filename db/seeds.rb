@@ -166,10 +166,12 @@ def import_groups
     # row = file.gets
       row.strip!
       names = row.split(',')
-      username, uniqname, name, pay_type = names[0].strip, names[1].strip, names[2].strip, names[3].strip
+      username, uniqname, name, pay_type, province_name, city_name, district_name, location = names[0].strip, names[1].strip, names[2].strip, names[3].strip, names[4].strip, names[5].strip, names[6].strip, names[7].strip
       user = User.find_by(username: username)
-      group = user.groups.create!(uniqname: uniqname, name: name, pay_type: pay_type)
-    # user.add_role :owner, group
+      province = Province.find_by name: province_name
+      city = City.find_by name: city_name
+      district = District.find_by name: district_name
+      group = user.groups.create!(uniqname: uniqname, name: name, pay_type: pay_type, province: province.code, city: city.code, district: district.code, location: location)
       user.become_owner group
 
       # members
@@ -178,7 +180,8 @@ def import_groups
       names = row.split(',')
       names.each do |name|
         user = User.find_by(name: name.strip)
-        group.users << user unless group.users.include?(user)
+        group.add_member user
+        print_content "import user #{user.name} into group: #{group.name}"
       end
 
       print_content "created group: #{group.name}(#{group.users.count}) owned by #{group.owner.name}"
@@ -189,8 +192,6 @@ end
 
 
 def import_card_types
-  CardType.destroy_all
-
   print_title('importing card types')
 
   File.open 'db/data/card_types.txt', 'r' do |file|
@@ -214,15 +215,13 @@ end
 def import_transactions
   print_title('importing transactions')
 
-  card_type = CardType.where(group_id: 1).first
-
   File.open 'db/data/transactions.txt', 'r' do |file|
     while row = file.gets
       row.strip!
       names = row.split(',')
       name, action, amount, operated_at = names[0].strip, names[1].strip, names[2].strip.to_f, names[3].strip
       user = User.find_by(name: name)
-      card = user.find_or_create_debit! 1
+      card = user.find_or_create_debit_card! 1
       txn = Transaction.create!(user_id: user.id, card_id: card.id, action: action, amount: amount, operated_at: operated_at)
       print_content "imported transaction: #{txn.user.name} #{txn.action} #{txn.amount}"
     end
@@ -238,15 +237,17 @@ end
 def import_activities
   print_title('importing activities')
 
-  owner = User.find_by(username: 'liqi')
-  group = owner.owned_groups.first
+# owner = User.find_by(username: 'liqi')
+# group = owner.owned_groups.first
 
   File.open 'db/data/activities.txt', 'r' do |file|
     while row = file.gets
       # import fees and fee_items
       row.strip!
       dates = row.split(',')
-      started_at, stopped_at = dates[0].strip, dates[1].strip
+      uniqname, started_at, stopped_at = dates[0].strip, dates[1].strip, dates[2].strip
+      group = Group.find_by uniqname: uniqname
+      owner = group.owner
       activity = Activity.create!(group_id: group.id, started_at: started_at, stopped_at: stopped_at)
       print_content "imported activity: from #{activity.started_at} to #{activity.stopped_at}"
 
@@ -268,7 +269,7 @@ def import_activities
         items = pant_pair.split('-')
         name, derated_pay = items[0].strip, items[1].strip
         user = User.find_by(name: name)
-        card = user.find_or_create_debit! 1
+        card = user.find_or_create_debit_card! 1
         participant = Participant.create!(user_id: user.id, card_id: card.id, activity_id: activity.id, friend_number: 0, derated_pay: derated_pay)
         print_content "imported participant: #{participant.user.name} with derated_pay #{participant.derated_pay}", 2
       end
@@ -281,6 +282,7 @@ def import_activities
 end
 
 
+CardType.destroy_all
 Transaction.destroy_all
 Activity.destroy_all
 Group.destroy_all
