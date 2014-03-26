@@ -19,6 +19,12 @@ class ParticipantsController < ApplicationController
   # POST /participants
   # POST /participants.json
   def create
+    unless params[:participant][:card_id].present?
+      user = User.find_by id: params[:participant][:user_id]
+      cash_card = user.find_or_create_cash_card! @group.id
+      params[:participant][:card_id] = cash_card.id
+    end
+
     @participant = @activity.participants.new(participant_params)
     respond_to do |format|
       if @participant.save

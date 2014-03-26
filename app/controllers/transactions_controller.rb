@@ -30,6 +30,7 @@ class TransactionsController < ApplicationController
       debit = user.find_or_create_debit_card! @group.id
       params[:transaction][:card_id] = debit.id
     end
+
     @transaction = Transaction.new(transaction_params)
 
     respond_to do |format|

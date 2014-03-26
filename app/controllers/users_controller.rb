@@ -61,16 +61,23 @@ class UsersController < ApplicationController
   # POST /users/1
   # POST /users/1.json
   def cards
+    group_id = params[:group_id]
+    cash_price = Group.find_by(id: group_id).price
     options = ""
-    cards = User.find_by(id: params[:id]).cards.in_group(params[:group_id])
+    cards = User.find_by(id: params[:id]).cards.in_group(group_id)
     cards.each do |c|
       if c.is_debit_card?
-        options << "<option value=#{c.id}>#{c.card_type.name} - #{c.remaining_number}</option>"
+        options << "<option value=#{c.id}>#{c.card_type.name} / #{c.remaining_number}</option>"
+      elsif c.is_cash_card?
+        options << "<option value=#{c.id}>#{c.card_type.name} / #{cash_price}</option>"
+        cash_price = nil
       else
-        options << "<option value=#{c.id}>#{c.card_type.name} - #{c.remaining_number.to_i}</option>"
+        options << "<option value=#{c.id}>#{c.card_type.name} / #{c.remaining_number.to_i}</option>"
       end
     end
-  # options << "<option value>#{I18n.t('card_types.type.cash')}</option>"
+    unless cash_price.nil?
+      options << "<option value>#{I18n.t('card_types.type.cash')} / #{cash_price}</option>"
+    end
     render :text => options
   end
 
