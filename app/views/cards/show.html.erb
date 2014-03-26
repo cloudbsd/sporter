@@ -5,8 +5,10 @@
 
   <% if @card.is_debit_card? %>
     <%= render 'debit_card' %>
-  <% else %>
+  <% elsif @card.is_number_card? %>
     <%= render 'number_card' %>
+  <% elsif @card.is_period_card? %>
+    <%= render 'period_card' %>
   <% end %>
 
 <h4>用卡记录</h4>

@@ -11,29 +11,42 @@ class Card < ActiveRecord::Base
   has_many :participants
   has_many :transactions
 
+  # callbacks
+  before_save do |card|
+    card.balance = 0 if is_period_card?
+  end
+
   # instance methods
   def is_debit_card?
-    self.card_type.kind == 'debit'
+    self.card_type.is_debit_card?
   end
 
   def is_number_card?
-    self.card_type.kind == 'number'
+    self.card_type.is_number_card?
   end
 
   def is_period_card?
-    self.card_type.kind == 'period'
+    self.card_type.is_period_card?
   end
 
   def remaining_number
-    result = self.balance + self.transactions.sum('amount') - self.participants.sum('net_pay')
-    if self.is_number_card?
+    if is_period_card?
+      result = 0
+    else
+      result = self.balance + self.transactions.sum('amount') - self.participants.sum('net_pay')
+    end
+    if is_number_card? or is_period_card?
       result.to_i
     else
       result
     end
   end
 
+  def in_date?
+    self.stopped_at > DateTime.now.to_date
+  end
+
   def is_valid?
-    (self.stopped_at > DateTime.now.to_date) && (self.number == 0 || self.remaining_number > 0)
+    in_date? && (is_period_card? || remaining_number > 0)
   end
 end

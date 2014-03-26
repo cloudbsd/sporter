@@ -50,7 +50,11 @@ class Activity < ActiveRecord::Base
       end # if
     else
       participants.each do |participant|
-        participant.net_pay = participant.friend_number + 1
+        if participant.card_id.present? && participant.card.is_debit_card?
+          participant.net_pay = self.group.price
+        else
+          participant.net_pay = participant.friend_number + 1
+        end
         participant.save
       end # each
     end # if
