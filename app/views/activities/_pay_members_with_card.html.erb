@@ -7,23 +7,21 @@
       <th>姓名</th>
       <th>所带朋友数目</th>
       <th>使用的会员卡</th>
-      <th>剩余次数</th>
+      <th>使用次数/消费金额</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <% @activity.participants.each do |participant| %>
       <tr>
-        <td><%= participant.user.name %></td>
+        <td><%= link_to participant.user.name, participant.user %></td>
         <td><%= participant.friend_number %></td>
-        <% if participant.card.nil? %>
-          <td>'现金支付'</td>
-        <% else %>
-          <td><%= link_to participant.card.card_type.name, [@group, participant.card] %></td>
-        <% end %>
-        <td><%= participant.remaining_number %></td>
-        <td><%= link_to '编辑', edit_group_activity_participant_path(@group, @activity, participant) %> / 
-        <%= link_to '删除', [@group, @activity, participant], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to participant.card.card_type.name, [@group, participant.card] %></td>
+        <td><%= participant.consume_number %></td>
+        <td>
+          <%= link_to '编辑', edit_group_activity_participant_path(@group, @activity, participant) %> / 
+          <%= link_to '删除', [@group, @activity, participant], method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>

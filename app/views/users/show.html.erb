@@ -36,8 +36,7 @@
       <th>卡名称</th>
       <th>开卡日期</th>
       <th>截止日期</th>
-      <th>剩余次数</th>
-      <th>账户余额</th>
+      <th>剩余次数/账户余额</th>
       <th>操作</th>
     </tr>
   </thead>
@@ -51,7 +50,6 @@
         <td><%= card.started_at %></td>
         <td><%= card.stopped_at %></td>
         <td><%= card.remaining_number %></td>
-        <td><%= card.balance %></td>
         <td>
           <%= link_to 'Edit', edit_group_card_path(card.card_type.group, card) %> /
           <%= link_to 'Destroy', [card.card_type.group, card], method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -35,7 +35,7 @@ class CardType < ActiveRecord::Base
   def self.find_or_create_debit_type group_id
     card_type = CardType.find_by(group_id: group_id, kind: 'debit')
     if card_type.nil?
-      card_type = CardType.create!(group_id: group_id, kind: 'debit', name: I18n.translate('card_types.type.debit'), price: 0)
+      card_type = CardType.create!(group_id: group_id, kind: 'debit', name: I18n.translate('card_types.type.debit'), price: 0, duration: 0, number: 0)
     end
     card_type
   end
@@ -43,7 +43,7 @@ class CardType < ActiveRecord::Base
   def self.find_or_create_cash_type group_id
     card_type = CardType.find_by(group_id: group_id, kind: 'cash')
     if card_type.nil?
-      card_type = CardType.create!(group_id: group_id, kind: 'cash', name: I18n.translate('card_types.type.cash'), price: 0)
+      card_type = CardType.create!(group_id: group_id, kind: 'cash', name: I18n.translate('card_types.type.cash'), price: 0, duration: 0, number: 1)
     end
     card_type
   end

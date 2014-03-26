@@ -30,11 +30,11 @@ class Participant < ActiveRecord::Base
 # end
 
   def remaining_number
-    card.nil? ? 0 : card.remaining_number
+    card.remaining_number
   end
 
   def consume_number
-    if card.is_debit_card?
+    if card.is_debit_card? or card.is_cash_card?
       amount = self.net_pay
     elsif card.is_number_card?
       amount = 1 + self.friend_number

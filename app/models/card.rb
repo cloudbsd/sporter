@@ -37,6 +37,8 @@ class Card < ActiveRecord::Base
   def remaining_number
     if is_period_card?
       result = 0
+    elsif is_cash_card?
+      result = 0
     else
       result = self.balance + self.transactions.sum('amount') - self.participants.sum('net_pay')
     end
