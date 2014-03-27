@@ -3,7 +3,7 @@
 <%# render 'timeline' %>
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-9">
     <h4>近期活动</h4>
     <%# render file: 'activities/new' %>
     <%# render partial: 'activities/activity', collection: @group.activities.inoneweek, as: :activity %>
@@ -11,8 +11,11 @@
     <%= render partial: 'activities/activity', collection: @group.activities.inoneweek %>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-3">
     <h4>新会员</h4>
-    <%= render 'sidebar' %>
+    <div class='users'>
+      <% groups = @group.users.order(created_at: :desc).limit(5).in_groups_of(1, false) %>
+      <%= render partial: 'user_new', collection: groups, as: :group %>
+    </div>
   </div>
 </div>

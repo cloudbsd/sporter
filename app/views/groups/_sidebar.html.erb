@@ -1,25 +1,9 @@
 <ul class="nav nav-pills nav-stacked">
-  <% if controller_name == 'transactions' and action_name == 'index' %>
-    <li class='active'>
-  <% else %>
-    <li>
-  <% end %>
-  <%= link_to '充值记录', group_transactions_path(@group) %>
-  </li>
-
   <% if controller_name == 'groups' and action_name == 'fees' %>
     <li class='active'>
   <% else %>
     <li>
   <% end %>
   <%= link_to '费用项管理', group_fees_path(@group) %>
-  </li>
-
-  <% if controller_name == 'groups' and action_name == 'card_types' %>
-    <li class='active'>
-  <% else %>
-    <li>
-  <% end %>
-  <%= link_to '支付方式管理', group_card_types_path(@group) %>
   </li>
 </ul>

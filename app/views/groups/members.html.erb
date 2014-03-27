@@ -1,7 +1,7 @@
 <%= render partial: 'shared/navbar', locals: { group: @group } %>
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-12">
 
     <% if params[:state] == 'outdated' %>
       <%= link_to '充值', new_group_transaction_path(@group), class: 'btn btn-warning pull-right' %>
@@ -11,10 +11,10 @@
 
     <ul class="nav nav-tabs">
       <% if params[:state] == 'outdated' %>
-        <li><%= link_to '全部', members_group_path(@group) %></li>
+        <li><%= link_to '全部球友', members_group_path(@group) %></li>
         <li class="active"><%= link_to '无卡球友', members_group_path(@group, state: 'outdated') %></li>
       <% else %>
-        <li class="active"><%= link_to '全部', members_group_path(@group) %></li>
+        <li class="active"><%= link_to '全部球友', members_group_path(@group) %></li>
         <li><%= link_to '无卡球友', members_group_path(@group, state: 'outdated') %></li>
       <% end %>
     </ul>
@@ -24,9 +24,5 @@
       <%= render 'users' %>
     </div>
 
-  </div>
-
-  <div class="col-md-4">
-    <%= render 'sidebar' %>
   </div>
 </div>

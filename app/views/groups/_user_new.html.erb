@@ -1,23 +1,13 @@
 <div class="user-entry">
   <div class="row">
     <% group.each do |user| %>
-      <div class='col-md-3'>
+      <div class='col-md-12'>
         <div class='media'>
           <div class='user-gravatar pull-left'>
             <%= image_tag user.gravatar, class: "img-circle pull-left", size: '48x48' %>
           </div>
           <div class='media-body'>
             <strong><%= link_to user.name, user %></strong>
-            <% user.cards.in_group(@group.id).each do |card| %>
-              <% unless card.is_cash_card? %>
-                <div>
-                  <span class='user-location'>
-                    <%= card.is_debit_card? ? '账户余额: ' : '剩余次数: ' %>
-                  </span>
-                  <span class='reputation-score'><%= card.remaining_number %></span>
-                </div>
-              <% end %>
-            <% end %>
             <div class='user-tags'>活动次数: <%= user.participants.in_group(@group.id).size %> </div>
           </div>
         </div> <!-- media -->

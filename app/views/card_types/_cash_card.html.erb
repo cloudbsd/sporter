@@ -1,17 +1,19 @@
-<div class="row">
-  <div class="col-md-6">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <strong><%= card_type.name %></strong>
-      </div>
-      <div class="panel-body">
-        <p>会员卡名称：<%= card_type.name %></p>
-        <p>会员卡类型：<%= t("card_types.type.#{card_type.kind}") %></p>
+<div class="col-md-4 col-xs-4">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <strong><%= card_type.name %></strong>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-8">
+          <p>会员卡名称：<%= card_type.name %></p>
+          <p>会员卡类型：<%= t("card_types.type.#{card_type.kind}") %></p>
+        </div>
+        <div class="col-md-4">
+          <p><%= link_to 'Edit', edit_group_card_type_path(@group, card_type) %></p>
+          <p><%= link_to 'Destroy', [@group, card_type], method: :delete, data: { confirm: 'Are you sure?' } %></p>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-md-6">
-    <%= link_to 'Edit', edit_group_card_type_path(@group, card_type) %> /
-    <%= link_to 'Destroy', [@group, card_type], method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
 </div>

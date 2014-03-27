@@ -1,52 +1,25 @@
+<%= render 'shared/cardtabs' %>
+<br>
+
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-12 col-xs-18">
 
     <%= link_to t('card_types.new'), new_group_card_type_path(@group), class: 'btn btn-warning' %>
     <h4>会员卡类型</h4>
 
-    <% @group.card_types.each do |card_type| %>
-      <% if card_type.is_debit_card? %>
-        <%= render 'card_types/debit_card', card_type: card_type %>
-      <% elsif card_type.is_number_card? %>
-        <%= render 'card_types/number_card', card_type: card_type %>
-      <% elsif card_type.is_cash_card? %>
-        <%= render 'card_types/cash_card', card_type: card_type %>
-      <% elsif card_type.is_period_card? %>
-        <%= render 'card_types/period_card', card_type: card_type %>
+    <div class="row">
+      <% @group.card_types.each do |card_type| %>
+        <% if card_type.is_debit_card? %>
+          <%= render 'card_types/debit_card', card_type: card_type %>
+        <% elsif card_type.is_number_card? %>
+          <%= render 'card_types/number_card', card_type: card_type %>
+        <% elsif card_type.is_cash_card? %>
+          <%= render 'card_types/cash_card', card_type: card_type %>
+        <% elsif card_type.is_period_card? %>
+          <%= render 'card_types/period_card', card_type: card_type %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
 
-<table class="table table-bordered">
-  <thead>
-    <tr class="active">
-      <th>名称</th>
-      <th>价格</th>
-      <th>类型</th>
-      <th>有效期（月）</th>
-      <th>有效次数</th>
-      <th>操作</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @group.card_types.each do |card_type| %>
-      <tr>
-        <td><%= card_type.name %></td>
-        <td><%= card_type.price %></td>
-        <td><%= t("card_types.type.#{card_type.kind}") %></td>
-        <td><%= card_type.duration %></td>
-        <td><%= card_type.number %></td>
-        <td>
-          <%= link_to 'Edit', edit_group_card_type_path(@group, card_type) %> /
-          <%= link_to 'Destroy', [@group, card_type], method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-  </div>
-
-  <div class="col-md-4">
-    <%= render 'groups/sidebar' %>
   </div>
 </div>

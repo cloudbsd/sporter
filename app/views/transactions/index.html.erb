@@ -1,15 +1,12 @@
+<%= render 'shared/cardtabs' %>
+<br>
+
 <div class="row">
   <div class="col-md-8">
-
-    <p>
-    <%= link_to '充值', new_group_transaction_path(@group), class: 'btn btn-warning' %>
-    </p>
-
-    <h4>充值记录</h4>
     <%= render 'shared/transactions', transactions: @group.transactions.order(operated_at: :asc) %>
   </div>
 
   <div class="col-md-4">
-    <%= render 'groups/sidebar' %>
+    <%= link_to '充值', new_group_transaction_path(@group), class: 'btn btn-warning' %>
   </div>
 </div>

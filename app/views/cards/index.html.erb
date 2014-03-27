@@ -1,5 +1,8 @@
+<%= render 'shared/cardtabs' %>
+<br>
+
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-12">
 
     <%= link_to t('cards.new'), new_group_card_path(@group), class: 'btn btn-warning' %>
     <h4>会员卡管理</h4>
@@ -34,9 +37,5 @@
   </tbody>
 </table>
 
-  </div>
-
-  <div class="col-md-4">
-    <%= render 'groups/sidebar' %>
   </div>
 </div>
