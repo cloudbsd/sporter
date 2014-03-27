@@ -4,26 +4,19 @@
     <%= link_to t('layouts.destroy'), [@group, @activity], method: :delete, data: { confirm: 'Are you sure?' } %> |
     <%= link_to t('layouts.back'), @group %>
 
-    <div>
-      <h4>活动时间</h4>
-      <%= localize_date @activity.started_at %>, <%= localize_time @activity.started_at %> - <%= localize_time @activity.stopped_at %>
-    </div>
+    <%= render 'activity', activity: @activity %>
 
     <% unless @activity.pay_with_card? %>
+      <div class="bs-callout bs-callout-info">
+        <h4>费用计算方法</h4>
+        总费用 = 所有单项费用 + 所有个人可抵扣费用<br>
+        平均费用 = 总费用 / 活动人数<br>
+        个人支出 = 平均费用 * (1 + 所带朋友人数) - 个人可抵扣费用
+      </div>
+
       <%= render 'pay_summary' %>
       <%= render 'pay_fees' %>
       <%= render 'pay_members' %>
-
-      <h4>费用计算方法</h4>
-      <p>
-      总费用 = 所有单项费用 + 所有个人可抵扣费用
-      </p>
-      <p>
-      平均费用 = 总费用 / 活动人数
-      </p>
-      <p>
-      个人支出 = 平均费用 - 个人可抵扣费用
-      </p>
     <% else %>
       <%= render 'pay_members_with_card' %>
     <% end %>

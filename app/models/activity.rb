@@ -20,10 +20,24 @@ class Activity < ActiveRecord::Base
     "#{self.started_at.strftime(I18n.t(:"datetime.formats.date"))}, #{self.started_at.strftime(I18n.t(:"datetime.formats.time"))} - #{self.stopped_at.strftime(I18n.t(:"datetime.formats.time"))}"
   end
 
+  def full_place
+    p = Province.find_by(code: province)
+    province_name = p.name if p.present?
+    c = City.find_by(code: city)
+    city_name = c.name if c.present?
+    d = District.find_by(code: district)
+    district_name = d.name if d.present?
+    "#{province_name} #{city_name} #{district_name} #{location}"
+  end
+
   def started_weekday
     days = I18n.t('date.day_names')
     i = started_at.strftime("%w").to_i
     days[i]
+  end
+
+  def outdated?
+    self.started_at < DateTime.now
   end
 
   def pay_with_card?

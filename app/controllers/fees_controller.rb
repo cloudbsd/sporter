@@ -1,5 +1,5 @@
 class FeesController < ApplicationController
-  before_action :set_group, only: [:new, :edit, :create, :update, :destroy]
+  before_action :set_group
   before_action :set_fee, only: [:edit, :update, :destroy]
 # before_action :authorize_user!
 

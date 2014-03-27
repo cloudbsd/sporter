@@ -21,16 +21,16 @@ Sporter::Application.routes.draw do
         get 'enroll', on: :collection
       end
     end
-    resources :fees, only: [:new, :edit, :create, :update, :destroy]
-    resources :card_types, except: [:index, :show]
+    resources :fees, except: [:show]
+    resources :card_types, except: [:show]
     resources :cards
     resources :transactions
     member do
     # get :activities
       get :members
     # get :transactions
-      get :fees
-      get :card_types
+    # get :fees
+    # get :card_types
       get :cards
     end
     collection do

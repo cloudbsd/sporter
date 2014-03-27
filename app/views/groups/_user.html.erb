@@ -9,12 +9,14 @@
           <div class='media-body'>
             <strong><%= link_to user.name, user %></strong>
             <% user.cards.in_group(@group.id).each do |card| %>
-              <div>
-                <span class='user-location'>
-                  <%= (card.is_debit_card? or card.is_cash_card?) ? '账户余额: ' : '剩余次数: ' %>
-                </span>
-                <span class='reputation-score'><%= card.remaining_number %></span>
-              </div>
+              <% unless card.is_cash_card? %>
+                <div>
+                  <span class='user-location'>
+                    <%= card.is_debit_card? ? '账户余额: ' : '剩余次数: ' %>
+                  </span>
+                  <span class='reputation-score'><%= card.remaining_number %></span>
+                </div>
+              <% end %>
             <% end %>
             <div class='user-tags'>活动次数: <%= user.participants.in_group(@group.id).size %> </div>
           </div>

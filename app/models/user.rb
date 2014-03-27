@@ -27,10 +27,14 @@ class User < ActiveRecord::Base
   rolify
 
   # callbacks
-# after_create do |user|
-#   card_type = CardType.find_or_create_by!(group_id: group_id, kind: 'cash', name: I18n.translate('card_types.type.cash'))
-#   cards.create!(card_type_id: card_type.id, started_at: Date.today, balance: 0)
-# end
+  after_create do |user|
+    if user.gravatar.nil?
+      gravatar = format "user%03d.jpg", user.id%29+1
+      user.update(gravatar: gravatar)
+    end
+  # card_type = CardType.find_or_create_by!(group_id: group_id, kind: 'cash', name: I18n.translate('card_types.type.cash'))
+  # cards.create!(card_type_id: card_type.id, started_at: Date.today, balance: 0)
+  end
 
   # instance methods
   def become_owner group

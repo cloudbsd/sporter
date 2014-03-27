@@ -1,5 +1,5 @@
 class CardTypesController < ApplicationController
-  before_action :set_group, only: [:new, :edit, :create, :update, :destroy]
+  before_action :set_group
   before_action :set_card_type, only: [:edit, :update, :destroy]
 # before_action :authorize_user!
 

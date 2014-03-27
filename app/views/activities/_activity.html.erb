@@ -1,20 +1,5 @@
-<div class="bs-callout bs-callout-danger">
-  <h4>
-    <%= link_to activity.full_title, [@group, activity] %>
-    <span class="activity-title-actions">
-      <%# if can? :edit, activity %>
-        <%= link_to t('layouts.edit'), edit_group_activity_path(@group, activity) %>
-      <%# end %>
-      <%# if can? :destroy, activity %>
-        <%= link_to t('layouts.destroy'), [@group, activity], method: :delete, data: { confirm: t('layouts.confirm') } %>
-      <%# end %>
-    </span>
-  </h4>
-  活动时间: <%= activity.full_time %><br>
-  活动地点: <%= activity.location %><br>
-  报名人数: <%= activity.participants.size %><br>
-
-  <!--
-  <p>When using tooltips or popovers on elements within a <code>.btn-group</code>, you'll have to specify the option <code>container: 'body'</code> to avoid unwanted side effects (such as the element growing wider and/or losing its rounded corners when the tooltip or popover is triggered).</p>
-  -->
-</div>
+<% if activity.outdated? %>
+  <%= render 'activities/activity_outdated', activity: activity %>
+<% else %>
+  <%= render 'activities/activity_future', activity: activity %>
+<% end %>

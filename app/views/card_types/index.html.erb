@@ -9,7 +9,9 @@
         <%= render 'card_types/debit_card', card_type: card_type %>
       <% elsif card_type.is_number_card? %>
         <%= render 'card_types/number_card', card_type: card_type %>
-      <% else %>
+      <% elsif card_type.is_cash_card? %>
+        <%= render 'card_types/cash_card', card_type: card_type %>
+      <% elsif card_type.is_period_card? %>
         <%= render 'card_types/period_card', card_type: card_type %>
       <% end %>
     <% end %>
@@ -45,6 +47,6 @@
   </div>
 
   <div class="col-md-4">
-    <%= render 'sidebar' %>
+    <%= render 'groups/sidebar' %>
   </div>
 </div>
