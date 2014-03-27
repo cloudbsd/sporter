@@ -1,0 +1,23 @@
+<div class="header">
+  <% if user_signed_in? %>
+    <%= link_to image_tag(current_user.gravatar, class: "img-circle", size: '40x40'), current_user, class: 'pull-right' %>
+  <% end %>
+  <ul class="nav nav-pills pull-right">
+    <li><%= header_link_to 'groups', 'show', '首页', group %></li>
+    <% if user_signed_in? %>
+      <li><%= header_link_to 'groups', 'show', '活动', group_activities_path(group) %></li>
+      <li><%= header_link_to 'groups', 'members', '球友', members_group_path(group) %></li>
+      <li><%= header_link_to 'groups', 'members', '充值/办卡', members_group_path(group) %></li>
+      <li><%= link_to '会员卡', group_cards_path(group) %></li>
+      <li><%= link_to '设置', edit_group_path(group) %></li>
+      <%# header_link_to 'users', 'show', current_user.name, current_user %>
+      <li> <%= link_to t('devise.logout'), destroy_user_session_path, method: :delete %> </li>
+      <%# link_to t('devise.logoff'), registration_path(current_user), :method => :delete, data: { confirm: t('layouts.confirm') } %>
+    <% else %>
+      <li><%= header_link_to 'sessions', 'new', t('devise.login'), new_user_session_path %></li>
+      <li><%= header_link_to 'registrations', 'new', t('devise.signup'), new_user_registration_path %></li>
+    <% end %>
+  </ul>
+
+  <h3 class="text-muted"><strong><%= link_to group.name, group %></strong></h3>
+</div>

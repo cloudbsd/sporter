@@ -1,36 +1,10 @@
 <ul class="nav nav-pills nav-stacked">
-  <% if controller_name == 'groups' and action_name == 'show' %>
-    <li class='active'>
-  <% else %>
-    <li>
-  <% end %>
-  <%= link_to "#{@group.name} 首页", @group %>
-  </li>
-
-  <% if controller_name == 'activities' and action_name == 'index' %>
-    <li class='active'>
-  <% else %>
-    <li>
-  <% end %>
-  <%= link_to '群内活动', group_activities_path(@group) %>
-  </li>
-
-  <% if controller_name == 'groups' and action_name == 'members' %>
-    <li class='active'>
-  <% else %>
-    <li>
-  <% end %>
-  <%= link_to members_group_path(@group) do %>
-    <span class="badge pull-right"><%= @group.users.count %></span> 群内成员
-  <% end %>
-  </li>
-
   <% if controller_name == 'transactions' and action_name == 'index' %>
     <li class='active'>
   <% else %>
     <li>
   <% end %>
-  <%= link_to '球友存款记录', group_transactions_path(@group) %>
+  <%= link_to '充值记录', group_transactions_path(@group) %>
   </li>
 
   <% if controller_name == 'groups' and action_name == 'fees' %>
@@ -47,22 +21,5 @@
     <li>
   <% end %>
   <%= link_to '支付方式管理', group_card_types_path(@group) %>
-  </li>
-
-  <% if controller_name == 'groups' and action_name == 'cards' %>
-    <li class='active'>
-  <% else %>
-    <li>
-  <% end %>
-  <%= link_to '会员卡管理', group_cards_path(@group) %>
-  <%# link_to '会员卡管理', cards_group_path(@group) %>
-  </li>
-
-  <% if controller_name == 'groups' and action_name == 'edit' %>
-    <li class='active'>
-  <% else %>
-    <li>
-  <% end %>
-  <%= link_to '群设置', edit_group_path(@group) %>
   </li>
 </ul>

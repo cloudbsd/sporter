@@ -1,21 +1,18 @@
-<%# render 'sidebar_horz' %>
+<%= render partial: 'shared/navbar', locals: { group: @group } %>
+
 <%# render 'timeline' %>
 
 <div class="row">
   <div class="col-md-8">
-    <h4>一周内活动</h4>
+    <h4>近期活动</h4>
     <%# render file: 'activities/new' %>
     <%# render partial: 'activities/activity', collection: @group.activities.inoneweek, as: :activity %>
     <%# render partial: 'activity', collection: @group.activities.inoneweek, as: :activity %>
     <%= render partial: 'activities/activity', collection: @group.activities.inoneweek %>
-
-    <h4>本周到期会员卡</h4>
-
-    <h4>仅剩1次活动的会员卡</h4>
-
   </div>
 
   <div class="col-md-4">
+    <h4>新会员</h4>
     <%= render 'sidebar' %>
   </div>
 </div>

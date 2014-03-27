@@ -1,41 +1,44 @@
 <div class="row">
   <div class="col-md-9">
+
+    <ul class="nav nav-tabs">
+      <% if params[:tab].nil? or params[:tab] == 'recents' %>
+        <li class="active"><%= link_to '近期活动', user_path(@user, tab: 'recents') %></li>
+        <li><%= link_to '我的会员卡', user_path(@user, tab: 'cards') %></li>
+        <li><%= link_to '我的充值记录', user_path(@user, tab: 'transactions') %></li>
+        <li><%= link_to '我的活动记录', user_path(@user, tab: 'activities') %></li>
+      <% elsif params[:tab] == 'cards' %>
+        <li><%= link_to '近期活动', user_path(@user, tab: 'recents') %></li>
+        <li class="active"><%= link_to '我的会员卡', user_path(@user, tab: 'cards') %></li>
+        <li><%= link_to '我的充值记录', user_path(@user, tab: 'transactions') %></li>
+        <li><%= link_to '我的活动记录', user_path(@user, tab: 'activities') %></li>
+      <% elsif params[:tab] == 'transactions' %>
+        <li><%= link_to '近期活动', user_path(@user, tab: 'recents') %></li>
+        <li><%= link_to '我的会员卡', user_path(@user, tab: 'cards') %></li>
+        <li class="active"><%= link_to '我的充值记录', user_path(@user, tab: 'transactions') %></li>
+        <li><%= link_to '我的活动记录', user_path(@user, tab: 'activities') %></li>
+      <% elsif params[:tab] == 'activities' %>
+        <li><%= link_to '近期活动', user_path(@user, tab: 'recents') %></li>
+        <li><%= link_to '我的会员卡', user_path(@user, tab: 'cards') %></li>
+        <li><%= link_to '我的充值记录', user_path(@user, tab: 'transactions') %></li>
+        <li class="active"><%= link_to '我的活动记录', user_path(@user, tab: 'activities') %></li>
+      <% end %>
+    </ul>
+
     <%# render 'balances' %>
-    <h4>一周内活动 (已加入的群)</h4>
 
+    <% if params[:tab].nil? or params[:tab] == 'recents' %>
+
+      <%= render partial: 'activities/activity_club', collection: @user.activities.inoneweek, as: :activity %>
+
+    <% elsif params[:tab] == 'cards' %>
+      <br>
 <table class="table table-bordered">
   <thead>
     <tr class="active">
-      <th>群名称</th>
-      <th>活动时间</th>
-      <th>报名人数</th>
-      <th>操作</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @user.activities.inoneweek.each do |activity| %>
-      <tr>
-        <td><%= link_to activity.group.name, activity.group %></td>
-        <td><%= activity_link_to activity %></td>
-        <td><%= activity.participants.size %></td>
-        <td>
-          <%= link_to 'Edit', edit_group_activity_path(activity.group, activity) %> /
-          <%= link_to 'Destroy', [activity.group, activity], method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-    <h4>我的会员卡</h4>
-<table class="table table-bordered">
-  <thead>
-    <tr class="active">
-      <th>会员名称</th>
+      <th>俱乐部名称</th>
       <th>卡名称</th>
-      <th>开卡日期</th>
-      <th>截止日期</th>
+      <th>有效日期</th>
       <th>剩余次数/账户余额</th>
       <th>操作</th>
     </tr>
@@ -45,13 +48,15 @@
     <%# @group.users.map(&:cards).each do |card| %>
     <% @user.cards.each do |card| %>
       <tr>
-        <td><%= card.user.name %></td>
+        <td><%= card.card_type.group.name %></td>
         <td><%= link_to card.card_type.name, group_card_path(card.card_type.group, card) %></td>
-        <td><%= card.started_at %></td>
-        <td><%= card.stopped_at %></td>
+        <td>
+          从 <%= card.started_at %>
+          <br>至 <%= card.stopped_at.nil? ? '永不过期' : card.stopped_at %>
+        </td>
         <td><%= card.remaining_number %></td>
         <td>
-          <%= link_to 'Edit', edit_group_card_path(card.card_type.group, card) %> /
+          <%= link_to 'Edit', edit_group_card_path(card.card_type.group, card) %> <br>
           <%= link_to 'Destroy', [card.card_type.group, card], method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
@@ -59,12 +64,14 @@
   </tbody>
 </table>
 
+    <% elsif params[:tab] == 'transactions' %>
 
-    <h4><%= link_to '我的存款记录', transactions_user_path(@user) %></h4>
-    <%= render 'shared/transactions', transactions: @user.transactions %>
+      <br>
+      <%= render 'shared/transactions', transactions: @user.transactions %>
 
+    <% elsif params[:tab] == 'activities' %>
 
-<h4>活动记录</h4>
+      <br>
 <table class="table table-bordered">
   <thead>
     <tr class="active">
@@ -91,6 +98,7 @@
   </tbody>
 </table>
 
+    <% end %>
 
   </div>
   <div class="col-md-3">

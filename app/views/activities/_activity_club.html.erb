@@ -13,6 +13,7 @@
   活动时间: <%= activity.full_time %><br>
   活动地点: <%= activity.full_place %><br>
   报名人数: <%= activity.participants.size %><br>
+  俱乐部: <%= link_to activity.group.name, activity.group %><br>
 
   <!--
   <p>When using tooltips or popovers on elements within a <code>.btn-group</code>, you'll have to specify the option <code>container: 'body'</code> to avoid unwanted side effects (such as the element growing wider and/or losing its rounded corners when the tooltip or popover is triggered).</p>
