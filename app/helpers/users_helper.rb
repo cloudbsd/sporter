@@ -11,4 +11,16 @@ module UsersHelper
       end
     end
   end
+
+  def tab_link_to title, path, tab, cur_tab
+    if cur_tab == tab
+      content_tag :li, class: 'active' do
+        link_to title, path
+      end
+    else
+      content_tag :li do
+        link_to title, path
+      end
+    end
+  end
 end

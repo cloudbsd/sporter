@@ -2,30 +2,11 @@
   <div class="col-md-9">
 
     <ul class="nav nav-tabs">
-      <% if params[:tab].nil? or params[:tab] == 'recents' %>
-        <li class="active"><%= link_to '近期活动', user_path(@user, tab: 'recents') %></li>
-        <li><%= link_to '我的会员卡', user_path(@user, tab: 'cards') %></li>
-        <li><%= link_to '我的充值记录', user_path(@user, tab: 'transactions') %></li>
-        <li><%= link_to '我的活动记录', user_path(@user, tab: 'activities') %></li>
-      <% elsif params[:tab] == 'cards' %>
-        <li><%= link_to '近期活动', user_path(@user, tab: 'recents') %></li>
-        <li class="active"><%= link_to '我的会员卡', user_path(@user, tab: 'cards') %></li>
-        <li><%= link_to '我的充值记录', user_path(@user, tab: 'transactions') %></li>
-        <li><%= link_to '我的活动记录', user_path(@user, tab: 'activities') %></li>
-      <% elsif params[:tab] == 'transactions' %>
-        <li><%= link_to '近期活动', user_path(@user, tab: 'recents') %></li>
-        <li><%= link_to '我的会员卡', user_path(@user, tab: 'cards') %></li>
-        <li class="active"><%= link_to '我的充值记录', user_path(@user, tab: 'transactions') %></li>
-        <li><%= link_to '我的活动记录', user_path(@user, tab: 'activities') %></li>
-      <% elsif params[:tab] == 'activities' %>
-        <li><%= link_to '近期活动', user_path(@user, tab: 'recents') %></li>
-        <li><%= link_to '我的会员卡', user_path(@user, tab: 'cards') %></li>
-        <li><%= link_to '我的充值记录', user_path(@user, tab: 'transactions') %></li>
-        <li class="active"><%= link_to '我的活动记录', user_path(@user, tab: 'activities') %></li>
-      <% end %>
+      <%= tab_link_to '近期活动', user_path(@user), nil, params[:tab] %>
+      <%= tab_link_to '会员卡',   user_path(@user, tab: 'cards'), 'cards', params[:tab] %>
+      <%= tab_link_to '充值记录', user_path(@user, tab: 'transactions'), 'transactions', params[:tab] %>
+      <%= tab_link_to '活动记录', user_path(@user, tab: 'activities'), 'activities', params[:tab] %>
     </ul>
-
-    <%# render 'balances' %>
 
     <% if params[:tab].nil? or params[:tab] == 'recents' %>
 
