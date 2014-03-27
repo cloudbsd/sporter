@@ -66,27 +66,12 @@ class GroupsController < ApplicationController
 
   # GET /groups/1
   # GET /groups/1.json
-  def activities
-  end
-
-  # GET /groups/1
-  # GET /groups/1.json
   def members
   end
 
   # GET /groups/1
   # GET /groups/1.json
   def transactions
-  end
-
-  # GET /groups/1
-  # GET /groups/1.json
-  def fees
-  end
-
-  # GET /groups/1
-  # GET /groups/1.json
-  def card_types
   end
 
   # GET /groups/1

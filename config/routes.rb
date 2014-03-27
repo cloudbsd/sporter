@@ -26,11 +26,7 @@ Sporter::Application.routes.draw do
     resources :cards
     resources :transactions
     member do
-    # get :activities
       get :members
-    # get :transactions
-    # get :fees
-    # get :card_types
       get :cards
     end
     collection do
