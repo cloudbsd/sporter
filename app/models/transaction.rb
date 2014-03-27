@@ -1,4 +1,6 @@
 class Transaction < ActiveRecord::Base
+  # the default scope first (if any)
+
   # constants
   TRANSACTION_TYPES = [ "deposit", "withdraw" ]
 

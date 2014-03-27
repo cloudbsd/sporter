@@ -1,4 +1,8 @@
 class Participant < ActiveRecord::Base
+  # the default scope first (if any)
+  scope :in_group, lambda { |group_id| joins(:activity).where(:activities => { group_id: group_id }) }
+
+  # association macros
   belongs_to :user
   belongs_to :activity
   belongs_to :card
