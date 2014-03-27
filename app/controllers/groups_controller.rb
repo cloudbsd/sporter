@@ -67,6 +67,11 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def members
+    if params[:tab].nil?
+      @users = @group.users
+    else
+      @users = @group.users
+    end
   end
 
   # GET /groups/1
