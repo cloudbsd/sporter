@@ -10,13 +10,8 @@
     <% end %>
 
     <ul class="nav nav-tabs">
-      <% if params[:state] == 'outdated' %>
-        <li><%= link_to '全部球友', members_group_path(@group) %></li>
-        <li class="active"><%= link_to '无卡球友', members_group_path(@group, state: 'outdated') %></li>
-      <% else %>
-        <li class="active"><%= link_to '全部球友', members_group_path(@group) %></li>
-        <li><%= link_to '无卡球友', members_group_path(@group, state: 'outdated') %></li>
-      <% end %>
+      <%= tab_link_to '全部球友', members_group_path(@group), nil, params[:tab] %>
+      <%= tab_link_to '无卡球友', members_group_path(@group, tab: 'outdated'), 'outdated', params[:tab] %>
     </ul>
 
     <h4>群内球友</h4>

@@ -5,7 +5,7 @@ class ActivitiesController < ApplicationController
   # GET /activities
   # GET /activities.json
   def index
-    state = params[:state]
+    state = params[:tab]
     if state == 'outdated'
       @activities = @group.activities.outdated.order(started_at: :desc)
     else

@@ -3,19 +3,14 @@
     <%= link_to '创建活动', new_group_activity_path(@group), class: 'btn btn-warning pull-right' %>
 
     <ul class="nav nav-tabs">
-      <% if params[:state] == 'outdated' %>
-        <li><%= link_to '近期活动', group_activities_path(@group) %></li>
-        <li class="active"><%= link_to '过期活动', group_activities_path(@group, state: 'outdated') %></li>
-      <% else %>
-        <li class="active"><%= link_to '近期活动', group_activities_path(@group) %></li>
-        <li><%= link_to '过期活动', group_activities_path(@group, state: 'outdated') %></li>
-      <% end %>
+      <%= tab_link_to '近期活动', group_activities_path(@group), nil, params[:tab] %>
+      <%= tab_link_to '过期活动', group_activities_path(@group, tab: 'outdated'), 'outdated', params[:tab] %>
     </ul>
 
     <%= render partial: 'activity', collection: @activities %>
     <%# render partial: 'activity', collection: @activities, as: :activity %>
   </div>
   <div class="col-md-3">
-    <%= render 'groups/sidebar' %>
+    <%# render 'groups/sidebar' %>
   </div>
 </div>

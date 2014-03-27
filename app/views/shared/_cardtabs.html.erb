@@ -1,23 +1,6 @@
 <ul class="nav nav-tabs">
-  <% if controller_name == 'cards' %>
-    <li class="active"><%= link_to '会员卡管理', group_cards_path(@group) %></li>
-    <li><%= link_to '会员卡类型管理', group_card_types_path(@group) %></li>
-    <li><%= link_to '充值管理', group_transactions_path(@group) %></li>
-    <li><%= link_to '收费项目管理', group_fees_path(@group) %></li>
-  <% elsif controller_name == 'card_types' %>
-    <li><%= link_to '会员卡管理', group_cards_path(@group) %></li>
-    <li class="active"><%= link_to '会员卡类型管理', group_card_types_path(@group) %></li>
-    <li><%= link_to '充值管理', group_transactions_path(@group) %></li>
-    <li><%= link_to '收费项目管理', group_fees_path(@group) %></li>
-  <% elsif controller_name == 'transactions' %>
-    <li><%= link_to '会员卡管理', group_cards_path(@group) %></li>
-    <li><%= link_to '会员卡类型管理', group_card_types_path(@group) %></li>
-    <li class="active"><%= link_to '充值管理', group_transactions_path(@group) %></li>
-    <li><%= link_to '收费项目管理', group_fees_path(@group) %></li>
-  <% elsif controller_name == 'fees' %>
-    <li><%= link_to '会员卡管理', group_cards_path(@group) %></li>
-    <li><%= link_to '会员卡类型管理', group_card_types_path(@group) %></li>
-    <li><%= link_to '充值管理', group_transactions_path(@group) %></li>
-    <li class="active"><%= link_to '收费项目管理', group_fees_path(@group) %></li>
-  <% end %>
+    <%= tab_link_to '会员卡管理', group_cards_path(@group), 'cards', controller_name %>
+    <%= tab_link_to '会员卡类型管理', group_card_types_path(@group), 'card_types', controller_name %>
+    <%= tab_link_to '充值管理', group_transactions_path(@group), 'transactions', controller_name %>
+    <%= tab_link_to '收费项目管理', group_fees_path(@group), 'fees', controller_name %>
 </ul>

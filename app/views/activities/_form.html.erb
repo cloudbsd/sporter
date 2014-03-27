@@ -21,8 +21,20 @@
     <%# f.time_select :stopped_at, default: { hour: 21, minute: 30 } %>
   </div>
   <div class="form-group">
+    <%= f.label :applied_at %><br>
+    <%= f.datetime_select :applied_at, default: { hour: 21, minute: 30 } %>
+    <%# f.text_field :stopped_at, class: 'datepicker stopped-date', value: default_date(activity.stopped_at) %>
+    <%# f.text_field :stopped_at, class: 'datetimepicker stopped-date' %>
+    <%# f.time_select :stopped_at, default: { hour: 21, minute: 30 } %>
+  </div>
+  <div class="form-group">
     <%= f.label :pay_type, class: 'control-label' %>
     <%= f.select :pay_type, Group::PAYMENT_TYPES.map { |item| [t("groups.pay_type.#{item[0]}"), item[1]] }, { include_blank: false }, { class: 'form-control' } %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :number_limit, class: 'control-label' %>
+    <%= f.text_field :number_limit, class: 'form-control' %>
   </div>
 
   <div class='form-group'>
