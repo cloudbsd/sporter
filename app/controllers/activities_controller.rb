@@ -3,6 +3,7 @@ class ActivitiesController < ApplicationController
 
   before_action :set_group
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user!
 
   # GET /activities
   # GET /activities.json
@@ -90,7 +91,7 @@ class ActivitiesController < ApplicationController
     end
 
     def current_resource
-      @activity
+      [@group, @activity]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

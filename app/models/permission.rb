@@ -25,6 +25,11 @@ class Permission
       allow :groups, [:edit, :update, :destroy] do |group|
         group.owned_by? user
       end
+      # activities
+      allow :activities, [:new] do |resources|
+        group = resources[0]
+        group.owned_by? user
+      end
       # transactions
       allow :transactions, [:index] do |resources|
         group = resources[0]
