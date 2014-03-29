@@ -57,6 +57,7 @@
   <thead>
     <tr class="active">
       <th>活动日期</th>
+      <th>俱乐部</th>
       <th>个人可抵消费用（元）</th>
       <th>使用次数/消费金额</th>
       <th></th>
@@ -68,6 +69,7 @@
       <% group = activity.group %>
       <tr>
         <td><%= link_to (localize_date activity.started_at), [group, activity] %></td>
+        <td><%= link_to group.name, group %></td>
         <td><%= participant.derated_pay %></td>
         <td><%= participant.consume_number %></td>
         <td>
