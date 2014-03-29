@@ -37,6 +37,10 @@ class User < ActiveRecord::Base
   end
 
   # instance methods
+  def admin?
+    self.has_role? :admin
+  end
+
   def become_owner group
   # self.groups << group if self.groups.include? group
     group.users << self unless group.users.include?(self)

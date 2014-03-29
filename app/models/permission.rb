@@ -3,7 +3,8 @@ class Permission
     # as guest
     allow :sessions, [:new, :create]
     allow :registrations, [:new, :create, :cancel]
-    allow [:group], [:show]
+    allow [:groups], [:index, :show]
+    allow [:activities], [:index, :show]
     if user
       # as user
       allow :sessions, [:destroy]
@@ -12,22 +13,22 @@ class Permission
         user.id == u.id
       end
       allow :users, [:index] do |u|
-        user.is_admin?
+        user.admin?
       end
       allow :users, [:edit, :update] do |u|
-        user.id == u.id or user.is_admin? or user.is_moderator?
+        user.id == u.id or user.admin?
       end
       # groups
       allow :groups, [:new, :create]
       allow :groups, [:edit, :update, :destroy] do |group|
-        user.is_owner? group
+        group.owned_by? user
       end
       # participants
     # allow :participants, [:new, :create] do |participant|
     #   user.id == participant.user_id or 
     # end
       # as admin
-      allow_all if user.is_admin?
+      allow_all if user.admin?
     end
   end
 

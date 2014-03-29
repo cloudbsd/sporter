@@ -1,5 +1,5 @@
 Sporter::Application.routes.draw do
-  root 'users#index'
+  root 'groups#index'
 
   devise_for :users
 

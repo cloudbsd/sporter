@@ -1,6 +1,8 @@
 class GroupsController < ApplicationController
 # before_action :set_group, only: [:show, :edit, :update, :destroy, :activities, :members, :transactions]
+  skip_before_action :authenticate_user!, :only => [:index, :show]
   before_action :set_group, except: [:index, :new, :create, :cities, :districts]
+  before_action :authorize_user!
 
   # GET /groups
   # GET /groups.json

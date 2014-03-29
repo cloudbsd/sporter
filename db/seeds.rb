@@ -106,6 +106,7 @@ def create_users
 
   # create user admin
   admin = create_user 'admin@stacker.com', 'admin', 'Admin'
+  admin.add_role :admin
 # moderator = create_user 'moderator@stacker.com', 'moderator', 'Moderator'
 # liqi = create_user 'liqi@stacker.com', 'liqi', 'Li Qi'
 
@@ -329,8 +330,8 @@ Role.destroy_all
 import_provinces
 import_cities
 import_districts
+create_users
 import_users
-#create_users
 #create_groups
 import_groups
 import_card_types

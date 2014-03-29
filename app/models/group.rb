@@ -18,6 +18,11 @@ class Group < ActiveRecord::Base
   resourcify
 
   # instance methods
+  def owned_by? owner
+    return false unless owner.is_a? User
+    owner.is_owner? self
+  end
+
   def owner
     User.with_role(:owner, self).first
   end
