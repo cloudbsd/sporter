@@ -1,11 +1,14 @@
+<%# render partial: 'shared/navbar', locals: { group: @group } %>
+<%= render 'users/navbar' %>
+
 <div class="row">
   <div class="col-md-4">
 
-<h1>New group</h1>
+    <h2>新建群</h2>
 
-<%= render 'form' %>
+    <%= render 'form' %>
 
-<%= link_to 'Back', groups_path %>
+    <%= link_to 'Back', groups_path %>
 
   </div>
 </div>
