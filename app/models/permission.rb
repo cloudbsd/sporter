@@ -35,6 +35,14 @@ class Permission
         group = resources[0]
         group.owned_by? user
       end
+      allow :card_types, [:new] do |resources|
+        group = resources[0]
+        group.owned_by? user
+      end
+      allow :cards, [:new] do |resources|
+        group = resources[0]
+        group.owned_by? user
+      end
       # participants
     # allow :participants, [:new, :create] do |participant|
     #   user.id == participant.user_id or 

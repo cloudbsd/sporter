@@ -1,6 +1,7 @@
 class CardsController < ApplicationController
   before_action :set_group
   before_action :set_card, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user!
 
   # GET /cards/new
   def new
@@ -63,7 +64,7 @@ class CardsController < ApplicationController
     end
 
     def current_resource
-      @card
+      [@group, @card]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
