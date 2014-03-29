@@ -1,8 +1,8 @@
 class Activity < ActiveRecord::Base
   # the default scope first (if any)
-  scope :oneweek, lambda { where("activities.started_at > ? AND activities.stopped_at < ?", DateTime.now, 1.week.since) }
-  scope :recents, lambda { where("activities.started_at > ?", DateTime.now) }
-  scope :outdated, lambda { where("activities.started_at < ?", DateTime.now) }
+  scope :oneweek, lambda { where("activities.stopped_at > ? AND activities.stopped_at < ?", DateTime.now, 1.week.since) }
+  scope :recents, lambda { where("activities.stopped_at > ?", DateTime.now) }
+  scope :outdated, lambda { where("activities.stopped_at <= ?", DateTime.now) }
 
   # association macros
   belongs_to :group
@@ -10,6 +10,10 @@ class Activity < ActiveRecord::Base
   has_many :participants, dependent: :destroy
 
   # instance methods
+  def outdated?
+    self.stopped_at < DateTime.now
+  end
+
   def full_title
     if title.present?
       title
@@ -36,10 +40,6 @@ class Activity < ActiveRecord::Base
     days = I18n.t('date.day_names')
     i = started_at.strftime("%w").to_i
     days[i]
-  end
-
-  def outdated?
-    self.started_at < DateTime.now
   end
 
   def pay_with_card?

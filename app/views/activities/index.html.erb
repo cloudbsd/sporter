@@ -4,7 +4,7 @@
 
     <ul class="nav nav-tabs">
       <%= tab_link_to '近期活动', group_activities_path(@group), nil, params[:tab] %>
-      <%= tab_link_to '过期活动', group_activities_path(@group, tab: 'outdated'), 'outdated', params[:tab] %>
+      <%= tab_link_to '已结束活动', group_activities_path(@group, tab: 'outdated'), 'outdated', params[:tab] %>
     </ul>
 
     <%= render partial: 'activity', collection: @activities %>

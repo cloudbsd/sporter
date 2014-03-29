@@ -246,9 +246,10 @@ def import_activities
       row.strip!
       dates = row.split(',')
       uniqname, started_at, stopped_at = dates[0].strip, dates[1].strip, dates[2].strip
+      applied_at = started_at.to_datetime - 1.hour
       group = Group.find_by uniqname: uniqname
       owner = group.owner
-      activity = Activity.create!(group_id: group.id, started_at: started_at, stopped_at: stopped_at, pay_type: group.pay_type, number_limit: 30)
+      activity = Activity.create!(group_id: group.id, started_at: started_at, stopped_at: stopped_at, applied_at: applied_at, pay_type: group.pay_type, number_limit: 30)
       print_content "imported activity: from #{activity.started_at} to #{activity.stopped_at}"
 
       # import fees and fee_items
@@ -293,9 +294,10 @@ def import_activities_card
       row.strip!
       dates = row.split(',')
       uniqname, started_at, stopped_at = dates[0].strip, dates[1].strip, dates[2].strip
+      applied_at = started_at.to_datetime - 1.hour
       group = Group.find_by uniqname: uniqname
       owner = group.owner
-      activity = Activity.create!(group_id: group.id, started_at: started_at, stopped_at: stopped_at, pay_type: group.pay_type, number_limit: 30)
+      activity = Activity.create!(group_id: group.id, started_at: started_at, stopped_at: stopped_at, applied_at: applied_at, pay_type: group.pay_type, number_limit: 30)
       print_content "imported activity: from #{activity.started_at} to #{activity.stopped_at}"
 
       # import participants
