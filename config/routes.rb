@@ -24,7 +24,7 @@ Sporter::Application.routes.draw do
     resources :fees, except: [:show]
     resources :card_types, except: [:show]
     resources :cards
-    resources :transactions
+    resources :transactions, except: [:show]
     member do
       get :members
       get :cards

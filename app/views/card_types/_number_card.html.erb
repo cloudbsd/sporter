@@ -6,14 +6,18 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-md-8">
-          <p>会员卡类型：<%= t("card_types.type.#{card_type.kind}") %></p>
+          <p>类型：<%= t("card_types.type.#{card_type.kind}") %></p>
           <p>价格：<%= card_type.price.to_i %> 元</p>
           <p>有效期：<%= card_type.duration %> 个月</p>
           <p>活动次数：<%= card_type.number %></p>
         </div>
         <div class="col-md-4">
-          <p><%= link_to 'Edit', edit_group_card_type_path(@group, card_type) %></p>
-          <p><%= link_to 'Destroy', [@group, card_type], method: :delete, data: { confirm: 'Are you sure?' } %></p>
+          <% if can? :edit, [@group, card_type] %>
+            <p><%= link_to 'Edit', edit_group_card_type_path(@group, card_type) %></p>
+          <% end %>
+          <% if can? :destroy, [@group, card_type] %>
+            <p><%= link_to 'Destroy', [@group, card_type], method: :delete, data: { confirm: 'Are you sure?' } %></p>
+          <% end %>
         </div>
       </div>
     </div>

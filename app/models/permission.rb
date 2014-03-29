@@ -26,25 +26,30 @@ class Permission
         group.owned_by? user
       end
       # activities
-      allow :activities, [:new] do |resources|
+      allow :activities, [:new, :create] do |resources|
         group = resources[0]
         group.owned_by? user
       end
       # transactions
-      allow :transactions, [:index] do |resources|
+      allow :transactions, [:index, :new, :create] do |resources|
         group = resources[0]
         group.owned_by? user
       end
-      # transactions
-      allow :fees, [:index] do |resources|
+      # fees
+      allow :fees, [:index, :new, :create] do |resources|
         group = resources[0]
         group.owned_by? user
       end
-      allow :card_types, [:new] do |resources|
+      allow :card_types, [:new, :create, :edit, :update] do |resources|
         group = resources[0]
         group.owned_by? user
       end
-      allow :cards, [:new] do |resources|
+      allow :card_types, [:destroy] do |resources|
+        group = resources[0]
+        card_type = resources[1]
+        group.owned_by?(user) && card_type.cards.count == 0
+      end
+      allow :cards, [:new, :create] do |resources|
         group = resources[0]
         group.owned_by? user
       end

@@ -37,7 +37,7 @@ class TransactionsController < ApplicationController
     respond_to do |format|
       if @transaction.save
       # @transaction.card.calculate_balance if @transaction.card.is_debit_card?
-        format.html { redirect_to [@group, @transaction], notice: 'Transaction was successfully created.' }
+        format.html { redirect_to group_transactions_url(@group), notice: 'Transaction was successfully created.' }
         format.json { render action: 'show', status: :created, location: @transaction }
       else
         format.html { render action: 'new' }
@@ -52,7 +52,7 @@ class TransactionsController < ApplicationController
     respond_to do |format|
       if @transaction.update(transaction_params)
       # @transaction.card.calculate_balance if @transaction.card.is_debit_card?
-        format.html { redirect_to [@group, @transaction], notice: 'Transaction was successfully updated.' }
+        format.html { redirect_to group_transactions_url(@group), notice: 'Transaction was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

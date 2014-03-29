@@ -42,8 +42,18 @@ class ApplicationController < ActionController::Base
 # delegate :allow?, to: :current_permission
 # helper_method :allow?
 
-  def can?(action, object, parent = nil)
-    current_permission.allow? object.class.to_s.tableize, action, object
+  def may?(controller, action, resources)
+    current_permission.allow? controller, action, resources
+  end
+  helper_method :may?
+
+  def can?(action, object)
+    objects = Array(object)
+    controller = objects.last.class.to_s.tableize
+    current_permission.allow? controller, action, object
+
+  # current_permission.allow? objects.last.class.to_s.tableize, action, objects
+
   # if parent.nil?
   #   current_permission.allow? object.class.to_s.tableize, action, object
   # else
@@ -51,9 +61,4 @@ class ApplicationController < ActionController::Base
   # end
   end
   helper_method :can?
-
-  def may?(controller, action, resources)
-    current_permission.allow? controller, action, resources
-  end
-  helper_method :may?
 end
