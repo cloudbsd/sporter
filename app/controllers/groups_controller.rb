@@ -8,6 +8,7 @@ class GroupsController < ApplicationController
   # GET /groups.json
   def index
     @groups = Group.all
+    render layout: "application"
   end
 
   # GET /groups/1

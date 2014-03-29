@@ -1,6 +1,7 @@
 class TransactionsController < ApplicationController
   before_action :set_group
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user!
 
   # GET /transactions
   # GET /transactions.json
@@ -79,6 +80,10 @@ class TransactionsController < ApplicationController
 
     def set_transaction
       @transaction = Transaction.find(params[:id])
+    end
+
+    def current_resource
+      [@group, @transaction]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

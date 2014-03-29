@@ -1,6 +1,10 @@
 <ul class="nav nav-tabs">
-    <%= tab_link_to '会员卡管理', group_cards_path(@group), 'cards', controller_name %>
-    <%= tab_link_to '会员卡类型管理', group_card_types_path(@group), 'card_types', controller_name %>
+  <%= tab_link_to '会员卡管理', group_cards_path(@group), 'cards', controller_name %>
+  <%= tab_link_to '会员卡类型管理', group_card_types_path(@group), 'card_types', controller_name %>
+  <% if may? 'transactions', :index, [@group] %>
     <%= tab_link_to '充值管理', group_transactions_path(@group), 'transactions', controller_name %>
+  <% end %>
+  <% if may? 'fees', :index, [@group] %>
     <%= tab_link_to '收费项目管理', group_fees_path(@group), 'fees', controller_name %>
+  <% end %>
 </ul>

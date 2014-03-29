@@ -1,7 +1,7 @@
 class FeesController < ApplicationController
   before_action :set_group
   before_action :set_fee, only: [:edit, :update, :destroy]
-# before_action :authorize_user!
+  before_action :authorize_user!
 
   # GET /fees/new
   def new
@@ -72,7 +72,7 @@ class FeesController < ApplicationController
     end
 
     def current_resource
-      @fee
+      [@group, @fee]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

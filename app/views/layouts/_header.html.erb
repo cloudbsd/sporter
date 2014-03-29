@@ -4,9 +4,9 @@
   <% end %>
   <ul class="nav nav-pills pull-right">
     <% if user_signed_in? %>
-      <li><%= header_link_to 'groups', 'show', '活动', current_user.groups.first %></li>
-      <li><%= header_link_to 'groups', 'members', '球友', members_group_path(current_user.groups.first) %></li>
-      <%# header_link_to 'users', 'show', current_user.name, current_user %>
+      <% current_user.groups.each do |group| %>
+        <li><%= link_to group.name, group %></li>
+      <% end %>
       <li> <%= link_to t('devise.logout'), destroy_user_session_path, method: :delete %> </li>
       <%# link_to t('devise.logoff'), registration_path(current_user), :method => :delete, data: { confirm: t('layouts.confirm') } %>
     <% else %>

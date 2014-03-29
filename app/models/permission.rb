@@ -3,8 +3,10 @@ class Permission
     # as guest
     allow :sessions, [:new, :create]
     allow :registrations, [:new, :create, :cancel]
-    allow [:groups], [:index, :show]
+    allow [:groups], [:index, :show, :members]
     allow [:activities], [:index, :show]
+    allow [:card_types], [:index, :show]
+    allow [:cards], [:index, :show]
     if user
       # as user
       allow :sessions, [:destroy]
@@ -21,6 +23,16 @@ class Permission
       # groups
       allow :groups, [:new, :create]
       allow :groups, [:edit, :update, :destroy] do |group|
+        group.owned_by? user
+      end
+      # transactions
+      allow :transactions, [:index] do |resources|
+        group = resources[0]
+        group.owned_by? user
+      end
+      # transactions
+      allow :fees, [:index] do |resources|
+        group = resources[0]
         group.owned_by? user
       end
       # participants

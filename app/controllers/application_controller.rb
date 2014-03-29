@@ -43,11 +43,17 @@ class ApplicationController < ActionController::Base
 # helper_method :allow?
 
   def can?(action, object, parent = nil)
-    if parent.nil?
-      current_permission.allow? object.class.to_s.tableize, action, object
-    else
-      current_permission.allow? object.class.to_s.tableize, action, [object, parent]
-    end
+    current_permission.allow? object.class.to_s.tableize, action, object
+  # if parent.nil?
+  #   current_permission.allow? object.class.to_s.tableize, action, object
+  # else
+  #   current_permission.allow? object.class.to_s.tableize, action, [object, parent]
+  # end
   end
   helper_method :can?
+
+  def may?(controller, action, resources)
+    current_permission.allow? controller, action, resources
+  end
+  helper_method :may?
 end

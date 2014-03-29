@@ -1,4 +1,6 @@
 class ActivitiesController < ApplicationController
+  layout "activities"
+
   before_action :set_group
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
