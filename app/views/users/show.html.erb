@@ -10,7 +10,7 @@
 
     <% if params[:tab].nil? or params[:tab] == 'recents' %>
 
-      <%= render partial: 'activities/activity_club', collection: @user.activities.inoneweek, as: :activity %>
+      <%= render partial: 'activities/activity_club', collection: @user.activities.oneweek, as: :activity %>
 
     <% elsif params[:tab] == 'cards' %>
       <br>
