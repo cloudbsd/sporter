@@ -18,7 +18,9 @@
       <th>开卡日期</th>
       <th>截止日期</th>
       <th>剩余次数/账户余额</th>
-      <th>操作</th>
+      <% if may? 'cards', :new, [@group] %>
+        <th>操作</th>
+      <% end %>
     </tr>
   </thead>
 
@@ -30,11 +32,12 @@
         <td><%= card.started_at %></td>
         <td><%= card.stopped_at %></td>
         <td><%= show_price(card.remaining_number) %></td>
-        <td>
-          <%= link_to 'Show', group_card_path(@group, card) %> /
-          <%= link_to 'Edit', edit_group_card_path(@group, card) %> /
-          <%= link_to 'Destroy', [@group, card], method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
+        <% if can? :edit, [@group, card] %>
+          <td>
+            <%= link_to 'Edit', edit_group_card_path(@group, card) %> /
+            <%= link_to 'Destroy', [@group, card], method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

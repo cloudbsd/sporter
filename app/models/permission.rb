@@ -12,10 +12,17 @@ class Permission
       allow :sessions, [:destroy]
       allow :registrations, [:edit, :update, :destroy, :edit_password, :update_password]
       allow :users, [:show] do |u|
-        user.id == u.id
+        true
+      # user.id == u.id
       end
       allow :users, [:index] do |u|
         user.admin?
+      end
+      allow :users, [:new, :create, :create_member] do |group|
+        group.owned_by? user
+      # group_id = user.group_id
+      # group = Group.find_by group_id: group_id
+      # user.id == u.id
       end
       allow :users, [:edit, :update] do |u|
         user.id == u.id or user.admin?
@@ -49,7 +56,7 @@ class Permission
         card_type = resources[1]
         group.owned_by?(user) && card_type.cards.count == 0
       end
-      allow :cards, [:new, :create] do |resources|
+      allow :cards, [:new, :create, :edit, :update, :destroy] do |resources|
         group = resources[0]
         group.owned_by? user
       end

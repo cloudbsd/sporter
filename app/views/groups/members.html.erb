@@ -3,9 +3,7 @@
 <div class="row">
   <div class="col-md-12">
 
-    <% if params[:state] == 'outdated' %>
-      <%= link_to '充值', new_group_transaction_path(@group), class: 'btn btn-warning pull-right' %>
-    <% else %>
+    <% if may? 'users', :new, @group %>
       <%= link_to '添加球友', new_user_path(group_id: @group.id), class: 'btn btn-warning pull-right' %>
     <% end %>
 

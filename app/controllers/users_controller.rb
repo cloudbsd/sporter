@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:index, :show]
 
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :authorize_user!
 
   # GET /users
   # GET /users.json
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-  # @group = Group.find params[:group_id]
+    @group = Group.find params[:group_id]
     @user = User.new
   end
 
@@ -29,6 +30,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create_member
+    @group = Group.find params[:group_id]
     @user = User.new(user_params)
     @user.password = 'password'
     respond_to do |format|
@@ -87,8 +89,14 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
+    def current_resource
+      @group = Group.find_by id: params[:group_id]
+    # @user = User.new(user_params) if @user.nil?
+      @user || @group
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation, :name, :birthday, :gender, :mobile, :telephone)
+      params.require(:user).permit(:username, :email, :password, :password_confirmation, :name, :birthday, :gender, :mobile, :telephone, :gravatar, :province, :city, :district, :location, :aboutme)
     end
 end
