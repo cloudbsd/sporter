@@ -94,6 +94,8 @@ def create_user(email, username, name)
   user.update(gravatar: gravatar)
 
   print_content "created user: #{user.name}"
+
+  user
 end
 
 
