@@ -21,7 +21,6 @@
       <th>卡名称</th>
       <th>有效日期</th>
       <th>剩余次数/账户余额</th>
-      <th>操作</th>
     </tr>
   </thead>
 
@@ -36,10 +35,6 @@
           <br>至 <%= card.stopped_at.nil? ? '永不过期' : card.stopped_at %>
         </td>
         <td><%= card.remaining_number %></td>
-        <td>
-          <%= link_to 'Edit', edit_group_card_path(card.card_type.group, card) %> <br>
-          <%= link_to 'Destroy', [card.card_type.group, card], method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
       </tr>
     <% end %>
   </tbody>
@@ -48,7 +43,7 @@
     <% elsif params[:tab] == 'transactions' %>
 
       <br>
-      <%= render 'shared/transactions', transactions: @user.transactions %>
+      <%= render 'shared/transactions_by_users', transactions: @user.transactions %>
 
     <% elsif params[:tab] == 'activities' %>
 
@@ -60,7 +55,6 @@
       <th>俱乐部</th>
       <th>个人可抵消费用（元）</th>
       <th>使用次数/消费金额</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -72,10 +66,6 @@
         <td><%= link_to group.name, group %></td>
         <td><%= participant.derated_pay %></td>
         <td><%= participant.consume_number %></td>
-        <td>
-          <%= link_to '编辑', edit_group_activity_participant_path(group, activity, participant) %> / 
-          <%= link_to '删除', [group, activity, participant], method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
       </tr>
     <% end %>
   </tbody>

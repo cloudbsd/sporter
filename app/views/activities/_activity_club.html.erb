@@ -2,12 +2,12 @@
   <h4>
     <%= link_to activity.full_title, [activity.group, activity] %>
     <span class="activity-title-actions">
-      <%# if can? :edit, activity %>
+      <% if can? :edit, [activity.group, activity] %>
         <%= link_to t('layouts.edit'), edit_group_activity_path(activity.group, activity) %>
-      <%# end %>
-      <%# if can? :destroy, activity %>
+      <% end %>
+      <% if can? :destroy, [activity.group, activity] %>
         <%= link_to t('layouts.destroy'), [activity.group, activity], method: :delete, data: { confirm: t('layouts.confirm') } %>
-      <%# end %>
+      <% end %>
     </span>
   </h4>
   活动时间: <%= activity.full_time %><br>
