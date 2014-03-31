@@ -31,6 +31,9 @@ class Permission
         true
       end
       # groups
+      allow :groups, [:cities, :districts] do
+        true
+      end
       allow :groups, [:new, :create]
       allow :groups, [:edit, :update, :destroy] do |group|
         group.owned_by? user
