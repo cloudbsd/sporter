@@ -1,7 +1,8 @@
 class FeeItemsController < ApplicationController
-  before_action :set_group, only: [:show, :new, :edit, :create, :update, :destroy]
-  before_action :set_activity, only: [:show, :new, :edit, :create, :update, :destroy]
+  before_action :set_group
+  before_action :set_activity
   before_action :set_fee_item, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user!
 
   # GET /fee_items/new
   def new
@@ -72,7 +73,7 @@ class FeeItemsController < ApplicationController
     end
 
     def current_resource
-      @activity
+      [@group, @activity, @fee_item]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

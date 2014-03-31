@@ -27,13 +27,16 @@ class Permission
       allow :users, [:edit, :update] do |u|
         user.id == u.id or user.admin?
       end
+      allow :users, [:cards] do |u|
+        true
+      end
       # groups
       allow :groups, [:new, :create]
       allow :groups, [:edit, :update, :destroy] do |group|
         group.owned_by? user
       end
       # activities
-      allow :activities, [:new, :create] do |resources|
+      allow :activities, [:new, :create, :edit, :update, :destroy] do |resources|
         group = resources[0]
         group.owned_by? user
       end
@@ -44,6 +47,10 @@ class Permission
       end
       # fees
       allow :fees, [:index, :new, :create] do |resources|
+        group = resources[0]
+        group.owned_by? user
+      end
+      allow :fee_items, [:index, :new, :create, :edit, :update, :destroy] do |resources|
         group = resources[0]
         group.owned_by? user
       end
@@ -61,9 +68,25 @@ class Permission
         group.owned_by? user
       end
       # participants
-    # allow :participants, [:new, :create] do |participant|
-    #   user.id == participant.user_id or 
-    # end
+      allow :participants, [:enroll] do |resources|
+        group = resources[0]
+        activity = resources[1]
+        group.users.include?(user) && !activity.enrolled_by?(user)
+      end
+      allow :participants, [:new, :create] do |resources|
+        group = resources[0]
+        activity = resources[1]
+        group.owned_by? user
+      # group.users.include?(user) && activity.enrolled_by?(user)
+      # group.users.include?(user) && activity.enrolled_by?(user)
+      end
+      allow :participants, [:edit, :update] do |resources|
+        group = resources[0]
+        activity = resources[1]
+        participant = resources[2]
+        group.owned_by? user
+      # user.id == participant.user_id or group.owned_by? user
+      end
       # as admin
       allow_all if user.admin?
     end

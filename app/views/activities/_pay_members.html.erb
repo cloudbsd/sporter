@@ -1,5 +1,7 @@
 <h4>活动个人支出</h4>
-<%= link_to t('participants.new'), new_group_activity_participant_path(@group, @activity) %>
+<% if may? 'participants', :new, [@group, @activity] %>
+  <%= link_to t('participants.new'), new_group_activity_participant_path(@group, @activity) %>
+<% end %>
 
 <table class="table table-bordered">
   <thead>
@@ -8,7 +10,9 @@
       <th>所带朋友数目</th>
       <th>羽球抵扣费用（元）</th>
       <th>实际需付费用（元）</th>
-      <th></th>
+      <% if may? 'participants', :edit, [@group, @activity, @participant] %>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -18,8 +22,12 @@
         <td><%= participant.friend_number %></td>
         <td><%= participant.derated_pay %></td>
         <td><%= participant.net_pay %></td>
-        <td><%= link_to '编辑', edit_group_activity_participant_path(@group, @activity, participant) %> / 
-        <%= link_to '删除', [@group, @activity, participant], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if may? 'participants', :edit, [@group, @activity, @participant] %>
+          <td>
+            <%= link_to '编辑', edit_group_activity_participant_path(@group, @activity, participant) %> / 
+            <%= link_to '删除', [@group, @activity, participant], method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

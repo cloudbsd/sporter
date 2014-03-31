@@ -1,9 +1,5 @@
 <div class="row">
   <div class="col-md-8">
-    <%= link_to t('layouts.edit'), edit_group_activity_path(@group, @activity) %> |
-    <%= link_to t('layouts.destroy'), [@group, @activity], method: :delete, data: { confirm: 'Are you sure?' } %> |
-    <%= link_to t('layouts.back'), @group %>
-
     <%= render 'activity', activity: @activity %>
 
     <% unless @activity.pay_with_card? %>
@@ -24,10 +20,14 @@
   </div>
 
   <div class="col-md-4">
-    <%= link_to '我要报名', enroll_group_activity_participants_path(@group, @activity), class: 'btn btn-success' %>
+    <% if may? 'participants', :enroll, [@group, @activity] %>
+      <%# link_to '我要报名', enroll_group_activity_participants_path(@group, @activity), class: 'btn btn-success' %>
+    <% end %>
     <br>
     <br>
     <br>
-    <%= render file: 'fees/new' %>
+    <% if may? 'fees', :new, [@group, @activity] %>
+      <%= render file: 'fees/new' %>
+    <% end %>
   </div>
 </div>

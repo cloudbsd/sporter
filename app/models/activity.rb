@@ -14,6 +14,10 @@ class Activity < ActiveRecord::Base
     self.stopped_at < DateTime.now
   end
 
+  def enrolled_by? user
+    participants.map(&:user).include? user
+  end
+
   def full_title
     if title.present?
       title

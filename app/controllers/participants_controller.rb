@@ -2,6 +2,7 @@ class ParticipantsController < ApplicationController
   before_action :set_group
   before_action :set_activity
   before_action :set_participant, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user!
 
   # GET /participants/enroll
   def enroll
@@ -84,7 +85,7 @@ class ParticipantsController < ApplicationController
     end
 
     def current_resource
-      @activity
+      [@group, @activity, @participant]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

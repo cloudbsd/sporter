@@ -1,12 +1,16 @@
 <h4>活动单项费用</h4>
-<%= link_to t('fee_items.new'), new_group_activity_fee_item_path(@group, @activity) %>
+<% if may? 'fee_items', :new, [@group, @activity] %>
+  <%= link_to t('fee_items.new'), new_group_activity_fee_item_path(@group, @activity) %>
+<% end %>
 
 <table class="table table-bordered">
   <thead>
     <tr class="active">
       <th>费用项名称</th>
       <th>费用（元）</th>
-      <th>操作</th>
+      <% if may? 'fee_items', :edit, [@group, @activity, @participant] %>
+        <th>操作</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -14,8 +18,12 @@
       <tr>
         <td><%= fee_item.fee.name %></td>
         <td><%= fee_item.price %></td>
-        <td><%= link_to '编辑', edit_group_activity_fee_item_path(@group, @activity, fee_item) %> / 
-        <%= link_to '删除', [@group, @activity, fee_item], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if may? 'fee_items', :edit, [@group, @activity, @participant] %>
+          <td>
+            <%= link_to '编辑', edit_group_activity_fee_item_path(@group, @activity, fee_item) %> / 
+            <%= link_to '删除', [@group, @activity, fee_item], method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
