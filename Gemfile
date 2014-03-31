@@ -76,4 +76,4 @@ group :production do
 end
 
 # Use ffaker for generating fake data
-gem 'ffaker', group: [:development, :production]
+#gem 'ffaker', group: [:development, :production]
